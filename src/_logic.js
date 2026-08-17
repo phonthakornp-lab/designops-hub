@@ -1,172 +1,170 @@
 function esc(s) {
   return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
-function go(h) { location.hash = h; }
+function ic(n) { return I[n] || I.doc; }
+function route() { return (location.hash || '#/').replace(/^#\/?/, ''); }
 
-function topbar(crumbs) {
-  var c = crumbs.map(function (x, i) {
-    var last = i === crumbs.length - 1;
-    return (i ? '<span class="sep">/</span>' : '') +
-      (last ? '<span class="cur">' + esc(x.t) + '</span>'
-            : '<button data-go="' + esc(x.h) + '">' + esc(x.t) + '</button>');
+/* ---------- sidebar ---------- */
+function sidebar(active) {
+  var items = DATA.nav.map(function (n) {
+    if (n.sep) return '<div class="navsep">' + esc(n.sep) + '</div>';
+    var on = (n.id === active);
+    return '<button class="ni' + (on ? ' on' : '') + (n.off ? ' off' : '') + '"' +
+      ' data-go="' + esc(n.id) + '"' + (n.off ? ' aria-disabled="true"' : '') + '>' +
+      '<span class="ic">' + ic(n.icon) + '</span>' + esc(n.label) +
+      (n.dot ? '<span class="dot" title="พักไว้ก่อน"></span>' : '') + '</button>';
   }).join('');
-  return '<div class="topbar"><div class="topbar-in">' +
-    '<button class="brand" data-go="/"><span class="sq">◆</span>DesignOps</button>' +
-    '<div class="crumbs">' + c + '</div>' +
-    '<a class="up" href="' + DATA.roadmap + '" target="_blank" rel="noopener">Roadmap 2026 ↗</a>' +
-    '</div></div>';
+  return '<nav class="nav">' +
+    '<button class="brand" data-go=""><span class="sq">◆</span>DesignOps</button>' +
+    '<div class="navlist">' + items + '</div>' +
+    '</nav>';
 }
 
-function stat(lbl, big, sub, hero) {
-  return '<div class="stat' + (hero ? ' hero' : '') + '"><div class="lbl">' + esc(lbl) + '</div>' +
-    '<div class="big">' + esc(big) + '</div><div class="sub">' + esc(sub) + '</div></div>';
+/* ---------- ชิ้นส่วน ---------- */
+function head(s, crumb) {
+  return (crumb || '') +
+    '<div class="shead ' + (s.color || '') + '">' +
+    '<div class="badge">' + ic(s.icon) + '</div>' +
+    '<div><h1>' + esc(s.title) + '</h1><p class="tagline">' + esc(s.tag) + '</p></div></div>' +
+    (s.lede ? '<p class="lede">' + esc(s.lede) + '</p>' : '');
 }
 
-/* ---------- หน้าแรก ---------- */
+function topicCard(t, secId) {
+  var arw = t.ext ? '↗' : (t.id ? '→' : '');
+  var inner =
+    '<span class="ico">' + ic(t.icon) + '</span>' +
+    '<span class="t">' + esc(t.t) + '</span>' +
+    '<span class="d">' + esc(t.d) + '</span>' +
+    (t.up ? '<span class="up">' + esc(t.up) + '</span>' : '') +
+    (arw ? '<span class="arw">' + arw + '</span>' : '') +
+    (t.wait ? '<span class="badge2">' + esc(t.wait) + '</span>' : '');
+  var cls = 'tc ' + (t.color || '');
+  if (t.ext) return '<a class="' + cls + '" href="' + t.ext + '" target="_blank" rel="noopener">' + inner + '</a>';
+  if (t.id) return '<button class="' + cls + '" data-go="' + secId + '/' + t.id + '">' + inner + '</button>';
+  return '<div class="' + cls + ' off">' + inner + '</div>';
+}
+
+function lockBox(l) {
+  return '<div class="locknote"><div class="t">' + esc(l.t) + '</div><div class="d">' + esc(l.d) + '</div>' +
+    '<ol>' + l.todo.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol></div>';
+}
+
+/* ---------- Overview ---------- */
 function viewHome() {
-  var open = DATA.cats.filter(function (c) { return c.open; });
-  var items = open.reduce(function (n, c) { return n + c.count; }, 0);
-  return topbar([{ t: 'หน้าแรก' }]) +
-    '<div class="band">' +
-    '<div class="kicker">DesignOps · SkillLane</div>' +
-    '<h1>DesignOps <span class="yr">Hub</span></h1>' +
-    '<p class="lede">ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม — วิธีทำงานแต่ละเรื่อง และของอ้างอิงว่าตัวจริงอยู่ที่ไหน</p>' +
+  var secs = ['ds', 'qa', 'dv'];
+  var open = 0, total = 0;
+  secs.forEach(function (k) {
+    DATA.sec[k].topics.forEach(function (t) { total++; if (!t.wait) open++; });
+  });
+  var cards = secs.map(function (k) {
+    var s = DATA.sec[k];
+    var ready = s.topics.filter(function (t) { return !t.wait; }).length;
+    return topicCard({
+      id: k, icon: s.icon, color: s.color, t: s.title, d: s.tag,
+      up: ready + ' / ' + s.topics.length + ' พร้อมใช้'
+    }, '');
+  }).join('');
+
+  return '<div class="inner">' +
+    head({ icon: 'home', title: 'DesignOps', tag: 'playbook · ของอ้างอิง · ทางเข้าต้นฉบับ', color: '',
+           lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม — วิธีทำงานแต่ละเรื่อง และของอ้างอิงว่าตัวจริงอยู่ที่ไหน' }) +
     '<div class="stats">' +
-      stat('หมวดที่เปิดแล้ว', open.length + ' / ' + DATA.cats.length, 'อีก ' + (DATA.cats.length - open.length) + ' หมวดกำลังเตรียม', true) +
-      stat('รายการพร้อมใช้', String(items), 'กดแล้วไปต้นฉบับได้เลย') +
-      stat('สำเนาที่เว็บนี้เก็บเอง', '0', 'ลิงก์ออกทั้งหมด ไม่มีของเก่าค้าง') +
-      stat('ปลายทางที่ลิงก์ไป', String(DATA.dests.length), DATA.dests.join(' · ')) +
+      '<div class="stat hero"><div class="lbl">รายการพร้อมใช้</div><div class="big">' + open + ' / ' + total + '</div><div class="sub">ที่เหลือกำลังเตรียม</div></div>' +
+      '<div class="stat"><div class="lbl">หมวดใน Playbook</div><div class="big">' + secs.length + '</div><div class="sub">คู่กับ skill ที่ทีมใช้อยู่</div></div>' +
+      '<div class="stat"><div class="lbl">สำเนาที่เว็บนี้เก็บเอง</div><div class="big">0</div><div class="sub">ลิงก์ออกทั้งหมด ไม่มีของเก่าค้าง</div></div>' +
+      '<div class="stat"><div class="lbl">ปลายทาง</div><div class="big">4</div><div class="sub">Confluence · Figma · design-brain · Jira</div></div>' +
     '</div>' +
-    '</div>' +
-
-    '<div class="band">' +
-    '<h2 class="sec">เข้าทางไหน</h2>' +
-    '<p class="sec-lede">Playbook คือวิธีทำงาน · Role คือขอบเขตงานและวิธีขอความช่วยเหลือ</p>' +
-    '<div class="lanes">' +
-      '<div class="lane purple"><div class="lane-head">' +
-        '<div><div class="nm">Playbook</div><div class="goal">วิธีทำงานแต่ละเรื่อง แยกเป็นหมวด พร้อมลิงก์ไปของต้นฉบับ</div>' +
-        '<div class="krs">' + DATA.cats.map(function (c) { return '<span class="krchip">' + esc(c.name) + '</span>'; }).join('') + '</div></div>' +
-        '<div class="lane-pct"><div class="b on">' + open.length + '/' + DATA.cats.length + '</div><div class="l">หมวดที่เปิดแล้ว</div></div>' +
-        '<button class="btn" data-go="/playbook">เข้าดู →</button>' +
-      '</div></div>' +
-      '<div class="lane off"><div class="lane-head">' +
-        '<div><div class="nm">Role</div><div class="goal">DesignOps ช่วยอะไรได้บ้าง และทีมขอความช่วยเหลือยังไง</div></div>' +
-        '<div class="lane-pct"><div class="b">—</div><div class="l">ยังไม่เปิด</div></div>' +
-        '<button class="btn ghost" disabled>กำลังตกลง</button>' +
-      '</div><div class="leg"><span>ยังไม่ได้ตัดสินว่าทีมขอผ่านช่องทางไหน — Jira, ทักตรง หรือมีคิว</span></div></div>' +
-    '</div>' +
-    '<div class="note"><b>เว็บนี้ไม่เก็บเนื้อหา</b> — ทุกการ์ดพาไปหาต้นฉบับที่ของอยู่จริง เพื่อไม่ให้เกิดสำเนาที่เก่าโดยไม่มีใครรู้ · ทุกใบบอกวันที่อัปเดตล่าสุดไว้ ให้ตัดสินเองว่ายังเชื่อได้ไหม</div>' +
-    '</div>' + foot();
+    '<div class="block"><h2 class="sec">Playbook</h2>' +
+    '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ · ชื่อหมวดตรงกับชื่อ skill ที่พิมพ์ในเทอร์มินัล</p>' +
+    '<div class="cardgrid">' + cards + '</div></div>' +
+    '<div class="note"><b>เว็บนี้ไม่เก็บเนื้อหา</b> — ทุกการ์ดพาไปหาต้นฉบับที่ของอยู่จริง เพื่อไม่ให้เกิดสำเนาที่เก่าโดยไม่มีใครรู้ · การ์ด ↗ = ออกไปข้างนอก · → = หน้าในเว็บนี้</div>' +
+    foot() + '</div>';
 }
 
-/* ---------- swimlane ของ Playbook ---------- */
-function viewPlaybook() {
-  var lanes = DATA.cats.map(function (c) {
-    var steps = (c.steps || []).map(function (s, i) {
-      return (i ? '<div class="arrow">→</div>' : '') +
-        '<div class="fstep' + (c.open || s.ok ? '' : ' empty') + '"><div class="c">ขั้น ' + (i + 1) + (s.ok ? ' · เสร็จแล้ว' : '') + '</div>' +
-        '<div class="t">' + esc(s.t) + '</div><div class="n">' + esc(s.n) + '</div></div>';
-    }).join('');
-    return '<div class="lane ' + c.color + (c.open ? '' : ' off') + '">' +
-      '<div class="lane-head">' +
-        '<div><div class="nm">' + esc(c.name) + (c.skill ? '<span class="skill">/' + esc(c.skill) + '</span>' : '') + '</div>' +
-        '<div class="goal">' + esc(c.desc) + '</div></div>' +
-        '<div class="lane-pct"><div class="b' + (c.open ? ' on' : '') + '">' + (c.open ? c.count : '—') + '</div>' +
-        '<div class="l">' + (c.open ? 'รายการพร้อมใช้' : esc(c.statusText)) + '</div></div>' +
-        (c.open ? '<button class="btn" data-go="/c/' + c.id + '">เข้าดู →</button>'
-                : '<button class="btn ghost" data-go="/c/' + c.id + '">ดูว่าติดอะไร</button>') +
-      '</div>' +
-      (steps ? '<div class="flow">' + steps + '</div>' : '') +
-      (c.open ? '' : '<div class="leg"><span><i class="e"></i> กล่องพื้นส้ม = ยังไม่เปิด</span><span>' + esc(c.why) + '</span></div>') +
-      '</div>';
-  }).join('');
-  return topbar([{ t: 'หน้าแรก', h: '/' }, { t: 'Playbook' }]) +
-    '<div class="band">' +
-    '<div class="kicker">Playbook</div>' +
-    '<h1>ทำ<span class="yr">เรื่องไหน</span></h1>' +
-    '<p class="lede">3 หมวดคู่กับ skill ที่ทีมใช้อยู่ใน design-brain — ชื่อในเว็บนี้กับชื่อที่พิมพ์ในเทอร์มินัลเป็นตัวเดียวกัน</p>' +
-    '<div class="lanes" style="margin-top:28px">' + lanes + '</div>' +
-    '</div>' + foot();
-}
-
-/* ---------- หน้าในหมวด ---------- */
-function viewCat(id) {
-  var c = DATA.cats.filter(function (x) { return x.id === id; })[0];
-  if (!c) return viewPlaybook();
-  var crumbs = [{ t: 'หน้าแรก', h: '/' }, { t: 'Playbook', h: '/playbook' }, { t: c.name }];
-
-  if (!c.open) {
-    return topbar(crumbs) + '<div class="band">' +
-      '<div class="kicker">Playbook · ' + esc(c.name) + '</div>' +
-      '<h1>' + esc(c.name) + '</h1>' +
-      '<p class="lede">' + esc(c.desc) + '</p>' +
-      '<div style="margin-top:26px" class="locknote"><div class="t">ยังไม่เปิด — ' + esc(c.statusText) + '</div>' +
-      '<div class="d">' + esc(c.why) + '</div>' +
-      '<ol>' + (c.todo || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ol></div>' +
-      '</div>' + foot();
+/* ---------- section ---------- */
+function viewSec(id) {
+  var s = DATA.sec[id];
+  if (!s) return viewHome();
+  var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span><span>' + esc(s.title) + '</span></div>';
+  var body = head(s, crumb) +
+    (s.skill ? '<p class="sec-lede" style="margin-top:10px">เรียกด้วย <code>/' + esc(s.skill) + '</code> ใน Claude</p>' : '');
+  if (s.lock) body += lockBox(s.lock);
+  if (s.topics.length) {
+    body += '<div class="block"><h2 class="sec">เรื่องในหมวดนี้</h2>' +
+      '<p class="sec-lede">การ์ดที่มี ↗ จะเปิดต้นฉบับข้างนอก · การ์ดที่มี → เป็นหน้าย่อยในเว็บนี้</p>' +
+      '<div class="cardgrid">' + s.topics.map(function (t) { return topicCard(t, id); }).join('') + '</div></div>';
   }
+  return '<div class="inner">' + body + foot() + '</div>';
+}
 
-  var d = DATA[c.id];
-  var entries = d.start.map(function (s, i) {
-    return (i ? '<div class="arrow">·</div>' : '') +
-      '<a class="entry" href="' + s.to + '" target="_blank" rel="noopener">' +
-      '<div class="c">ถ้าคุณ</div><div class="q">' + esc(s.q) + '</div>' +
-      '<div class="a">' + esc(s.a) + '</div><div class="go">' + esc(s.label) + ' ↗</div></a>';
+/* ---------- topic ---------- */
+function viewTopic(secId, topId) {
+  var t = DATA.topic[topId];
+  if (!t) return viewSec(secId);
+  var parent = DATA.sec[t.parent];
+  var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
+    '<button data-go="' + t.parent + '">' + esc(parent.title) + '</button><span class="sep">/</span>' +
+    '<span>' + esc(t.title) + '</span></div>';
+
+  var entries = t.start.map(function (e) {
+    return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
+      '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
+      '<div class="a">' + esc(e.a) + '</div><div class="go">' + esc(e.label) + ' ↗</div></a>';
   }).join('');
 
-  var groups = d.groups.map(function (g) {
-    var items = g.items.map(function (i) {
-      var inner = '<div class="t">' + esc(i.t) + (i.st ? ' <span style="font-weight:400;font-size:.85rem">' + esc(i.st) + '</span>' : '') + '</div>' +
-        '<div class="w">' + esc(i.w) + '</div>' +
-        '<div class="m"><span class="src">' + esc(i.src) + '</span><span>·</span><span>อัปเดต ' + esc(i.up) + '</span>' +
-        '<span style="margin-left:auto">' + (i.to ? '↗' : '—') + '</span></div>';
-      return i.to
-        ? '<a class="card" href="' + i.to + '" target="_blank" rel="noopener">' + inner + '</a>'
-        : '<div class="card" style="opacity:.68">' + inner + '</div>';
-    }).join('');
-    return '<div class="group"><div class="ghd">' + esc(g.hd) + '</div><div class="cards">' + items + '</div></div>';
+  var cards = t.cards.map(function (c) { return topicCard(c, secId); }).join('');
+
+  var recs = t.records.map(function (r) {
+    return '<a class="item" href="' + r.to + '" target="_blank" rel="noopener">' +
+      '<span class="arw">↗</span>' +
+      '<div class="t">' + esc(r.t) + ' <span style="font-weight:400;font-size:.85rem">' + esc(r.st) + '</span></div>' +
+      '<div class="w">' + esc(r.w) + '</div>' +
+      '<div class="m"><span class="src">Confluence · UXUI Team</span><span>·</span><span>อัปเดต ' + esc(r.up) + '</span></div></a>';
   }).join('');
 
-  var legend = d.legend.map(function (l) {
+  var legend = t.legend.map(function (l) {
     return '<div class="lg"><div class="s">' + esc(l.s) + '</div><div class="x">' + esc(l.x) + '</div></div>';
   }).join('');
 
-  return topbar(crumbs) +
-    '<div class="band">' +
-      '<div class="thead"><div><h2>' + esc(c.name) + (c.skill ? '<span class="skill">/' + esc(c.skill) + '</span>' : '') + '</h2>' +
-      '<p class="goal">' + esc(d.lede) + '</p></div>' +
-      '<div class="bigprog"><div class="n">' + c.count + '</div><div class="cap">รายการ · ทุกใบอยู่บน Confluence ของทีม</div></div></div>' +
-    '</div>' +
-    '<div class="band"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
+  return '<div class="inner">' +
+    head(t, crumb) +
+    '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
       '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์ แล้วกดไปที่ต้นฉบับได้เลย</p>' +
       '<div class="entries">' + entries + '</div></div>' +
-    '<div class="band"><h2 class="sec">ของทั้งหมดในหมวดนี้</h2>' +
-      '<p class="sec-lede">กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา — ถ้าวันที่เก่าไปแล้วให้ทักเจ้าของ อย่าเชื่อเงียบ ๆ</p>' + groups +
-      (d.note ? '<div class="note">⚠️ ' + d.note + '</div>' : '') + '</div>' +
-    '<div class="band"><h2 class="sec">สถานะใน Inventory หมายความว่าอะไร</h2>' +
-      '<p class="sec-lede">คำชุดเดียวกันนี้ใช้ทั้งในทะเบียนกลางและใน record รายฟอนต์</p>' +
+    '<div class="block"><h2 class="sec">เอกสารหลัก</h2>' +
+      '<p class="sec-lede">ทุกใบอยู่บน Confluence ของทีม — กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา</p>' +
+      '<div class="cardgrid">' + cards + '</div></div>' +
+    '<div class="block"><h2 class="sec">License Record รายฟอนต์</h2>' +
+      '<p class="sec-lede">1 ใบ = 1 license · สถานะในนี้ต้องตรงกับในทะเบียนกลาง</p>' +
+      '<div class="items">' + recs + '</div>' +
+      (t.note ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>' +
+    '<div class="block"><h2 class="sec">สถานะหมายความว่าอะไร</h2>' +
+      '<p class="sec-lede">คำชุดเดียวกันนี้ใช้ทั้งในทะเบียนกลางและในใบรายฟอนต์</p>' +
       '<div class="legend">' + legend + '</div></div>' +
-    foot();
+    foot() + '</div>';
 }
 
 function foot() {
   return '<footer>DesignOps · SkillLane UX/UI — ปรับปรุง ' + esc(DATA.updated) +
+    ' · <a href="' + DATA.roadmap + '" target="_blank" rel="noopener">Roadmap 2026 ↗</a>' +
     ' · เจอลิงก์เสียหรือของที่เก่าไปแล้ว ทักได้เลย จะได้แก้ที่ต้นทาง</footer>';
 }
 
 function render() {
-  var h = (location.hash || '#/').replace(/^#/, '');
-  var html;
-  if (h.indexOf('/c/') === 0) html = viewCat(h.slice(3));
-  else if (h === '/playbook') html = viewPlaybook();
-  else html = viewHome();
-  document.body.innerHTML = html;
+  var r = route(), parts = r.split('/').filter(Boolean);
+  var active = parts[0] || '', main;
+  if (parts.length >= 2) main = viewTopic(parts[0], parts[1]);
+  else if (parts.length === 1) main = viewSec(parts[0]);
+  else main = viewHome();
+  document.body.innerHTML = '<div class="shell">' + sidebar(active) + '<div class="main">' + main + '</div></div>';
   window.scrollTo(0, 0);
 }
 
 document.addEventListener('click', function (e) {
   var b = e.target.closest('[data-go]');
-  if (b) { e.preventDefault(); go(b.getAttribute('data-go')); }
+  if (!b || b.getAttribute('aria-disabled') === 'true') return;
+  e.preventDefault();
+  location.hash = '/' + b.getAttribute('data-go');
 });
 window.addEventListener('hashchange', render);
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);

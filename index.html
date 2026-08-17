@@ -31,399 +31,455 @@
   --radius:16px;
   --shadow:0 1px 2px rgba(27,26,24,.04),0 12px 28px -22px rgba(27,26,24,.22);
   --ff:"IBM Plex Sans Thai","IBM Plex Sans","Sukhumvit Set","Segoe UI",system-ui,sans-serif;
+  --nav:232px;
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 body{background:var(--bg);color:var(--ink);font-family:var(--ff);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
-.num{font-variant-numeric:tabular-nums}
 button{font:inherit}
+:focus-visible{outline:2px solid var(--cta-ink);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+svg{display:block}
 
-/* topbar */
-.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.topbar-in{max-width:1180px;margin:0 auto;padding:11px clamp(18px,4vw,60px);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:.92rem;background:none;border:0;color:inherit;padding:0;cursor:pointer}
-.brand .sq{width:29px;height:29px;border-radius:9px;background:var(--ink);color:var(--cta);display:grid;place-items:center;font-size:.8rem}
-.crumbs{display:flex;align-items:center;gap:7px;font-size:.87rem;color:var(--ink-mute);flex-wrap:wrap;min-width:0}
-.crumbs button{color:var(--cta-ink);font-weight:600;cursor:pointer;background:none;border:0;padding:0}
-.crumbs button:hover{text-decoration:underline}
-.crumbs .sep{opacity:.45}
-.crumbs .cur{color:var(--ink);font-weight:600}
-.up{margin-left:auto;border:1px solid var(--line);background:var(--bg-alt);color:var(--ink-soft);border-radius:999px;padding:6px 14px;font-size:.83rem;font-weight:600;cursor:pointer;text-decoration:none}
-.up:hover{background:var(--card);color:var(--ink)}
-.up:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--cta-ink);outline-offset:2px}
+/* ---------- layout ---------- */
+.shell{display:flex;min-height:100vh;align-items:stretch}
+.nav{width:var(--nav);flex:0 0 var(--nav);border-right:1px solid var(--line);background:var(--bg-soft);
+     position:sticky;top:0;height:100vh;overflow-y:auto;padding:16px 12px 24px}
+.main{flex:1 1 auto;min-width:0}
+.inner{max-width:1120px;padding:34px clamp(20px,3.4vw,44px) 60px}
 
-.band{max-width:1180px;margin:0 auto;padding:44px clamp(18px,4vw,60px)}
-.band.tight{padding-top:26px}
-.band+.band{border-top:1px solid var(--line)}
-.kicker{font-size:.71rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:11px}
-h1{font-weight:700;font-size:clamp(2rem,4.4vw,2.9rem);line-height:1.04;letter-spacing:-.025em;margin:0 0 .3em;text-wrap:balance}
-h1 .yr{color:var(--cta-ink)}
-.lede{font-size:1.04rem;color:var(--ink-soft);max-width:680px;margin:0}
-h2.sec{font-weight:700;font-size:clamp(1.35rem,2.3vw,1.75rem);letter-spacing:-.02em;margin:0 0 .3em}
-.sec-lede{color:var(--ink-soft);max-width:700px;margin:0 0 22px;font-size:.95rem}
+@media(max-width:900px){
+  .shell{display:block}
+  .nav{width:auto;flex:none;height:auto;position:sticky;top:0;z-index:40;border-right:0;border-bottom:1px solid var(--line);
+       padding:10px 12px;display:flex;align-items:center;gap:8px;overflow-x:auto;background:rgba(251,250,249,.96);backdrop-filter:blur(8px)}
+  .nav .brand{margin:0 6px 0 0;flex:none}
+  .nav .navlist{display:flex;gap:6px;flex-direction:row}
+  .nav .navsep{display:none}
+  .inner{padding-top:24px}
+}
+
+/* brand */
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:.93rem;background:none;border:0;color:inherit;
+       padding:6px 8px;cursor:pointer;width:100%;text-align:left;margin-bottom:14px}
+.brand .sq{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--cta);display:grid;place-items:center;font-size:.82rem;flex:none}
+
+/* nav items */
+.navlist{display:flex;flex-direction:column;gap:3px}
+.navsep{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);
+        padding:14px 10px 6px}
+.ni{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:none;border:0;color:var(--ink-soft);
+    cursor:pointer;text-align:left;width:100%;font-size:.9rem;font-weight:600;white-space:nowrap;transition:.13s}
+.ni .ic{width:20px;height:20px;flex:none;color:var(--ink-mute)}
+.ni:hover{background:var(--bg-alt);color:var(--ink)}
+.ni.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow);border:1px solid var(--line)}
+.ni.on .ic{color:var(--cta-ink)}
+.ni.off{opacity:.5;cursor:default}
+.ni.off:hover{background:none;color:var(--ink-soft)}
+.ni .dot{margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--c-amber);flex:none}
+
+/* ---------- section header ---------- */
+.shead{display:flex;align-items:flex-start;gap:16px;margin-bottom:6px}
+.shead .badge{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;flex:none;background:var(--cta-tint);color:var(--cta-ink)}
+.shead .badge svg{width:26px;height:26px}
+.shead.blue .badge{background:var(--c-blue-t);color:var(--c-blue)}
+.shead.green .badge{background:var(--c-green-t);color:var(--c-green)}
+.shead.purple .badge{background:var(--c-purple-t);color:var(--c-purple)}
+.shead.orange .badge{background:var(--c-orange-t);color:var(--c-orange)}
+h1{font-weight:700;font-size:clamp(1.9rem,3.6vw,2.6rem);line-height:1.06;letter-spacing:-.028em;margin:0;text-wrap:balance}
+.tagline{font-size:1.02rem;color:var(--ink-mute);margin:2px 0 0}
+.lede{font-size:1rem;color:var(--ink-soft);max-width:70ch;margin:18px 0 0}
+h2.sec{font-weight:700;font-size:1.22rem;letter-spacing:-.02em;margin:0 0 4px}
+.sec-lede{color:var(--ink-soft);max-width:72ch;margin:0 0 18px;font-size:.93rem}
+.block{margin-top:38px}
+.block.first{margin-top:30px}
+
+/* ---------- cards ---------- */
+.cardgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:1180px){.cardgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.cardgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cardgrid{grid-template-columns:1fr}}
+
+.tc{position:relative;display:flex;flex-direction:column;gap:7px;background:var(--card);border:1px solid var(--card-line);
+    border-radius:14px;box-shadow:var(--shadow);padding:20px 20px 18px;text-align:center;align-items:center;
+    text-decoration:none;color:inherit;cursor:pointer;transition:.14s;width:100%;font:inherit}
+.tc:hover{border-color:var(--cta-ink);transform:translateY(-1px)}
+.tc .ico{width:46px;height:46px;border-radius:12px;background:var(--bg-alt);color:var(--ink-soft);display:grid;place-items:center;margin-bottom:4px}
+.tc .ico svg{width:22px;height:22px}
+.tc.blue .ico{background:var(--c-blue-t);color:var(--c-blue)}
+.tc.green .ico{background:var(--c-green-t);color:var(--c-green)}
+.tc.purple .ico{background:var(--c-purple-t);color:var(--c-purple)}
+.tc.orange .ico{background:var(--c-orange-t);color:var(--c-orange)}
+.tc.amber .ico{background:var(--c-amber-t);color:var(--c-amber)}
+.tc .t{font-weight:700;font-size:1rem;letter-spacing:-.012em;line-height:1.3}
+.tc .d{font-size:.86rem;color:var(--ink-mute);line-height:1.5}
+.tc .arw{position:absolute;top:12px;right:13px;font-size:.8rem;color:var(--ink-mute);opacity:.65}
+.tc:hover .arw{opacity:1;color:var(--cta-ink)}
+.tc .badge2{position:absolute;top:12px;left:13px;font-size:.62rem;font-weight:700;letter-spacing:.04em;
+            border-radius:999px;padding:3px 8px;background:var(--c-amber-t);color:#8A6410}
+.tc.off{cursor:default;background:var(--bg-soft);opacity:.82}
+.tc.off:hover{border-color:var(--card-line);transform:none}
+.tc .up{font-size:.72rem;color:var(--ink-mute);margin-top:2px}
+
+/* item cards (แถวซ้าย-ขวา อ่านเป็นรายการ) */
+.items{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+@media(max-width:1080px){.items{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.items{grid-template-columns:1fr}}
+.item{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--card-line);border-radius:13px;
+      box-shadow:var(--shadow);padding:16px 18px;text-decoration:none;color:inherit;transition:.14s;position:relative}
+.item:hover{border-color:var(--c-purple)}
+.item .t{font-weight:700;font-size:.95rem;letter-spacing:-.01em;line-height:1.35;padding-right:16px}
+.item .w{font-size:.85rem;color:var(--ink-soft);flex:1}
+.item .m{font-size:.73rem;color:var(--ink-mute);display:flex;gap:7px;align-items:center;flex-wrap:wrap;
+         border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.item .m .src{font-weight:600;color:var(--ink-soft)}
+.item .arw{position:absolute;top:15px;right:15px;font-size:.78rem;color:var(--ink-mute)}
+.item.off{opacity:.66}
 
 /* stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:28px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:26px}
 @media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--card);border:1px solid var(--card-line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
 .stat.hero{border-top:3px solid var(--cta)}
-.stat .lbl{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:700}
-.stat .big{font-weight:700;font-size:1.85rem;line-height:1.12;margin-top:4px;font-variant-numeric:tabular-nums}
+.stat .lbl{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:700}
+.stat .big{font-weight:700;font-size:1.8rem;line-height:1.12;margin-top:4px;font-variant-numeric:tabular-nums}
 .stat.hero .big{color:var(--cta-ink)}
-.stat .sub{font-size:.81rem;color:var(--ink-mute)}
+.stat .sub{font-size:.8rem;color:var(--ink-mute)}
 
-/* lanes */
-.lanes{display:flex;flex-direction:column;gap:14px}
-.lane{background:var(--card);border:1px solid var(--card-line);border-left:4px solid var(--ink-mute);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-.lane.blue{border-left-color:var(--c-blue)}.lane.green{border-left-color:var(--c-green)}
-.lane.purple{border-left-color:var(--c-purple)}.lane.orange{border-left-color:var(--c-orange)}
-.lane.off{background:var(--bg-soft)}
-.lane-head{display:grid;grid-template-columns:1fr 132px 116px;gap:16px;align-items:center;padding:16px 20px 11px}
-@media(max-width:760px){.lane-head{grid-template-columns:1fr}}
-.lane-head .nm{font-weight:700;font-size:1.05rem;letter-spacing:-.01em;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.lane-head .goal{font-size:.87rem;color:var(--ink-soft);margin-top:3px}
-.skill{font-family:ui-monospace,Menlo,monospace;font-size:.75rem;color:var(--ink-mute);background:var(--bg-alt);border-radius:6px;padding:2px 7px;font-weight:400}
-.krs{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
-.krchip{font-size:.63rem;font-weight:700;letter-spacing:.05em;border-radius:999px;padding:3px 9px;background:var(--bg-alt);color:var(--ink-mute)}
-.blue .krchip{background:var(--c-blue-t);color:var(--c-blue)}.green .krchip{background:var(--c-green-t);color:var(--c-green)}
-.purple .krchip{background:var(--c-purple-t);color:var(--c-purple)}.orange .krchip{background:var(--c-orange-t);color:var(--c-orange)}
-.lane-pct{text-align:right}
-@media(max-width:760px){.lane-pct{text-align:left}}
-.lane-pct .b{font-weight:700;font-size:1.5rem;line-height:1;font-variant-numeric:tabular-nums}
-.lane-pct .b.on{color:var(--cta-ink)}
-.lane-pct .l{font-size:.71rem;color:var(--ink-mute)}
-.btn{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:9px 16px;font-size:.83rem;font-weight:600;cursor:pointer;white-space:nowrap}
-.btn:hover{opacity:.88}
-.btn.ghost{background:var(--bg-alt);color:var(--ink-mute);border:1px solid var(--line);cursor:default}
-.flow{display:flex;align-items:stretch;padding:2px 20px 16px;overflow-x:auto}
-.fstep{flex:1 1 0;min-width:150px;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;padding:11px 12px;text-align:left;position:relative}
-.fstep .c{font-size:.63rem;font-weight:700;letter-spacing:.09em;color:var(--ink-mute)}
-.fstep .t{font-size:.87rem;font-weight:600;margin:3px 0 5px;line-height:1.3}
-.fstep .n{font-size:.73rem;color:var(--ink-mute)}
-.fstep.empty{border-color:var(--c-orange);background:var(--c-orange-t)}
-.fstep.empty .n{color:var(--c-orange);font-weight:600}
-.arrow{flex:0 0 20px;display:grid;place-items:center;color:var(--line)}
-.leg{display:flex;gap:16px;flex-wrap:wrap;padding:0 20px 15px;font-size:.79rem;color:var(--ink-mute)}
-.leg span{display:inline-flex;align-items:center;gap:7px}
-.leg i.e{width:14px;height:10px;border-radius:3px;background:var(--c-orange-t);border:1px solid var(--c-orange)}
-
-/* detail header */
-.thead{background:var(--card);border:1px solid var(--card-line);border-top:3px solid var(--c-purple);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px;display:grid;grid-template-columns:1fr 250px;gap:26px;align-items:center}
-@media(max-width:820px){.thead{grid-template-columns:1fr}}
-.thead h2{margin:0 0 6px;font-size:1.3rem;font-weight:700;letter-spacing:-.015em}
-.thead .goal{font-size:.96rem;color:var(--ink-soft);margin:0;max-width:600px}
-.bigprog{text-align:right}
-@media(max-width:820px){.bigprog{text-align:left}}
-.bigprog .n{font-weight:700;font-size:2.4rem;line-height:1;color:var(--cta-ink);font-variant-numeric:tabular-nums}
-.bigprog .cap{font-size:.79rem;color:var(--ink-mute);margin-top:3px}
-
-/* entry strip (คุณกำลังจะทำอะไร) */
-.entries{display:flex;align-items:stretch;overflow-x:auto;margin-top:4px}
-.entry{flex:1 1 0;min-width:210px;background:var(--c-purple-t);border:1px solid var(--c-purple);border-radius:12px;padding:15px 17px;text-decoration:none;color:inherit;display:block}
+/* entries / legend / notes */
+.entries{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+@media(max-width:860px){.entries{grid-template-columns:1fr}}
+.entry{background:var(--c-purple-t);border:1px solid var(--c-purple);border-radius:13px;padding:15px 17px;
+       text-decoration:none;color:inherit;display:block}
 .entry:hover{background:#E7DFF7}
-.entry .c{font-size:.63rem;font-weight:700;letter-spacing:.09em;color:var(--c-purple)}
-.entry .q{font-weight:700;font-size:.95rem;margin:3px 0 5px;color:#3F2C73}
+.entry .c{font-size:.62rem;font-weight:700;letter-spacing:.09em;color:var(--c-purple)}
+.entry .q{font-weight:700;font-size:.94rem;margin:3px 0 5px;color:#3F2C73}
 .entry .a{font-size:.85rem;color:#5B4795}
-.entry .go{font-size:.8rem;font-weight:700;color:#3F2C73;margin-top:8px}
+.entry .go{font-size:.79rem;font-weight:700;color:#3F2C73;margin-top:8px}
 
-/* item cards */
-.group{margin-top:24px}
-.ghd{font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.cards{grid-template-columns:1fr}}
-.card{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--card-line);border-radius:13px;box-shadow:var(--shadow);padding:16px 18px;text-decoration:none;color:inherit;transition:.15s}
-.card:hover{border-color:var(--c-purple)}
-.card .t{font-weight:700;font-size:.95rem;letter-spacing:-.01em;line-height:1.35}
-.card .w{font-size:.85rem;color:var(--ink-soft);flex:1}
-.card .m{font-size:.74rem;color:var(--ink-mute);display:flex;gap:7px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
-.card .m .src{font-weight:600;color:var(--ink-soft)}
-
-.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:4px}
-@media(max-width:800px){.legend{grid-template-columns:repeat(2,1fr)}}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+@media(max-width:860px){.legend{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:460px){.legend{grid-template-columns:1fr}}
 .lg{background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;padding:13px 15px}
-.lg .s{font-weight:700;font-size:.89rem;margin-bottom:3px}
+.lg .s{font-weight:700;font-size:.88rem;margin-bottom:3px}
 .lg .x{font-size:.81rem;color:var(--ink-soft)}
 
-.note{background:var(--c-amber-t);border:1px solid var(--c-amber);border-radius:12px;padding:15px 19px;font-size:.9rem;color:#6E5310;margin-top:20px}
+.note{background:var(--c-amber-t);border:1px solid var(--c-amber);border-radius:12px;padding:15px 19px;font-size:.89rem;color:#6E5310;margin-top:20px}
 .note b{color:#4E3A08}
-.locknote{background:var(--card);border:1px solid var(--card-line);border-left:4px solid var(--c-amber);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px}
+.locknote{background:var(--card);border:1px solid var(--card-line);border-left:4px solid var(--c-amber);border-radius:var(--radius);
+          box-shadow:var(--shadow);padding:22px 24px;margin-top:26px}
 .locknote .t{font-weight:700;margin-bottom:7px}
-.locknote .d{font-size:.93rem;color:var(--ink-soft);max-width:70ch}
+.locknote .d{font-size:.92rem;color:var(--ink-soft);max-width:72ch}
 .locknote ol{margin:11px 0 0;padding-left:1.2em;font-size:.9rem;color:var(--ink-soft)}
 .locknote li{margin-bottom:4px}
-footer{max-width:1180px;margin:0 auto;padding:26px clamp(18px,4vw,60px) 46px;font-size:.82rem;color:var(--ink-mute);border-top:1px solid var(--line)}
+.crumb{font-size:.83rem;color:var(--ink-mute);margin-bottom:14px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.crumb button{background:none;border:0;font:inherit;font-size:.83rem;color:var(--cta-ink);font-weight:600;cursor:pointer;padding:0}
+.crumb button:hover{text-decoration:underline}
+.crumb .sep{opacity:.45}
+footer{border-top:1px solid var(--line);margin-top:44px;padding-top:20px;font-size:.81rem;color:var(--ink-mute)}
+footer a{color:var(--cta-ink)}
 </style>
 
 <script>
+/* ชุดไอคอนเส้น 24x24 — inline ทั้งหมด ไม่พึ่ง CDN */
+var I = (function () {
+  function s(inner) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + inner + '</svg>';
+  }
+  return {
+    home:      s('<path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-6h5v6"/>'),
+    palette:   s('<path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-.9 2-1.8 0-1.5-1.4-1.8-1.4-3 0-1 .8-1.7 1.9-1.7H17a4 4 0 0 0 4-4c0-4.1-4-7.5-9-7.5Z"/><circle cx="8" cy="9" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="7" r="1.1" fill="currentColor" stroke="none"/><circle cx="7" cy="13.5" r="1.1" fill="currentColor" stroke="none"/>'),
+    check:     s('<circle cx="11" cy="11" r="7.5"/><path d="m8.3 11.2 2 2 4.4-4.6"/><path d="m16.6 16.6 4 4"/>'),
+    send:      s('<path d="M4 12h9"/><path d="M4 7.5h6"/><path d="M4 16.5h6"/><path d="m14.5 7 5 5-5 5"/>'),
+    user:      s('<circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c.6-3.6 3.5-5.6 7-5.6s6.4 2 7 5.6"/>'),
+    type:      s('<path d="M4.5 6.5V5h15v1.5"/><path d="M12 5v14"/><path d="M9 19h6"/>'),
+    ruler:     s('<rect x="3.6" y="3.6" width="7.2" height="7.2" rx="1.7"/><rect x="13.2" y="3.6" width="7.2" height="7.2" rx="1.7"/><rect x="3.6" y="13.2" width="7.2" height="7.2" rx="1.7"/><rect x="13.2" y="13.2" width="7.2" height="7.2" rx="1.7"/>'),
+    badge:     s('<path d="M12 3.2l2.3 1.6 2.8-.2.9 2.7 2.2 1.7-1 2.6 1 2.6-2.2 1.7-.9 2.7-2.8-.2L12 20.8l-2.3-1.6-2.8.2-.9-2.7L3.8 15l1-2.6-1-2.6L6 8.1l.9-2.7 2.8.2Z"/><path d="m9.4 12.2 1.8 1.8 3.4-3.7"/>'),
+    layers:    s('<path d="m12 3.5 8.5 4.3L12 12 3.5 7.8Z"/><path d="m4.6 12 7.4 3.7 7.4-3.7"/><path d="m4.6 16.2 7.4 3.7 7.4-3.7"/>'),
+    box:       s('<path d="M20.5 8.2v7.6L12 20.4 3.5 15.8V8.2L12 3.6Z"/><path d="m3.5 8.2 8.5 4.6 8.5-4.6"/><path d="M12 12.8v7.6"/>'),
+    book:      s('<path d="M12 6.6c-1.7-1.4-4-2-6.4-1.7-.8.1-1.4.8-1.4 1.6v9.8c0 .9.8 1.6 1.7 1.5 2.1-.3 4.1.2 6.1 1.6"/><path d="M12 6.6c1.7-1.4 4-2 6.4-1.7.8.1 1.4.8 1.4 1.6v9.8c0 .9-.8 1.6-1.7 1.5-2.1-.3-4.1.2-6.1 1.6"/><path d="M12 6.6v12.8"/>'),
+    frame:     s('<rect x="4.4" y="4.4" width="15.2" height="15.2" rx="2"/><path d="M8.6 4.4v15.2M15.4 4.4v15.2M4.4 8.6h15.2M4.4 15.4h15.2"/>'),
+    table:     s('<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 9.5v10"/>'),
+    tag:       s('<path d="M13.4 3.6H20V10l-8.6 8.6a2 2 0 0 1-2.8 0l-3.8-3.8a2 2 0 0 1 0-2.8Z"/><circle cx="16.4" cy="7.2" r="1.2" fill="currentColor" stroke="none"/>'),
+    chart:     s('<path d="M4 19.5h16"/><path d="M6.5 16V11M11 16V6.5M15.5 16v-6.5M20 16v-9"/>'),
+    doc:       s('<path d="M13.6 3.6H7a1.6 1.6 0 0 0-1.6 1.6v13.6A1.6 1.6 0 0 0 7 20.4h10a1.6 1.6 0 0 0 1.6-1.6V8.6Z"/><path d="M13.6 3.6v5h5"/><path d="M8.8 13h6.4M8.8 16.4h4.4"/>'),
+    folder:    s('<path d="M3.6 6.6c0-.9.7-1.6 1.6-1.6h3.5l2 2.4h8.1c.9 0 1.6.7 1.6 1.6v8.4c0 .9-.7 1.6-1.6 1.6H5.2c-.9 0-1.6-.7-1.6-1.6Z"/>'),
+    wrench:    s('<path d="M15.2 6.4a3.8 3.8 0 0 1 5.2 4.9l-2.2-2.2-2.4.6-.6-2.4Z"/><path d="M14.6 9.4 5.2 18.8"/><path d="m4.4 15.6 4 4"/>'),
+    clip:      s('<rect x="6.4" y="4.6" width="11.2" height="15.8" rx="2"/><path d="M9.6 4.6V3.4h4.8v1.2"/><path d="m9.8 12.4 1.6 1.6 3-3.4"/>'),
+    target:    s('<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/>')
+  };
+})();
+
 var CF = 'https://skilllane.atlassian.net/wiki/spaces/';
+var DB = 'https://github.com/uxui-skl/design-brain';
 
 var DATA = {
-  updated: '16 ส.ค. 2026',
+  updated: '17 ส.ค. 2026',
   roadmap: 'https://claude.ai/code/artifact/8cf346ea-80fb-4ade-a91d-2a459c66e097',
-  dests: ['Confluence', 'DesignOps Brain'],
 
-  cats: [
-    {
-      id: 'fl', key: 'fl', color: 'purple', name: 'Font License', skill: null,
-      steps: [
-        { t: 'เช็คก่อนใช้', n: 'ฟอนต์นี้ license ครอบคลุมงานคุณไหม' },
-        { t: 'รายงานการใช้', n: 'กรอก Used In ใน record ของฟอนต์นั้น' },
-        { t: 'ขึ้นทะเบียนใหม่', n: 'ก๊อปแม่แบบไปกรอกถ้ามีฟอนต์ตัวใหม่' }
-      ],
-      desc: 'ทะเบียนลิขสิทธิ์ฟอนต์ที่บริษัทซื้อไว้ + วิธีรายงานว่าโปรเจกต์คุณใช้ฟอนต์อะไร',
-      status: 'ok', statusText: 'พร้อมใช้', count: 8, open: true
-    },
-    {
-      id: 'qa', key: 'qa', color: 'green', name: 'Design QA', skill: 'qa-check',
-      steps: [
-        { t: 'Playbook', n: 'เขียนเสร็จแล้ว เปิดอ่านได้', ok: true },
-        { t: 'master บอร์ด + Sheet', n: 'ยังไม่ได้ประกอบการ์ด' },
-        { t: '9 หมวด issue', n: 'ยังไม่ได้ประกอบการ์ด' }
-      ],
-      desc: 'ตรวจว่าของที่ Dev ทำออกมา ตรงกับที่ออกแบบไว้ไหม แล้วบันทึกจุดที่ไม่ตรง',
-      status: 'wip', statusText: 'กำลังประกอบ', count: 6, open: false,
-      why: 'Playbook เขียนเสร็จแล้วและเปิดอ่านได้ · เหลือประกอบการ์ดที่ชี้ไป master board กับ Sheet ให้ครบ',
-      todo: ['ประกอบการ์ด master บอร์ด Figma + master Sheet + 9 หมวด issue']
-    },
-    {
-      id: 'ds', key: 'ds', color: 'blue', name: 'Design System', skill: 'ds-audit',
-      steps: [
-        { t: 'ย้ายเอกสาร 6 ใบ', n: 'จาก space ส่วนตัว → UXUI Team' },
-        { t: 'ประกอบการ์ด', n: 'Structure · token · golden set · Mica' },
-        { t: 'เปิดหมวด', n: 'รอ 2 ขั้นบนเสร็จก่อน' }
-      ],
-      desc: 'โครงสร้าง token · naming · golden set ต่อ product · การ audit และ publish',
-      status: 'wait', statusText: 'รอย้ายเอกสาร', count: 7, open: false,
-      why: 'เอกสาร 6 ใบยังอยู่ใน Confluence space ส่วนตัว — ถ้าลิงก์ไปตอนนี้เพื่อนกดแล้วอาจเจอ 404',
-      todo: ['ย้าย 6 ใบเข้า space UXUI Team (Poom ทำเอง)', 'แล้วค่อยประกอบการ์ด']
-    },
-    {
-      id: 'dv', key: 'dv', color: 'orange', name: 'ส่งงานให้ Dev', skill: 'handoff',
-      steps: [
-        { t: 'ทำไฟล์ให้สะอาด', n: 'พิสูจน์แล้วกับ OLS · hardcode 56→9', ok: true },
-        { t: 'เช็คว่าพร้อมส่งไหม', n: 'ยังไม่เคยรัน' },
-        { t: 'ร่างเอกสาร + Ready for Dev', n: 'ยังไม่เคยรันจบ' }
-      ],
-      desc: 'ทำไฟล์ให้สะอาด → เช็คว่าพร้อมส่งไหม → ร่างเอกสารและพลิกเป็น Ready for Dev',
-      status: 'wait', statusText: 'พักไว้ก่อน', count: 6, open: false,
-      why: 'เคยทำจริงแค่ท่อนแรก (ตรวจและแก้ไฟล์) · อีก 2 ท่อนยังไม่เคยวิ่งจบ — เขียนตอนนี้จะได้ playbook ที่ 2 ใน 3 ท่อนยังไม่ยืนยัน',
-      todo: ['รัน handoff ให้จบ 1 รอบกับงานจริง', 'กรอก Deliver Kit ให้ครบจนพลิกเป็น Ready for Dev', 'แล้วค่อยถอดออกมาเป็น playbook']
-    }
+  nav: [
+    { id: '',   icon: 'home',    label: 'Overview' },
+    { sep: 'Playbook' },
+    { id: 'ds', icon: 'palette', label: 'Design System' },
+    { id: 'qa', icon: 'check',   label: 'Design QA' },
+    { id: 'dv', icon: 'send',    label: 'ส่งงานให้ Dev', dot: true },
+    { sep: 'ทีม' },
+    { id: 'role', icon: 'user',  label: 'Role', off: true }
   ],
 
-  fl: {
-    lede: 'บริษัทซื้อ font license มาแบบจำกัด — แต่ละใบระบุชัดว่าใช้กับ domain หรือ project ไหนได้บ้าง ใช้ผิดใบคือความเสี่ยงทางกฎหมายของบริษัท',
-    start: [
-      { q: 'จะใช้ฟอนต์ในโปรเจกต์ใหม่', a: 'เปิดทะเบียนดูก่อนว่าฟอนต์นั้นมี license ครอบคลุมงานของคุณไหม', to: CF + 'UT/database/3536453653', label: 'เปิดทะเบียน' },
-      { q: 'ใช้อยู่แล้วแต่ยังไม่ได้รายงาน', a: 'กรอกช่อง Used In ใน record ของฟอนต์นั้น — ทีม ชื่อโปรเจกต์ ประเภทงาน เจ้าของ', to: CF + 'UT/pages/3539763224/Font+Usage', label: 'อ่านคู่มือ 4 ขั้น' },
-      { q: 'จะเพิ่มฟอนต์ใหม่เข้าทะเบียน', a: 'ก๊อปแม่แบบไปกรอก อย่าสร้างหน้าเปล่าเอง โครงจะไม่ตรงกับใบอื่น', to: CF + 'UT/pages/3538059266/Master+Template+License+Record', label: 'เปิดแม่แบบ' }
-    ],
-    legend: [
-      { s: '🟢 Active', x: 'License มีผลอยู่ ครอบคลุม domain ที่ใช้งานครบ' },
-      { s: '🟡 Pending Review', x: 'รอตรวจรายละเอียด license ให้ครบ' },
-      { s: '🔴 Non-Compliant', x: 'ใช้เกินขอบเขต license — ต้องแก้ทันที' },
-      { s: '⚫ Expired', x: 'หมดอายุ — ต้องต่อหรือเปลี่ยนฟอนต์' }
-    ],
-    groups: [
-      {
-        hd: 'เริ่มที่นี่',
-        items: [
-          { t: 'Font License Inventory', w: 'ทะเบียนกลาง — ดูว่าบริษัทมีฟอนต์อะไร สถานะไหน และใครใช้อยู่บ้าง', src: 'Confluence · UXUI Team', up: '13 ก.ค. 2026', to: CF + 'UT/database/3536453653' },
-          { t: 'คู่มือ: วิธีรายงาน Font Usage', w: 'สำหรับทุกคนในทีม — ทำไมต้องรายงาน และกรอกยังไง 4 ขั้น', src: 'Confluence · UXUI Team', up: '30 เม.ย. 2026', to: CF + 'UT/pages/3539763224/Font+Usage' },
-          { t: '[Master Template] License Record', w: 'แม่แบบสำหรับขึ้นทะเบียนฟอนต์ใหม่ — 1 ใบ = 1 license', src: 'Confluence · UXUI Team', up: '30 เม.ย. 2026', to: CF + 'UT/pages/3538059266/Master+Template+License+Record' }
-        ]
+  sec: {
+    ds: {
+      color: 'blue', icon: 'palette', title: 'Design System', tag: 'token · naming · ลิขสิทธิ์',
+      skill: 'ds-audit',
+      lede: 'รากฐานที่ทุก product ใช้ร่วมกัน — โครงสร้าง token, การตั้งชื่อ, ชุดมาตรฐานต่อ product และทะเบียนลิขสิทธิ์ฟอนต์',
+      topics: [
+        { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียนลิขสิทธิ์ฟอนต์ + วิธีรายงานการใช้', up: '8 รายการ' },
+        { icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'โครงสร้าง token 3 ชั้น และ convention การตั้งชื่อ', wait: 'รอย้ายเอกสาร' },
+        { icon: 'badge', color: 'green', t: 'Golden Set', d: 'ชุดมาตรฐานที่เชื่อถือได้ต่อ product', ext: DB + '/tree/main/wiki/shared/design-system', up: 'design-brain' },
+        { icon: 'layers', color: 'amber', t: 'Mica DS', d: 'มาตรฐานกลางตัวใหม่ — base MUI หน้าตา OLS', ext: 'https://skilllane.atlassian.net/browse/UXUI-1527', up: 'Jira · UXUI-1527' },
+        { icon: 'box', color: 'orange', t: 'Publish & Drift', d: 'ปล่อย library แล้วแจ้งทีม · ตรวจว่าเพี้ยนจาก baseline ไหม', wait: 'ยังไม่เคยรันจริง' }
+      ]
+    },
+    qa: {
+      color: 'green', icon: 'check', title: 'Design QA', tag: 'ตรวจของจริง · บันทึกจุดที่ไม่ตรง',
+      skill: 'qa-check',
+      lede: 'ตรวจว่าของที่ Dev ทำออกมาตรงกับที่ออกแบบไว้ไหม แล้วบันทึกทุกจุดที่ไม่ตรงไว้ในที่เดียว ให้ Dev แก้ได้ตรงจุดโดยไม่ต้องเดา',
+      topics: [
+        { icon: 'book', color: 'green', t: 'Playbook', d: 'อ่านก่อนเริ่ม — 2 แบบ เลือกจากคำถามเดียว', ext: 'https://claude.ai/code/artifact/099d7d0d-4141-4f20-a59b-5df40f7b6c28', up: 'พร้อมใช้' },
+        { icon: 'frame', color: 'blue', t: 'บอร์ด QA (Figma)', d: 'แม่แบบบอร์ด — duplicate ไปใช้ 1 เฟรม = 1 หน้า', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma master' },
+        { icon: 'table', color: 'amber', t: 'Sheet รายงาน', d: 'แม่แบบตาราง issue 9 คอลัมน์ + แท็บ Onboarding ให้ Dev', ext: 'https://docs.google.com/spreadsheets/d/1Mj9MWa0rAjgmgeUjfh7E78C5T_h8MYWNzWVFw-H7zsk/edit', up: 'Google Sheet' },
+        { icon: 'tag', color: 'purple', t: 'ประเภท issue 9 หมวด', d: 'enum มาตรฐาน + ระดับความรุนแรง 3 ระดับ', ext: DB + '/blob/main/templates/qa-issue-types.md', up: 'design-brain' },
+        { icon: 'chart', color: 'orange', t: 'บทเรียนจาก B2C App', d: 'ผลจริง 139 รายการ — pattern ที่ควรกลับไปแก้ที่ต้นทาง', ext: 'https://skilllane.atlassian.net/browse/UXUI-1521', up: 'ปิด cycle 95.7%' }
+      ]
+    },
+    dv: {
+      color: 'orange', icon: 'send', title: 'ส่งงานให้ Dev', tag: 'ทำไฟล์ให้สะอาด → เช็ค → ส่ง',
+      skill: 'handoff',
+      lede: 'ร่างเอกสารส่งมอบจากไฟล์ที่ยังไม่พร้อม = ส่งปัญหาต่อให้ dev แบบมีเอกสารห่อไว้ — จึงต้องผ่านการตรวจก่อนทุกครั้ง',
+      lock: {
+        t: 'ยังไม่เปิด — พักไว้ก่อน',
+        d: 'เคยทำจริงแค่ท่อนแรก (ตรวจและแก้ไฟล์) · อีก 2 ท่อนยังไม่เคยวิ่งจบ ถ้าเขียนตอนนี้จะได้คู่มือที่ 2 ใน 3 ท่อนยังไม่ยืนยัน',
+        todo: ['รัน handoff ให้จบ 1 รอบกับงานจริง', 'กรอก Deliver Kit ให้ครบจนพลิกเป็น Ready for Dev', 'แล้วค่อยถอดออกมาเป็น playbook']
       },
-      {
-        hd: 'ทะเบียนรายฟอนต์',
-        items: [
-          { t: 'DB Heavent', w: '14 styles · Desktop Font · DB Designs', st: '🟡 Pending Review', src: 'Confluence · UXUI Team', up: '29 พ.ค. 2026', to: CF + 'UT/pages/3538288641/DB+Heavent+-+License+Record' },
-          { t: 'Font Awesome', w: 'Pro (Legacy) · 60,902 icons · Fonticons', st: '🟢 Active', src: 'Confluence · UXUI Team', up: '5 พ.ค. 2026', to: CF + 'UT/pages/3538059282/Font+Awesome+-+License+Record' },
-          { t: 'ThaiSans Neue', w: '18 styles · Commercial License · Letsego', st: '🟡 Pending Review', src: 'Confluence · UXUI Team', up: '30 เม.ย. 2026', to: CF + 'UT/pages/3541565441/ThaiSans+Neue+-+License+Record' },
-          { t: 'TF Lanna', w: '4 styles · FTPI (สหพันธ์อุตสาหกรรมการพิมพ์ไทย)', st: '🟡 Pending Review', src: 'Confluence · UXUI Team', up: '30 เม.ย. 2026', to: CF + 'UT/pages/3538288653/TF+Lanna+-+License+Record' }
-        ]
+      topics: [
+        { icon: 'wrench', color: 'green', t: 'ทำไฟล์ให้สะอาด', d: 'หา hardcode / detach แล้วแก้ให้ — พิสูจน์แล้วกับ OLS', up: 'hardcode 56 → 9' },
+        { icon: 'clip', color: 'orange', t: 'เช็คว่าพร้อมส่งไหม', d: 'คุณภาพไฟล์ · ความครบถ้วน · ความพร้อมส่ง', wait: 'ยังไม่เคยรัน' },
+        { icon: 'doc', color: 'orange', t: 'ร่างเอกสารส่งมอบ', d: 'handoff doc มาตรฐานทีม', wait: 'ยังไม่เคยรัน' },
+        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'Checklist + ฟอร์ม + สถานะ Ready for Dev', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish แล้ว' },
+        { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'อธิบายเหตุผลการออกแบบให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
+      ]
+    },
+    role: {
+      color: '', icon: 'user', title: 'Role', tag: 'DesignOps ช่วยอะไรได้ · ขอยังไง',
+      lede: 'DesignOps เป็น pool กลาง support ทุกทีม ไม่ผูกกับ product ใดเป็นพิเศษ',
+      lock: {
+        t: 'ยังไม่เปิด — กำลังตกลง',
+        d: 'ท่อน "ขอความช่วยเหลือยังไง" ยังไม่ได้ตัดสิน ถ้าเปิดตอนนี้คนอ่านจบแล้วก็ยังไม่รู้จะเริ่มยังไง',
+        todo: ['ตัดสินว่าทีมขอผ่านช่องทางไหน — เปิดการ์ด Jira, ทักตรง, หรือมีคิว', 'แล้วค่อยเขียนขอบเขตงาน 5 stage ประกอบ']
       },
-      {
-        hd: 'เบื้องหลัง — อ่านตอนอยากรู้ที่มา',
-        items: [
-          { t: 'Solutions Plan — Font License', w: 'ที่มาของงานทั้งหมด: ตรวจสถานะ DB Heavent กันความเสี่ยงฟ้องร้อง + วางมาตรฐานฟอนต์ LMS + ประเมินความคุ้มค่า', src: 'Confluence · UXUI Team', up: '7 พ.ค. 2026', to: CF + 'UT/pages/3536486409/Solutions+Plan+-+Font+License' },
-          { t: 'Typography (LMS)', w: 'Heading H1–H5 · Body · text variants ที่ผูกกับ DB Heavent', src: 'DesignOps Brain', up: '7 พ.ค. 2026', to: null }
-        ]
-      }
-    ],
-    note: 'คู่มือรายงาน (30 เม.ย.) ยังลิสต์ฟอนต์ไว้ 3 ตัว แต่ทะเบียนมี 4 แล้ว — <b>ThaiSans Neue ยังไม่ถูกเพิ่มในคู่มือ</b> ใครอ่านคู่มืออย่างเดียวจะไม่รู้ว่ามีตัวนี้'
+      topics: []
+    }
+  },
+
+  topic: {
+    font: {
+      parent: 'ds', color: 'purple', icon: 'type',
+      title: 'Font License', tag: 'ทะเบียน · การรายงาน · ใบอนุญาต',
+      lede: 'บริษัทซื้อ font license มาแบบจำกัด — แต่ละใบระบุชัดว่าใช้กับ domain หรือ project ไหนได้บ้าง ใช้ผิดใบคือความเสี่ยงทางกฎหมายของบริษัท',
+      start: [
+        { q: 'จะใช้ฟอนต์ในโปรเจกต์ใหม่', a: 'เปิดทะเบียนดูก่อนว่าฟอนต์นั้น license ครอบคลุมงานของคุณไหม', to: CF + 'UT/database/3536453653', label: 'เปิดทะเบียน' },
+        { q: 'ใช้อยู่แล้วแต่ยังไม่ได้รายงาน', a: 'กรอกช่อง Used In ใน record ของฟอนต์นั้น — ทีม ชื่อโปรเจกต์ ประเภทงาน เจ้าของ', to: CF + 'UT/pages/3539763224/Font+Usage', label: 'อ่านคู่มือ 4 ขั้น' },
+        { q: 'จะเพิ่มฟอนต์ใหม่เข้าทะเบียน', a: 'ก๊อปแม่แบบไปกรอก อย่าสร้างหน้าเปล่าเอง โครงจะไม่ตรงกับใบอื่น', to: CF + 'UT/pages/3538059266/Master+Template+License+Record', label: 'เปิดแม่แบบ' }
+      ],
+      cards: [
+        { icon: 'table', color: 'purple', t: 'Inventory', d: 'ทะเบียนกลาง — มีฟอนต์อะไร สถานะไหน ใครใช้อยู่', ext: CF + 'UT/database/3536453653', up: '13 ก.ค. 2026' },
+        { icon: 'book', color: 'green', t: 'Font Usage', d: 'คู่มือรายงานการใช้ฟอนต์ 4 ขั้น สำหรับทุกคนในทีม', ext: CF + 'UT/pages/3539763224/Font+Usage', up: '30 เม.ย. 2026' },
+        { icon: 'clip', color: 'blue', t: 'Master Template', d: 'แม่แบบขึ้นทะเบียนฟอนต์ใหม่ — 1 ใบ = 1 license', ext: CF + 'UT/pages/3538059266/Master+Template+License+Record', up: '30 เม.ย. 2026' },
+        { icon: 'target', color: 'amber', t: 'Solutions Plan', d: 'ที่มาของงาน — กันความเสี่ยง + วางมาตรฐาน + ประเมินความคุ้มค่า', ext: CF + 'UT/pages/3536486409/Solutions+Plan+-+Font+License', up: '7 พ.ค. 2026' }
+      ],
+      records: [
+        { t: 'DB Heavent', w: '14 styles · Desktop Font · DB Designs', st: '🟡 Pending Review', up: '29 พ.ค. 2026', to: CF + 'UT/pages/3538288641/DB+Heavent+-+License+Record' },
+        { t: 'Font Awesome', w: 'Pro (Legacy) · 60,902 icons · Fonticons', st: '🟢 Active', up: '5 พ.ค. 2026', to: CF + 'UT/pages/3538059282/Font+Awesome+-+License+Record' },
+        { t: 'ThaiSans Neue', w: '18 styles · Commercial License · Letsego', st: '🟡 Pending Review', up: '30 เม.ย. 2026', to: CF + 'UT/pages/3541565441/ThaiSans+Neue+-+License+Record' },
+        { t: 'TF Lanna', w: '4 styles · FTPI (สหพันธ์อุตสาหกรรมการพิมพ์ไทย)', st: '🟡 Pending Review', up: '30 เม.ย. 2026', to: CF + 'UT/pages/3538288653/TF+Lanna+-+License+Record' }
+      ],
+      legend: [
+        { s: '🟢 Active', x: 'License มีผลอยู่ ครอบคลุม domain ที่ใช้งานครบ' },
+        { s: '🟡 Pending Review', x: 'รอตรวจรายละเอียด license ให้ครบ' },
+        { s: '🔴 Non-Compliant', x: 'ใช้เกินขอบเขต license — ต้องแก้ทันที' },
+        { s: '⚫ Expired', x: 'หมดอายุ — ต้องต่อหรือเปลี่ยนฟอนต์' }
+      ],
+      note: 'คู่มือรายงาน (30 เม.ย.) ยังลิสต์ฟอนต์ไว้ 3 ตัว แต่ทะเบียนมี 4 แล้ว — <b>ThaiSans Neue ยังไม่ถูกเพิ่มในคู่มือ</b> ใครอ่านคู่มืออย่างเดียวจะไม่รู้ว่ามีตัวนี้'
+    }
   }
 };
 
 function esc(s) {
   return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
-function go(h) { location.hash = h; }
+function ic(n) { return I[n] || I.doc; }
+function route() { return (location.hash || '#/').replace(/^#\/?/, ''); }
 
-function topbar(crumbs) {
-  var c = crumbs.map(function (x, i) {
-    var last = i === crumbs.length - 1;
-    return (i ? '<span class="sep">/</span>' : '') +
-      (last ? '<span class="cur">' + esc(x.t) + '</span>'
-            : '<button data-go="' + esc(x.h) + '">' + esc(x.t) + '</button>');
+/* ---------- sidebar ---------- */
+function sidebar(active) {
+  var items = DATA.nav.map(function (n) {
+    if (n.sep) return '<div class="navsep">' + esc(n.sep) + '</div>';
+    var on = (n.id === active);
+    return '<button class="ni' + (on ? ' on' : '') + (n.off ? ' off' : '') + '"' +
+      ' data-go="' + esc(n.id) + '"' + (n.off ? ' aria-disabled="true"' : '') + '>' +
+      '<span class="ic">' + ic(n.icon) + '</span>' + esc(n.label) +
+      (n.dot ? '<span class="dot" title="พักไว้ก่อน"></span>' : '') + '</button>';
   }).join('');
-  return '<div class="topbar"><div class="topbar-in">' +
-    '<button class="brand" data-go="/"><span class="sq">◆</span>DesignOps</button>' +
-    '<div class="crumbs">' + c + '</div>' +
-    '<a class="up" href="' + DATA.roadmap + '" target="_blank" rel="noopener">Roadmap 2026 ↗</a>' +
-    '</div></div>';
+  return '<nav class="nav">' +
+    '<button class="brand" data-go=""><span class="sq">◆</span>DesignOps</button>' +
+    '<div class="navlist">' + items + '</div>' +
+    '</nav>';
 }
 
-function stat(lbl, big, sub, hero) {
-  return '<div class="stat' + (hero ? ' hero' : '') + '"><div class="lbl">' + esc(lbl) + '</div>' +
-    '<div class="big">' + esc(big) + '</div><div class="sub">' + esc(sub) + '</div></div>';
+/* ---------- ชิ้นส่วน ---------- */
+function head(s, crumb) {
+  return (crumb || '') +
+    '<div class="shead ' + (s.color || '') + '">' +
+    '<div class="badge">' + ic(s.icon) + '</div>' +
+    '<div><h1>' + esc(s.title) + '</h1><p class="tagline">' + esc(s.tag) + '</p></div></div>' +
+    (s.lede ? '<p class="lede">' + esc(s.lede) + '</p>' : '');
 }
 
-/* ---------- หน้าแรก ---------- */
+function topicCard(t, secId) {
+  var arw = t.ext ? '↗' : (t.id ? '→' : '');
+  var inner =
+    '<span class="ico">' + ic(t.icon) + '</span>' +
+    '<span class="t">' + esc(t.t) + '</span>' +
+    '<span class="d">' + esc(t.d) + '</span>' +
+    (t.up ? '<span class="up">' + esc(t.up) + '</span>' : '') +
+    (arw ? '<span class="arw">' + arw + '</span>' : '') +
+    (t.wait ? '<span class="badge2">' + esc(t.wait) + '</span>' : '');
+  var cls = 'tc ' + (t.color || '');
+  if (t.ext) return '<a class="' + cls + '" href="' + t.ext + '" target="_blank" rel="noopener">' + inner + '</a>';
+  if (t.id) return '<button class="' + cls + '" data-go="' + secId + '/' + t.id + '">' + inner + '</button>';
+  return '<div class="' + cls + ' off">' + inner + '</div>';
+}
+
+function lockBox(l) {
+  return '<div class="locknote"><div class="t">' + esc(l.t) + '</div><div class="d">' + esc(l.d) + '</div>' +
+    '<ol>' + l.todo.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol></div>';
+}
+
+/* ---------- Overview ---------- */
 function viewHome() {
-  var open = DATA.cats.filter(function (c) { return c.open; });
-  var items = open.reduce(function (n, c) { return n + c.count; }, 0);
-  return topbar([{ t: 'หน้าแรก' }]) +
-    '<div class="band">' +
-    '<div class="kicker">DesignOps · SkillLane</div>' +
-    '<h1>DesignOps <span class="yr">Hub</span></h1>' +
-    '<p class="lede">ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม — วิธีทำงานแต่ละเรื่อง และของอ้างอิงว่าตัวจริงอยู่ที่ไหน</p>' +
+  var secs = ['ds', 'qa', 'dv'];
+  var open = 0, total = 0;
+  secs.forEach(function (k) {
+    DATA.sec[k].topics.forEach(function (t) { total++; if (!t.wait) open++; });
+  });
+  var cards = secs.map(function (k) {
+    var s = DATA.sec[k];
+    var ready = s.topics.filter(function (t) { return !t.wait; }).length;
+    return topicCard({
+      id: k, icon: s.icon, color: s.color, t: s.title, d: s.tag,
+      up: ready + ' / ' + s.topics.length + ' พร้อมใช้'
+    }, '');
+  }).join('');
+
+  return '<div class="inner">' +
+    head({ icon: 'home', title: 'DesignOps', tag: 'playbook · ของอ้างอิง · ทางเข้าต้นฉบับ', color: '',
+           lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม — วิธีทำงานแต่ละเรื่อง และของอ้างอิงว่าตัวจริงอยู่ที่ไหน' }) +
     '<div class="stats">' +
-      stat('หมวดที่เปิดแล้ว', open.length + ' / ' + DATA.cats.length, 'อีก ' + (DATA.cats.length - open.length) + ' หมวดกำลังเตรียม', true) +
-      stat('รายการพร้อมใช้', String(items), 'กดแล้วไปต้นฉบับได้เลย') +
-      stat('สำเนาที่เว็บนี้เก็บเอง', '0', 'ลิงก์ออกทั้งหมด ไม่มีของเก่าค้าง') +
-      stat('ปลายทางที่ลิงก์ไป', String(DATA.dests.length), DATA.dests.join(' · ')) +
+      '<div class="stat hero"><div class="lbl">รายการพร้อมใช้</div><div class="big">' + open + ' / ' + total + '</div><div class="sub">ที่เหลือกำลังเตรียม</div></div>' +
+      '<div class="stat"><div class="lbl">หมวดใน Playbook</div><div class="big">' + secs.length + '</div><div class="sub">คู่กับ skill ที่ทีมใช้อยู่</div></div>' +
+      '<div class="stat"><div class="lbl">สำเนาที่เว็บนี้เก็บเอง</div><div class="big">0</div><div class="sub">ลิงก์ออกทั้งหมด ไม่มีของเก่าค้าง</div></div>' +
+      '<div class="stat"><div class="lbl">ปลายทาง</div><div class="big">4</div><div class="sub">Confluence · Figma · design-brain · Jira</div></div>' +
     '</div>' +
-    '</div>' +
-
-    '<div class="band">' +
-    '<h2 class="sec">เข้าทางไหน</h2>' +
-    '<p class="sec-lede">Playbook คือวิธีทำงาน · Role คือขอบเขตงานและวิธีขอความช่วยเหลือ</p>' +
-    '<div class="lanes">' +
-      '<div class="lane purple"><div class="lane-head">' +
-        '<div><div class="nm">Playbook</div><div class="goal">วิธีทำงานแต่ละเรื่อง แยกเป็นหมวด พร้อมลิงก์ไปของต้นฉบับ</div>' +
-        '<div class="krs">' + DATA.cats.map(function (c) { return '<span class="krchip">' + esc(c.name) + '</span>'; }).join('') + '</div></div>' +
-        '<div class="lane-pct"><div class="b on">' + open.length + '/' + DATA.cats.length + '</div><div class="l">หมวดที่เปิดแล้ว</div></div>' +
-        '<button class="btn" data-go="/playbook">เข้าดู →</button>' +
-      '</div></div>' +
-      '<div class="lane off"><div class="lane-head">' +
-        '<div><div class="nm">Role</div><div class="goal">DesignOps ช่วยอะไรได้บ้าง และทีมขอความช่วยเหลือยังไง</div></div>' +
-        '<div class="lane-pct"><div class="b">—</div><div class="l">ยังไม่เปิด</div></div>' +
-        '<button class="btn ghost" disabled>กำลังตกลง</button>' +
-      '</div><div class="leg"><span>ยังไม่ได้ตัดสินว่าทีมขอผ่านช่องทางไหน — Jira, ทักตรง หรือมีคิว</span></div></div>' +
-    '</div>' +
-    '<div class="note"><b>เว็บนี้ไม่เก็บเนื้อหา</b> — ทุกการ์ดพาไปหาต้นฉบับที่ของอยู่จริง เพื่อไม่ให้เกิดสำเนาที่เก่าโดยไม่มีใครรู้ · ทุกใบบอกวันที่อัปเดตล่าสุดไว้ ให้ตัดสินเองว่ายังเชื่อได้ไหม</div>' +
-    '</div>' + foot();
+    '<div class="block"><h2 class="sec">Playbook</h2>' +
+    '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ · ชื่อหมวดตรงกับชื่อ skill ที่พิมพ์ในเทอร์มินัล</p>' +
+    '<div class="cardgrid">' + cards + '</div></div>' +
+    '<div class="note"><b>เว็บนี้ไม่เก็บเนื้อหา</b> — ทุกการ์ดพาไปหาต้นฉบับที่ของอยู่จริง เพื่อไม่ให้เกิดสำเนาที่เก่าโดยไม่มีใครรู้ · การ์ด ↗ = ออกไปข้างนอก · → = หน้าในเว็บนี้</div>' +
+    foot() + '</div>';
 }
 
-/* ---------- swimlane ของ Playbook ---------- */
-function viewPlaybook() {
-  var lanes = DATA.cats.map(function (c) {
-    var steps = (c.steps || []).map(function (s, i) {
-      return (i ? '<div class="arrow">→</div>' : '') +
-        '<div class="fstep' + (c.open || s.ok ? '' : ' empty') + '"><div class="c">ขั้น ' + (i + 1) + (s.ok ? ' · เสร็จแล้ว' : '') + '</div>' +
-        '<div class="t">' + esc(s.t) + '</div><div class="n">' + esc(s.n) + '</div></div>';
-    }).join('');
-    return '<div class="lane ' + c.color + (c.open ? '' : ' off') + '">' +
-      '<div class="lane-head">' +
-        '<div><div class="nm">' + esc(c.name) + (c.skill ? '<span class="skill">/' + esc(c.skill) + '</span>' : '') + '</div>' +
-        '<div class="goal">' + esc(c.desc) + '</div></div>' +
-        '<div class="lane-pct"><div class="b' + (c.open ? ' on' : '') + '">' + (c.open ? c.count : '—') + '</div>' +
-        '<div class="l">' + (c.open ? 'รายการพร้อมใช้' : esc(c.statusText)) + '</div></div>' +
-        (c.open ? '<button class="btn" data-go="/c/' + c.id + '">เข้าดู →</button>'
-                : '<button class="btn ghost" data-go="/c/' + c.id + '">ดูว่าติดอะไร</button>') +
-      '</div>' +
-      (steps ? '<div class="flow">' + steps + '</div>' : '') +
-      (c.open ? '' : '<div class="leg"><span><i class="e"></i> กล่องพื้นส้ม = ยังไม่เปิด</span><span>' + esc(c.why) + '</span></div>') +
-      '</div>';
-  }).join('');
-  return topbar([{ t: 'หน้าแรก', h: '/' }, { t: 'Playbook' }]) +
-    '<div class="band">' +
-    '<div class="kicker">Playbook</div>' +
-    '<h1>ทำ<span class="yr">เรื่องไหน</span></h1>' +
-    '<p class="lede">3 หมวดคู่กับ skill ที่ทีมใช้อยู่ใน design-brain — ชื่อในเว็บนี้กับชื่อที่พิมพ์ในเทอร์มินัลเป็นตัวเดียวกัน</p>' +
-    '<div class="lanes" style="margin-top:28px">' + lanes + '</div>' +
-    '</div>' + foot();
-}
-
-/* ---------- หน้าในหมวด ---------- */
-function viewCat(id) {
-  var c = DATA.cats.filter(function (x) { return x.id === id; })[0];
-  if (!c) return viewPlaybook();
-  var crumbs = [{ t: 'หน้าแรก', h: '/' }, { t: 'Playbook', h: '/playbook' }, { t: c.name }];
-
-  if (!c.open) {
-    return topbar(crumbs) + '<div class="band">' +
-      '<div class="kicker">Playbook · ' + esc(c.name) + '</div>' +
-      '<h1>' + esc(c.name) + '</h1>' +
-      '<p class="lede">' + esc(c.desc) + '</p>' +
-      '<div style="margin-top:26px" class="locknote"><div class="t">ยังไม่เปิด — ' + esc(c.statusText) + '</div>' +
-      '<div class="d">' + esc(c.why) + '</div>' +
-      '<ol>' + (c.todo || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ol></div>' +
-      '</div>' + foot();
+/* ---------- section ---------- */
+function viewSec(id) {
+  var s = DATA.sec[id];
+  if (!s) return viewHome();
+  var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span><span>' + esc(s.title) + '</span></div>';
+  var body = head(s, crumb) +
+    (s.skill ? '<p class="sec-lede" style="margin-top:10px">เรียกด้วย <code>/' + esc(s.skill) + '</code> ใน Claude</p>' : '');
+  if (s.lock) body += lockBox(s.lock);
+  if (s.topics.length) {
+    body += '<div class="block"><h2 class="sec">เรื่องในหมวดนี้</h2>' +
+      '<p class="sec-lede">การ์ดที่มี ↗ จะเปิดต้นฉบับข้างนอก · การ์ดที่มี → เป็นหน้าย่อยในเว็บนี้</p>' +
+      '<div class="cardgrid">' + s.topics.map(function (t) { return topicCard(t, id); }).join('') + '</div></div>';
   }
+  return '<div class="inner">' + body + foot() + '</div>';
+}
 
-  var d = DATA[c.id];
-  var entries = d.start.map(function (s, i) {
-    return (i ? '<div class="arrow">·</div>' : '') +
-      '<a class="entry" href="' + s.to + '" target="_blank" rel="noopener">' +
-      '<div class="c">ถ้าคุณ</div><div class="q">' + esc(s.q) + '</div>' +
-      '<div class="a">' + esc(s.a) + '</div><div class="go">' + esc(s.label) + ' ↗</div></a>';
+/* ---------- topic ---------- */
+function viewTopic(secId, topId) {
+  var t = DATA.topic[topId];
+  if (!t) return viewSec(secId);
+  var parent = DATA.sec[t.parent];
+  var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
+    '<button data-go="' + t.parent + '">' + esc(parent.title) + '</button><span class="sep">/</span>' +
+    '<span>' + esc(t.title) + '</span></div>';
+
+  var entries = t.start.map(function (e) {
+    return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
+      '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
+      '<div class="a">' + esc(e.a) + '</div><div class="go">' + esc(e.label) + ' ↗</div></a>';
   }).join('');
 
-  var groups = d.groups.map(function (g) {
-    var items = g.items.map(function (i) {
-      var inner = '<div class="t">' + esc(i.t) + (i.st ? ' <span style="font-weight:400;font-size:.85rem">' + esc(i.st) + '</span>' : '') + '</div>' +
-        '<div class="w">' + esc(i.w) + '</div>' +
-        '<div class="m"><span class="src">' + esc(i.src) + '</span><span>·</span><span>อัปเดต ' + esc(i.up) + '</span>' +
-        '<span style="margin-left:auto">' + (i.to ? '↗' : '—') + '</span></div>';
-      return i.to
-        ? '<a class="card" href="' + i.to + '" target="_blank" rel="noopener">' + inner + '</a>'
-        : '<div class="card" style="opacity:.68">' + inner + '</div>';
-    }).join('');
-    return '<div class="group"><div class="ghd">' + esc(g.hd) + '</div><div class="cards">' + items + '</div></div>';
+  var cards = t.cards.map(function (c) { return topicCard(c, secId); }).join('');
+
+  var recs = t.records.map(function (r) {
+    return '<a class="item" href="' + r.to + '" target="_blank" rel="noopener">' +
+      '<span class="arw">↗</span>' +
+      '<div class="t">' + esc(r.t) + ' <span style="font-weight:400;font-size:.85rem">' + esc(r.st) + '</span></div>' +
+      '<div class="w">' + esc(r.w) + '</div>' +
+      '<div class="m"><span class="src">Confluence · UXUI Team</span><span>·</span><span>อัปเดต ' + esc(r.up) + '</span></div></a>';
   }).join('');
 
-  var legend = d.legend.map(function (l) {
+  var legend = t.legend.map(function (l) {
     return '<div class="lg"><div class="s">' + esc(l.s) + '</div><div class="x">' + esc(l.x) + '</div></div>';
   }).join('');
 
-  return topbar(crumbs) +
-    '<div class="band">' +
-      '<div class="thead"><div><h2>' + esc(c.name) + (c.skill ? '<span class="skill">/' + esc(c.skill) + '</span>' : '') + '</h2>' +
-      '<p class="goal">' + esc(d.lede) + '</p></div>' +
-      '<div class="bigprog"><div class="n">' + c.count + '</div><div class="cap">รายการ · ทุกใบอยู่บน Confluence ของทีม</div></div></div>' +
-    '</div>' +
-    '<div class="band"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
+  return '<div class="inner">' +
+    head(t, crumb) +
+    '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
       '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์ แล้วกดไปที่ต้นฉบับได้เลย</p>' +
       '<div class="entries">' + entries + '</div></div>' +
-    '<div class="band"><h2 class="sec">ของทั้งหมดในหมวดนี้</h2>' +
-      '<p class="sec-lede">กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา — ถ้าวันที่เก่าไปแล้วให้ทักเจ้าของ อย่าเชื่อเงียบ ๆ</p>' + groups +
-      (d.note ? '<div class="note">⚠️ ' + d.note + '</div>' : '') + '</div>' +
-    '<div class="band"><h2 class="sec">สถานะใน Inventory หมายความว่าอะไร</h2>' +
-      '<p class="sec-lede">คำชุดเดียวกันนี้ใช้ทั้งในทะเบียนกลางและใน record รายฟอนต์</p>' +
+    '<div class="block"><h2 class="sec">เอกสารหลัก</h2>' +
+      '<p class="sec-lede">ทุกใบอยู่บน Confluence ของทีม — กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา</p>' +
+      '<div class="cardgrid">' + cards + '</div></div>' +
+    '<div class="block"><h2 class="sec">License Record รายฟอนต์</h2>' +
+      '<p class="sec-lede">1 ใบ = 1 license · สถานะในนี้ต้องตรงกับในทะเบียนกลาง</p>' +
+      '<div class="items">' + recs + '</div>' +
+      (t.note ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>' +
+    '<div class="block"><h2 class="sec">สถานะหมายความว่าอะไร</h2>' +
+      '<p class="sec-lede">คำชุดเดียวกันนี้ใช้ทั้งในทะเบียนกลางและในใบรายฟอนต์</p>' +
       '<div class="legend">' + legend + '</div></div>' +
-    foot();
+    foot() + '</div>';
 }
 
 function foot() {
   return '<footer>DesignOps · SkillLane UX/UI — ปรับปรุง ' + esc(DATA.updated) +
+    ' · <a href="' + DATA.roadmap + '" target="_blank" rel="noopener">Roadmap 2026 ↗</a>' +
     ' · เจอลิงก์เสียหรือของที่เก่าไปแล้ว ทักได้เลย จะได้แก้ที่ต้นทาง</footer>';
 }
 
 function render() {
-  var h = (location.hash || '#/').replace(/^#/, '');
-  var html;
-  if (h.indexOf('/c/') === 0) html = viewCat(h.slice(3));
-  else if (h === '/playbook') html = viewPlaybook();
-  else html = viewHome();
-  document.body.innerHTML = html;
+  var r = route(), parts = r.split('/').filter(Boolean);
+  var active = parts[0] || '', main;
+  if (parts.length >= 2) main = viewTopic(parts[0], parts[1]);
+  else if (parts.length === 1) main = viewSec(parts[0]);
+  else main = viewHome();
+  document.body.innerHTML = '<div class="shell">' + sidebar(active) + '<div class="main">' + main + '</div></div>';
   window.scrollTo(0, 0);
 }
 
 document.addEventListener('click', function (e) {
   var b = e.target.closest('[data-go]');
-  if (b) { e.preventDefault(); go(b.getAttribute('data-go')); }
+  if (!b || b.getAttribute('aria-disabled') === 'true') return;
+  e.preventDefault();
+  location.hash = '/' + b.getAttribute('data-go');
 });
 window.addEventListener('hashchange', render);
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
