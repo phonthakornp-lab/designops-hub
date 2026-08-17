@@ -44,6 +44,19 @@ function topicCard(t, secId) {
   return '<div class="' + cls + ' off">' + inner + '</div>';
 }
 
+
+/* ---------- เครื่องมือ (skill) — ไม่มีอะไรให้เปิด มีแต่คำสั่งให้พิมพ์ ---------- */
+function toolCard(t) {
+  return '<div class="tool">' +
+    '<div class="th"><span class="ti">' + ic('wrench') + '</span>' +
+    '<div><div class="tt">' + esc(t.t) + '</div>' +
+    '<code class="tcmd">/' + esc(t.cmd) + '</code></div></div>' +
+    '<div class="td">' + esc(t.d) + '</div>' +
+    '<div class="tm">' + t.modes.map(function (m) { return '<span class="tmode">' + esc(m) + '</span>'; }).join('') + '</div>' +
+    (t.scope ? '<div class="tsc">' + esc(t.scope) + '</div>' : '') +
+    '</div>';
+}
+
 function lockBox(l) {
   return '<div class="locknote"><div class="t">' + esc(l.t) + '</div><div class="d">' + esc(l.d) + '</div>' +
     '<ol>' + l.todo.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol></div>';
@@ -90,9 +103,14 @@ function viewSec(id) {
     (s.skill ? '<p class="sec-lede" style="margin-top:10px">เรียกด้วย <code>/' + esc(s.skill) + '</code> ใน Claude</p>' : '');
   if (s.lock) body += lockBox(s.lock);
   if (s.topics.length) {
-    body += '<div class="block"><h2 class="sec">เรื่องในหมวดนี้</h2>' +
-      '<p class="sec-lede">การ์ดที่มี ↗ จะเปิดต้นฉบับข้างนอก · การ์ดที่มี → เป็นหน้าย่อยในเว็บนี้</p>' +
+    body += '<div class="block"><h2 class="sec">' + esc(s.docsHd || 'เรื่องในหมวดนี้') + '</h2>' +
+      '<p class="sec-lede">' + esc(s.docsLede || 'การ์ดที่มี ↗ จะเปิดต้นฉบับข้างนอก · การ์ดที่มี → เป็นหน้าย่อยในเว็บนี้') + '</p>' +
       '<div class="cardgrid">' + s.topics.map(function (t) { return topicCard(t, id); }).join('') + '</div></div>';
+  }
+  if (s.tools && s.tools.length) {
+    body += '<div class="block"><h2 class="sec">เครื่องมือ</h2>' +
+      '<p class="sec-lede">ไม่ใช่เอกสาร — เป็นคำสั่งที่พิมพ์ใน Claude แล้วมันทำงานกับไฟล์จริงให้</p>' +
+      '<div class="tools">' + s.tools.map(toolCard).join('') + '</div></div>';
   }
   return '<div class="inner">' + body + foot() + '</div>';
 }
@@ -105,43 +123,46 @@ function viewTopic(secId, topId) {
   var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
     '<button data-go="' + t.parent + '">' + esc(parent.title) + '</button><span class="sep">/</span>' +
     '<span>' + esc(t.title) + '</span></div>';
+  var body = head(t, crumb);
 
-  var entries = t.start.map(function (e) {
-    return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
-      '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
-      '<div class="a">' + esc(e.a) + '</div><div class="go">' + esc(e.label) + ' ↗</div></a>';
-  }).join('');
-
-  var cards = t.cards.map(function (c) { return topicCard(c, secId); }).join('');
-
-  var recs = t.records.map(function (r) {
-    return '<a class="item" href="' + r.to + '" target="_blank" rel="noopener">' +
-      '<span class="arw">↗</span>' +
-      '<div class="t">' + esc(r.t) + ' <span style="font-weight:400;font-size:.85rem">' + esc(r.st) + '</span></div>' +
-      '<div class="w">' + esc(r.w) + '</div>' +
-      '<div class="m"><span class="src">Confluence · UXUI Team</span><span>·</span><span>อัปเดต ' + esc(r.up) + '</span></div></a>';
-  }).join('');
-
-  var legend = t.legend.map(function (l) {
-    return '<div class="lg"><div class="s">' + esc(l.s) + '</div><div class="x">' + esc(l.x) + '</div></div>';
-  }).join('');
-
-  return '<div class="inner">' +
-    head(t, crumb) +
-    '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
+  if (t.start && t.start.length) {
+    body += '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
       '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์ แล้วกดไปที่ต้นฉบับได้เลย</p>' +
-      '<div class="entries">' + entries + '</div></div>' +
-    '<div class="block"><h2 class="sec">เอกสารหลัก</h2>' +
-      '<p class="sec-lede">ทุกใบอยู่บน Confluence ของทีม — กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา</p>' +
-      '<div class="cardgrid">' + cards + '</div></div>' +
-    '<div class="block"><h2 class="sec">License Record รายฟอนต์</h2>' +
+      '<div class="entries">' + t.start.map(function (e) {
+        return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
+          '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
+          '<div class="a">' + esc(e.a) + '</div><div class="go">' + esc(e.label) + ' ↗</div></a>';
+      }).join('') + '</div></div>';
+  }
+
+  if (t.cards && t.cards.length) {
+    body += '<div class="block' + (t.start ? '' : ' first') + '"><h2 class="sec">' + esc(t.cardsHd || 'เอกสาร') + '</h2>' +
+      '<p class="sec-lede">' + esc(t.cardsLede || 'กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา') + '</p>' +
+      '<div class="cardgrid">' + t.cards.map(function (c) { return topicCard(c, secId); }).join('') + '</div>' +
+      (t.note && !t.records ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>';
+  }
+
+  if (t.records && t.records.length) {
+    body += '<div class="block"><h2 class="sec">License Record รายฟอนต์</h2>' +
       '<p class="sec-lede">1 ใบ = 1 license · สถานะในนี้ต้องตรงกับในทะเบียนกลาง</p>' +
-      '<div class="items">' + recs + '</div>' +
-      (t.note ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>' +
-    '<div class="block"><h2 class="sec">สถานะหมายความว่าอะไร</h2>' +
+      '<div class="items">' + t.records.map(function (r) {
+        return '<a class="item" href="' + r.to + '" target="_blank" rel="noopener"><span class="arw">↗</span>' +
+          '<div class="t">' + esc(r.t) + ' <span style="font-weight:400;font-size:.85rem">' + esc(r.st) + '</span></div>' +
+          '<div class="w">' + esc(r.w) + '</div>' +
+          '<div class="m"><span class="src">Confluence · UXUI Team</span><span>·</span><span>อัปเดต ' + esc(r.up) + '</span></div></a>';
+      }).join('') + '</div>' +
+      (t.note ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>';
+  }
+
+  if (t.legend && t.legend.length) {
+    body += '<div class="block"><h2 class="sec">สถานะหมายความว่าอะไร</h2>' +
       '<p class="sec-lede">คำชุดเดียวกันนี้ใช้ทั้งในทะเบียนกลางและในใบรายฟอนต์</p>' +
-      '<div class="legend">' + legend + '</div></div>' +
-    foot() + '</div>';
+      '<div class="legend">' + t.legend.map(function (l) {
+        return '<div class="lg"><div class="s">' + esc(l.s) + '</div><div class="x">' + esc(l.x) + '</div></div>';
+      }).join('') + '</div></div>';
+  }
+
+  return '<div class="inner">' + body + foot() + '</div>';
 }
 
 function foot() {

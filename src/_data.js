@@ -1,5 +1,7 @@
 var CF = 'https://skilllane.atlassian.net/wiki/spaces/';
 var DB = 'https://github.com/uxui-skl/design-brain';
+var W  = DB + '/blob/main/wiki/shared/';
+var WD = W + 'design-system/';
 
 var DATA = {
   updated: '17 ส.ค. 2026',
@@ -18,14 +20,24 @@ var DATA = {
   sec: {
     ds: {
       color: 'blue', icon: 'palette', title: 'Design System', tag: 'token · naming · ลิขสิทธิ์',
-      skill: 'ds-audit',
-      lede: 'รากฐานที่ทุก product ใช้ร่วมกัน — โครงสร้าง token, การตั้งชื่อ, ชุดมาตรฐานต่อ product และทะเบียนลิขสิทธิ์ฟอนต์',
+      lede: 'รากฐานที่ทุก product ใช้ร่วมกัน · เอกสารตัวจริงทั้งหมดอยู่ใน design-brain (repo ทีม) — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
+      docsHd: 'เอกสารอ้างอิง',
+      docsLede: 'ทั้งหมดอยู่ใน design-brain · ต้องเป็นสมาชิก org ถึงจะเปิดได้',
       topics: [
+        { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน ไฟล์ Figma อันไหน — 5 ไฟล์พร้อม key', ext: W + 'design-system.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'สี · typography · spacing ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรจะเป็น', ext: WD + 'foundation.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { id: 'golden', icon: 'badge', color: 'green', t: 'Golden Set', d: 'ค่าไหนเชื่อได้ แยกตาม product', up: '4 product' },
+        { id: 'token', icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'ตั้งชื่อ token ยังไง และ 3 ค่ายต่างกันตรงไหน', up: '3 เอกสาร' },
         { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียนลิขสิทธิ์ฟอนต์ + วิธีรายงานการใช้', up: '8 รายการ' },
-        { icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'โครงสร้าง token 3 ชั้น และ convention การตั้งชื่อ', wait: 'รอย้ายเอกสาร' },
-        { icon: 'badge', color: 'green', t: 'Golden Set', d: 'ชุดมาตรฐานที่เชื่อถือได้ต่อ product', ext: DB + '/tree/main/wiki/shared/design-system', up: 'design-brain' },
-        { icon: 'layers', color: 'amber', t: 'Mica DS', d: 'มาตรฐานกลางตัวใหม่ — base MUI หน้าตา OLS', ext: 'https://skilllane.atlassian.net/browse/UXUI-1527', up: 'Jira · UXUI-1527' },
-        { icon: 'box', color: 'orange', t: 'Publish & Drift', d: 'ปล่อย library แล้วแจ้งทีม · ตรวจว่าเพี้ยนจาก baseline ไหม', wait: 'ยังไม่เคยรันจริง' }
+        { icon: 'layers', color: 'amber', t: 'Mica DS', d: 'มาตรฐานกลางตัวใหม่ที่กำลังสร้าง — base MUI หน้าตา OLS', ext: 'https://skilllane.atlassian.net/browse/UXUI-1527', up: 'Jira · UXUI-1527' },
+        { icon: 'clip', color: 'orange', t: 'Governance', d: 'ใครแก้ DS ได้ · เกณฑ์ว่าอะไรเชื่อถือได้ · ขั้นตอน publish', ext: W + 'ds-governance.md', up: 'ทวนล่าสุด 15 ก.ค. 2026' },
+        { icon: 'target', color: 'purple', t: 'กติกา AI', d: 'AI generate UI และ audit ได้แค่ไหน ห้ามทำอะไร', ext: WD + 'ai-rules.md', up: 'ทวนล่าสุด 20 ก.ค. 2026' }
+      ],
+      tools: [
+        { cmd: 'ds-audit', t: 'ตรวจ · แก้ · ปล่อย DS',
+          d: 'สแกนหา hardcode และของที่ไม่ผูก token → แก้ให้ → เตรียม publish และร่างประกาศแจ้งทีม',
+          modes: ['หา hardcode', 'แก้ให้', 'เตรียม publish'],
+          scope: '2 ขอบเขต — ไฟล์ DS เอง หรือไฟล์งานที่ใช้ DS' }
       ]
     },
     qa: {
@@ -70,6 +82,28 @@ var DATA = {
   },
 
   topic: {
+    golden: {
+      parent: 'ds', color: 'green', icon: 'badge',
+      title: 'Golden Set', tag: 'ค่าที่เชื่อได้ · แยกตาม product',
+      lede: 'ชุดค่าที่ตรวจจากไฟล์จริงแล้วยืนยันว่าใช้อ้างอิงได้ — ถ้าค่าในงานไม่ตรงกับที่นี่ ให้เชื่อที่นี่',
+      cards: [
+        { icon: 'doc', color: 'green', t: 'LMS', d: 'ANT Design 5 · Seed → Map → Alias', ext: WD + 'golden-set-lms.md', up: '14 ก.ค. 2026' },
+        { icon: 'doc', color: 'blue', t: 'B2C Web', d: 'MUI', ext: WD + 'golden-set-b2c.md', up: '13 ก.ค. 2026' },
+        { icon: 'doc', color: 'amber', t: 'Mica · NDLP + CBMS', d: 'MUI v5 — 2 product ใช้ไฟล์เดียวกัน', ext: WD + 'golden-set-mica.md', up: '13 ก.ค. 2026' },
+        { icon: 'doc', color: 'purple', t: 'NCBS + OLS', d: 'shadcn / Tailwind — OLS duplicate โครงจาก NCBS', ext: WD + 'golden-set-ncbs-ols.md', up: '14 ก.ค. 2026' }
+      ]
+    },
+    token: {
+      parent: 'ds', color: 'blue', icon: 'ruler',
+      title: 'Token & Naming', tag: 'โครงสร้าง · การตั้งชื่อ · 3 ค่าย',
+      lede: 'อ่านก่อนเพิ่ม token ใหม่ — ตั้งชื่อผิด convention แล้วแก้ทีหลังกระทบทุกไฟล์ที่ผูกไว้',
+      cards: [
+        { icon: 'ruler', color: 'blue', t: 'Naming Convention', d: 'ตั้งชื่อ token ยังไง แยกตาม 2 ค่าย (styles vs variables)', ext: WD + 'naming.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { icon: 'layers', color: 'green', t: 'Token Baseline Standard', d: 'มาตรฐานกลางสำหรับ DS ที่ไม่ได้ base บน third-party — 3 ชั้น Foundation → Semantic → Component', ext: WD + 'token-baseline-standard.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { icon: 'tag', color: 'amber', t: 'Third-party Token Reference', d: 'ANT / MUI / shadcn ตั้งชื่อกันยังไง — เปิดตอนจะเพิ่ม token ใหม่', ext: WD + 'third-party-token-reference.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' }
+      ],
+      note: 'มีสำเนาของเอกสารชุดนี้อยู่ใน Confluence ส่วนตัวและใน DesignOps Brain ด้วย — <b>เก่ากว่าและไม่ใช่ตัวจริง</b> ให้ใช้ที่นี่เท่านั้น'
+    },
     font: {
       parent: 'ds', color: 'purple', icon: 'type',
       title: 'Font License', tag: 'ทะเบียน · การรายงาน · ใบอนุญาต',

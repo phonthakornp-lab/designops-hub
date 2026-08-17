@@ -176,6 +176,24 @@ h2.sec{font-weight:700;font-size:1.22rem;letter-spacing:-.02em;margin:0 0 4px}
 .crumb .sep{opacity:.45}
 footer{border-top:1px solid var(--line);margin-top:44px;padding-top:20px;font-size:.81rem;color:var(--ink-mute)}
 footer a{color:var(--cta-ink)}
+
+/* ---------- เครื่องมือ (skill) — ตั้งใจให้หน้าตาไม่เหมือนการ์ดเอกสาร ---------- */
+.tools{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:900px){.tools{grid-template-columns:1fr}}
+.tool{background:var(--ink);color:#fff;border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+.tool .th{display:flex;align-items:center;gap:13px;margin-bottom:11px}
+.tool .ti{width:38px;height:38px;border-radius:11px;background:rgba(0,225,255,.16);color:var(--cta);display:grid;place-items:center;flex:none}
+.tool .ti svg{width:20px;height:20px}
+.tool .tt{font-weight:700;font-size:1rem;letter-spacing:-.01em}
+.tool .tcmd{font-family:ui-monospace,Menlo,monospace;font-size:.82rem;color:var(--cta);background:rgba(255,255,255,.07);
+            border-radius:6px;padding:2px 8px;display:inline-block;margin-top:3px}
+.tool .td{font-size:.89rem;color:rgba(255,255,255,.74);line-height:1.55}
+.tool .tm{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.tool .tmode{font-size:.72rem;font-weight:600;border-radius:999px;padding:4px 11px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.9)}
+.tool .tsc{font-size:.78rem;color:rgba(255,255,255,.52);margin-top:9px}
+
+/* ป้ายบอกที่มาบนหัว section */
+code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--bg-alt);border-radius:5px;padding:1px 6px}
 </style>
 
 <script>
@@ -211,6 +229,8 @@ var I = (function () {
 
 var CF = 'https://skilllane.atlassian.net/wiki/spaces/';
 var DB = 'https://github.com/uxui-skl/design-brain';
+var W  = DB + '/blob/main/wiki/shared/';
+var WD = W + 'design-system/';
 
 var DATA = {
   updated: '17 ส.ค. 2026',
@@ -229,14 +249,24 @@ var DATA = {
   sec: {
     ds: {
       color: 'blue', icon: 'palette', title: 'Design System', tag: 'token · naming · ลิขสิทธิ์',
-      skill: 'ds-audit',
-      lede: 'รากฐานที่ทุก product ใช้ร่วมกัน — โครงสร้าง token, การตั้งชื่อ, ชุดมาตรฐานต่อ product และทะเบียนลิขสิทธิ์ฟอนต์',
+      lede: 'รากฐานที่ทุก product ใช้ร่วมกัน · เอกสารตัวจริงทั้งหมดอยู่ใน design-brain (repo ทีม) — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
+      docsHd: 'เอกสารอ้างอิง',
+      docsLede: 'ทั้งหมดอยู่ใน design-brain · ต้องเป็นสมาชิก org ถึงจะเปิดได้',
       topics: [
+        { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน ไฟล์ Figma อันไหน — 5 ไฟล์พร้อม key', ext: W + 'design-system.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'สี · typography · spacing ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรจะเป็น', ext: WD + 'foundation.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { id: 'golden', icon: 'badge', color: 'green', t: 'Golden Set', d: 'ค่าไหนเชื่อได้ แยกตาม product', up: '4 product' },
+        { id: 'token', icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'ตั้งชื่อ token ยังไง และ 3 ค่ายต่างกันตรงไหน', up: '3 เอกสาร' },
         { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียนลิขสิทธิ์ฟอนต์ + วิธีรายงานการใช้', up: '8 รายการ' },
-        { icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'โครงสร้าง token 3 ชั้น และ convention การตั้งชื่อ', wait: 'รอย้ายเอกสาร' },
-        { icon: 'badge', color: 'green', t: 'Golden Set', d: 'ชุดมาตรฐานที่เชื่อถือได้ต่อ product', ext: DB + '/tree/main/wiki/shared/design-system', up: 'design-brain' },
-        { icon: 'layers', color: 'amber', t: 'Mica DS', d: 'มาตรฐานกลางตัวใหม่ — base MUI หน้าตา OLS', ext: 'https://skilllane.atlassian.net/browse/UXUI-1527', up: 'Jira · UXUI-1527' },
-        { icon: 'box', color: 'orange', t: 'Publish & Drift', d: 'ปล่อย library แล้วแจ้งทีม · ตรวจว่าเพี้ยนจาก baseline ไหม', wait: 'ยังไม่เคยรันจริง' }
+        { icon: 'layers', color: 'amber', t: 'Mica DS', d: 'มาตรฐานกลางตัวใหม่ที่กำลังสร้าง — base MUI หน้าตา OLS', ext: 'https://skilllane.atlassian.net/browse/UXUI-1527', up: 'Jira · UXUI-1527' },
+        { icon: 'clip', color: 'orange', t: 'Governance', d: 'ใครแก้ DS ได้ · เกณฑ์ว่าอะไรเชื่อถือได้ · ขั้นตอน publish', ext: W + 'ds-governance.md', up: 'ทวนล่าสุด 15 ก.ค. 2026' },
+        { icon: 'target', color: 'purple', t: 'กติกา AI', d: 'AI generate UI และ audit ได้แค่ไหน ห้ามทำอะไร', ext: WD + 'ai-rules.md', up: 'ทวนล่าสุด 20 ก.ค. 2026' }
+      ],
+      tools: [
+        { cmd: 'ds-audit', t: 'ตรวจ · แก้ · ปล่อย DS',
+          d: 'สแกนหา hardcode และของที่ไม่ผูก token → แก้ให้ → เตรียม publish และร่างประกาศแจ้งทีม',
+          modes: ['หา hardcode', 'แก้ให้', 'เตรียม publish'],
+          scope: '2 ขอบเขต — ไฟล์ DS เอง หรือไฟล์งานที่ใช้ DS' }
       ]
     },
     qa: {
@@ -281,6 +311,28 @@ var DATA = {
   },
 
   topic: {
+    golden: {
+      parent: 'ds', color: 'green', icon: 'badge',
+      title: 'Golden Set', tag: 'ค่าที่เชื่อได้ · แยกตาม product',
+      lede: 'ชุดค่าที่ตรวจจากไฟล์จริงแล้วยืนยันว่าใช้อ้างอิงได้ — ถ้าค่าในงานไม่ตรงกับที่นี่ ให้เชื่อที่นี่',
+      cards: [
+        { icon: 'doc', color: 'green', t: 'LMS', d: 'ANT Design 5 · Seed → Map → Alias', ext: WD + 'golden-set-lms.md', up: '14 ก.ค. 2026' },
+        { icon: 'doc', color: 'blue', t: 'B2C Web', d: 'MUI', ext: WD + 'golden-set-b2c.md', up: '13 ก.ค. 2026' },
+        { icon: 'doc', color: 'amber', t: 'Mica · NDLP + CBMS', d: 'MUI v5 — 2 product ใช้ไฟล์เดียวกัน', ext: WD + 'golden-set-mica.md', up: '13 ก.ค. 2026' },
+        { icon: 'doc', color: 'purple', t: 'NCBS + OLS', d: 'shadcn / Tailwind — OLS duplicate โครงจาก NCBS', ext: WD + 'golden-set-ncbs-ols.md', up: '14 ก.ค. 2026' }
+      ]
+    },
+    token: {
+      parent: 'ds', color: 'blue', icon: 'ruler',
+      title: 'Token & Naming', tag: 'โครงสร้าง · การตั้งชื่อ · 3 ค่าย',
+      lede: 'อ่านก่อนเพิ่ม token ใหม่ — ตั้งชื่อผิด convention แล้วแก้ทีหลังกระทบทุกไฟล์ที่ผูกไว้',
+      cards: [
+        { icon: 'ruler', color: 'blue', t: 'Naming Convention', d: 'ตั้งชื่อ token ยังไง แยกตาม 2 ค่าย (styles vs variables)', ext: WD + 'naming.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { icon: 'layers', color: 'green', t: 'Token Baseline Standard', d: 'มาตรฐานกลางสำหรับ DS ที่ไม่ได้ base บน third-party — 3 ชั้น Foundation → Semantic → Component', ext: WD + 'token-baseline-standard.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { icon: 'tag', color: 'amber', t: 'Third-party Token Reference', d: 'ANT / MUI / shadcn ตั้งชื่อกันยังไง — เปิดตอนจะเพิ่ม token ใหม่', ext: WD + 'third-party-token-reference.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' }
+      ],
+      note: 'มีสำเนาของเอกสารชุดนี้อยู่ใน Confluence ส่วนตัวและใน DesignOps Brain ด้วย — <b>เก่ากว่าและไม่ใช่ตัวจริง</b> ให้ใช้ที่นี่เท่านั้น'
+    },
     font: {
       parent: 'ds', color: 'purple', icon: 'type',
       title: 'Font License', tag: 'ทะเบียน · การรายงาน · ใบอนุญาต',
@@ -359,6 +411,19 @@ function topicCard(t, secId) {
   return '<div class="' + cls + ' off">' + inner + '</div>';
 }
 
+
+/* ---------- เครื่องมือ (skill) — ไม่มีอะไรให้เปิด มีแต่คำสั่งให้พิมพ์ ---------- */
+function toolCard(t) {
+  return '<div class="tool">' +
+    '<div class="th"><span class="ti">' + ic('wrench') + '</span>' +
+    '<div><div class="tt">' + esc(t.t) + '</div>' +
+    '<code class="tcmd">/' + esc(t.cmd) + '</code></div></div>' +
+    '<div class="td">' + esc(t.d) + '</div>' +
+    '<div class="tm">' + t.modes.map(function (m) { return '<span class="tmode">' + esc(m) + '</span>'; }).join('') + '</div>' +
+    (t.scope ? '<div class="tsc">' + esc(t.scope) + '</div>' : '') +
+    '</div>';
+}
+
 function lockBox(l) {
   return '<div class="locknote"><div class="t">' + esc(l.t) + '</div><div class="d">' + esc(l.d) + '</div>' +
     '<ol>' + l.todo.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol></div>';
@@ -405,9 +470,14 @@ function viewSec(id) {
     (s.skill ? '<p class="sec-lede" style="margin-top:10px">เรียกด้วย <code>/' + esc(s.skill) + '</code> ใน Claude</p>' : '');
   if (s.lock) body += lockBox(s.lock);
   if (s.topics.length) {
-    body += '<div class="block"><h2 class="sec">เรื่องในหมวดนี้</h2>' +
-      '<p class="sec-lede">การ์ดที่มี ↗ จะเปิดต้นฉบับข้างนอก · การ์ดที่มี → เป็นหน้าย่อยในเว็บนี้</p>' +
+    body += '<div class="block"><h2 class="sec">' + esc(s.docsHd || 'เรื่องในหมวดนี้') + '</h2>' +
+      '<p class="sec-lede">' + esc(s.docsLede || 'การ์ดที่มี ↗ จะเปิดต้นฉบับข้างนอก · การ์ดที่มี → เป็นหน้าย่อยในเว็บนี้') + '</p>' +
       '<div class="cardgrid">' + s.topics.map(function (t) { return topicCard(t, id); }).join('') + '</div></div>';
+  }
+  if (s.tools && s.tools.length) {
+    body += '<div class="block"><h2 class="sec">เครื่องมือ</h2>' +
+      '<p class="sec-lede">ไม่ใช่เอกสาร — เป็นคำสั่งที่พิมพ์ใน Claude แล้วมันทำงานกับไฟล์จริงให้</p>' +
+      '<div class="tools">' + s.tools.map(toolCard).join('') + '</div></div>';
   }
   return '<div class="inner">' + body + foot() + '</div>';
 }
@@ -420,43 +490,46 @@ function viewTopic(secId, topId) {
   var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
     '<button data-go="' + t.parent + '">' + esc(parent.title) + '</button><span class="sep">/</span>' +
     '<span>' + esc(t.title) + '</span></div>';
+  var body = head(t, crumb);
 
-  var entries = t.start.map(function (e) {
-    return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
-      '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
-      '<div class="a">' + esc(e.a) + '</div><div class="go">' + esc(e.label) + ' ↗</div></a>';
-  }).join('');
-
-  var cards = t.cards.map(function (c) { return topicCard(c, secId); }).join('');
-
-  var recs = t.records.map(function (r) {
-    return '<a class="item" href="' + r.to + '" target="_blank" rel="noopener">' +
-      '<span class="arw">↗</span>' +
-      '<div class="t">' + esc(r.t) + ' <span style="font-weight:400;font-size:.85rem">' + esc(r.st) + '</span></div>' +
-      '<div class="w">' + esc(r.w) + '</div>' +
-      '<div class="m"><span class="src">Confluence · UXUI Team</span><span>·</span><span>อัปเดต ' + esc(r.up) + '</span></div></a>';
-  }).join('');
-
-  var legend = t.legend.map(function (l) {
-    return '<div class="lg"><div class="s">' + esc(l.s) + '</div><div class="x">' + esc(l.x) + '</div></div>';
-  }).join('');
-
-  return '<div class="inner">' +
-    head(t, crumb) +
-    '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
+  if (t.start && t.start.length) {
+    body += '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
       '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์ แล้วกดไปที่ต้นฉบับได้เลย</p>' +
-      '<div class="entries">' + entries + '</div></div>' +
-    '<div class="block"><h2 class="sec">เอกสารหลัก</h2>' +
-      '<p class="sec-lede">ทุกใบอยู่บน Confluence ของทีม — กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา</p>' +
-      '<div class="cardgrid">' + cards + '</div></div>' +
-    '<div class="block"><h2 class="sec">License Record รายฟอนต์</h2>' +
+      '<div class="entries">' + t.start.map(function (e) {
+        return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
+          '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
+          '<div class="a">' + esc(e.a) + '</div><div class="go">' + esc(e.label) + ' ↗</div></a>';
+      }).join('') + '</div></div>';
+  }
+
+  if (t.cards && t.cards.length) {
+    body += '<div class="block' + (t.start ? '' : ' first') + '"><h2 class="sec">' + esc(t.cardsHd || 'เอกสาร') + '</h2>' +
+      '<p class="sec-lede">' + esc(t.cardsLede || 'กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา') + '</p>' +
+      '<div class="cardgrid">' + t.cards.map(function (c) { return topicCard(c, secId); }).join('') + '</div>' +
+      (t.note && !t.records ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>';
+  }
+
+  if (t.records && t.records.length) {
+    body += '<div class="block"><h2 class="sec">License Record รายฟอนต์</h2>' +
       '<p class="sec-lede">1 ใบ = 1 license · สถานะในนี้ต้องตรงกับในทะเบียนกลาง</p>' +
-      '<div class="items">' + recs + '</div>' +
-      (t.note ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>' +
-    '<div class="block"><h2 class="sec">สถานะหมายความว่าอะไร</h2>' +
+      '<div class="items">' + t.records.map(function (r) {
+        return '<a class="item" href="' + r.to + '" target="_blank" rel="noopener"><span class="arw">↗</span>' +
+          '<div class="t">' + esc(r.t) + ' <span style="font-weight:400;font-size:.85rem">' + esc(r.st) + '</span></div>' +
+          '<div class="w">' + esc(r.w) + '</div>' +
+          '<div class="m"><span class="src">Confluence · UXUI Team</span><span>·</span><span>อัปเดต ' + esc(r.up) + '</span></div></a>';
+      }).join('') + '</div>' +
+      (t.note ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>';
+  }
+
+  if (t.legend && t.legend.length) {
+    body += '<div class="block"><h2 class="sec">สถานะหมายความว่าอะไร</h2>' +
       '<p class="sec-lede">คำชุดเดียวกันนี้ใช้ทั้งในทะเบียนกลางและในใบรายฟอนต์</p>' +
-      '<div class="legend">' + legend + '</div></div>' +
-    foot() + '</div>';
+      '<div class="legend">' + t.legend.map(function (l) {
+        return '<div class="lg"><div class="s">' + esc(l.s) + '</div><div class="x">' + esc(l.x) + '</div></div>';
+      }).join('') + '</div></div>';
+  }
+
+  return '<div class="inner">' + body + foot() + '</div>';
 }
 
 function foot() {
