@@ -101,8 +101,7 @@ var DATA = {
         { icon: 'ruler', color: 'blue', t: 'Naming Convention', d: 'ตั้งชื่อ token ยังไง แยกตาม 2 ค่าย (styles vs variables)', ext: WD + 'naming.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
         { icon: 'layers', color: 'green', t: 'Token Baseline Standard', d: 'มาตรฐานกลางสำหรับ DS ที่ไม่ได้ base บน third-party — 3 ชั้น Foundation → Semantic → Component', ext: WD + 'token-baseline-standard.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
         { icon: 'tag', color: 'amber', t: 'Third-party Token Reference', d: 'ANT / MUI / shadcn ตั้งชื่อกันยังไง — เปิดตอนจะเพิ่ม token ใหม่', ext: WD + 'third-party-token-reference.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' }
-      ],
-      note: 'มีสำเนาของเอกสารชุดนี้อยู่ใน Confluence ส่วนตัวและใน DesignOps Brain ด้วย — <b>เก่ากว่าและไม่ใช่ตัวจริง</b> ให้ใช้ที่นี่เท่านั้น'
+      ]
     },
     font: {
       parent: 'ds', color: 'purple', icon: 'type',
