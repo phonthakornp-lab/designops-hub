@@ -45,16 +45,22 @@ function topicCard(t, secId) {
 }
 
 
-/* ---------- เครื่องมือ (skill) — ไม่มีอะไรให้เปิด มีแต่คำสั่งให้พิมพ์ ---------- */
-function toolCard(t) {
-  return '<div class="tool">' +
+/* ---------- การ์ดเครื่องมือ (ย่อ) — กดเข้าหน้าเต็ม ---------- */
+function toolCard(key) {
+  var t = DATA.tool[key];
+  if (!t) return '';
+  return '<button class="tool" data-go="tools/' + key + '">' +
     '<div class="th"><span class="ti">' + ic('wrench') + '</span>' +
-    '<div><div class="tt">' + esc(t.t) + '</div>' +
-    '<code class="tcmd">/' + esc(t.cmd) + '</code></div></div>' +
-    '<div class="td">' + esc(t.d) + '</div>' +
-    '<div class="tm">' + t.modes.map(function (m) { return '<span class="tmode">' + esc(m) + '</span>'; }).join('') + '</div>' +
-    (t.scope ? '<div class="tsc">' + esc(t.scope) + '</div>' : '') +
-    '</div>';
+    '<div><div class="tt">' + esc(t.title) + '</div>' +
+    '<code class="tcmd">/' + esc(t.cmd) + '</code></div>' +
+    '<span class="tarw">→</span></div>' +
+    '<div class="td">' + esc(t.lede) + '</div>' +
+    '<div class="tm">' + t.modes.map(function (m) {
+      return '<span class="tmode' + (m.wk === 'write' ? ' w' : '') + '">' + esc(m.m) + (m.wk === 'write' ? ' ✎' : '') + '</span>';
+    }).join('') + '</div>' +
+    '<div class="tsc">' + (t.modes.filter(function (m) { return m.wk === 'write'; }).length
+      ? '✎ = โหมดที่เขียนของจริง · กดดูรายละเอียดก่อนใช้' : 'ไม่มีโหมดไหนเขียนของจริง') + '</div>' +
+    '</button>';
 }
 
 function lockBox(l) {
@@ -165,6 +171,92 @@ function viewTopic(secId, topId) {
   return '<div class="inner">' + body + foot() + '</div>';
 }
 
+
+/* ---------- หน้ารวมเครื่องมือ ---------- */
+function viewTools() {
+  var keys = Object.keys(DATA.tool);
+  var chain = DATA.toolChain.map(function (c, i) {
+    return (i ? '<div class="arrow">→</div>' : '') +
+      '<div class="cstep"><code>/' + esc(c.cmd) + '</code><div class="cm">' + esc(c.mode) + '</div>' +
+      '<div class="cn">' + esc(c.n) + '</div></div>';
+  }).join('');
+  var cards = keys.map(function (k) {
+    var t = DATA.tool[k];
+    var writes = t.modes.filter(function (m) { return m.wk === 'write'; }).length;
+    return topicCard({
+      id: k, icon: t.icon, color: t.color, t: '/' + t.cmd, d: t.title + ' — ' + t.tag,
+      up: t.modes.length + ' โหมด' + (writes ? ' · ' + writes + ' โหมดเขียนของจริง' : ''),
+      wait: t.proof.ok ? null : 'ยังไม่เคยรัน'
+    }, 'tools');
+  }).join('');
+
+  return '<div class="inner">' +
+    head({ icon: 'wrench', title: 'เครื่องมือ', tag: 'คำสั่งที่พิมพ์ใน Claude', color: '',
+           lede: 'ไม่ใช่เอกสาร — เป็นคำสั่งที่พิมพ์แล้วมันทำงานกับไฟล์จริงให้ · ทุกตัวบอกไว้ว่าโหมดไหนเขียนของจริง โหมดไหนแค่บอกในแชท' }) +
+    '<div class="block first"><h2 class="sec">ใช้ตัวไหนตอนไหน</h2>' +
+      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น — จากทำไฟล์เสร็จ ถึงตรวจหลัง dev ทำ</p>' +
+      '<div class="chain">' + chain + '</div></div>' +
+    '<div class="block"><h2 class="sec">เครื่องมือทั้งหมด</h2>' +
+      '<p class="sec-lede">กดเข้าไปดูว่าต้องเตรียมอะไร มันแตะอะไร และมีกฎกันพลาดอะไรบ้าง</p>' +
+      '<div class="cardgrid">' + cards + '</div></div>' +
+    foot() + '</div>';
+}
+
+/* ---------- หน้าเครื่องมือรายตัว ---------- */
+function viewTool(key) {
+  var t = DATA.tool[key];
+  if (!t) return viewTools();
+  var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
+    '<button data-go="tools">เครื่องมือ</button><span class="sep">/</span><span>/' + esc(t.cmd) + '</span></div>';
+
+  var WK = { read: ['อ่านอย่างเดียว', 'read'], write: ['เขียนของจริง', 'write'], safe: ['ไม่แตะของจริง', 'safe'] };
+  var modes = t.modes.map(function (m) {
+    var w = WK[m.wk] || WK.safe;
+    return '<div class="mrow ' + w[1] + '">' +
+      '<div class="mn">' + esc(m.m) + (m.dflt ? '<span class="dflt">ค่าเริ่มต้น</span>' : '') + '</div>' +
+      '<div class="md">' + esc(m.d) + '</div>' +
+      '<div class="mw"><span class="wtag ' + w[1] + '">' + esc(w[0]) + '</span><span class="wx">' + esc(m.w) + '</span></div>' +
+      '</div>';
+  }).join('');
+
+  var prep = t.prep.map(function (p, i) {
+    return '<div class="prow"><div class="pn">' + (i + 1) + '</div>' +
+      '<div><div class="pt">' + esc(p.t) + '</div><div class="pw">' + esc(p.w) + '</div></div></div>';
+  }).join('');
+
+  var rules = t.rules.map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('');
+
+  return '<div class="inner">' +
+    crumb +
+    '<div class="shead ' + (t.color || '') + '"><div class="badge">' + ic(t.icon) + '</div>' +
+    '<div><h1>/' + esc(t.cmd) + '</h1><p class="tagline">' + esc(t.title) + ' · ' + esc(t.tag) + '</p></div></div>' +
+    '<p class="lede">' + esc(t.lede) + '</p>' +
+
+    '<div class="kv2">' +
+      '<div class="kv"><div class="kvl">ใช้เมื่อไหร่</div><div class="kvv">' + esc(t.when) + '</div></div>' +
+      '<div class="kv"><div class="kvl">เริ่มยังไง</div><div class="kvv">' + esc(t.type) + '</div></div>' +
+    '</div>' +
+
+    '<div class="proof ' + (t.proof.ok ? 'ok' : 'no') + '">' +
+      '<div class="pl">' + (t.proof.ok ? '✅ ' : '⬜ ') + esc(t.proof.t) + '</div>' +
+      '<div class="pd">' + esc(t.proof.d) + '</div></div>' +
+
+    '<div class="block"><h2 class="sec">โหมด และมันแตะอะไร</h2>' +
+      '<p class="sec-lede">ดูคอลัมน์ขวาก่อนใช้ — โหมดที่เขียนของจริงย้อนคืนยากกว่าโหมดที่แค่รายงาน</p>' +
+      '<div class="modes">' + modes + '</div></div>' +
+
+    '<div class="block"><h2 class="sec">ต้องเตรียมอะไร</h2>' +
+      '<p class="sec-lede">ระบบจะเช็คเองก่อนว่าอะไรพร้อมแล้ว แล้วขอเฉพาะที่ขาด — ไม่พ่นรายการยาวให้ไล่หาเอง</p>' +
+      '<div class="preps">' + prep + '</div></div>' +
+
+    '<div class="block"><h2 class="sec">กฎกันพลาด</h2>' +
+      '<p class="sec-lede">ระบบบังคับตัวเองตามนี้ ไม่ใช่ขอความร่วมมือ</p>' +
+      '<ul class="rules">' + rules + '</ul>' +
+      (t.notdo ? '<div class="note" style="margin-top:16px"><b>สิ่งที่มันจะไม่ทำ</b> — ' + esc(t.notdo) + '</div>' : '') +
+    '</div>' +
+    foot() + '</div>';
+}
+
 function foot() {
   return '<footer>DesignOps · SkillLane UX/UI — ปรับปรุง ' + esc(DATA.updated) +
     ' · <a href="' + DATA.roadmap + '" target="_blank" rel="noopener">Roadmap 2026 ↗</a>' +
@@ -174,7 +266,8 @@ function foot() {
 function render() {
   var r = route(), parts = r.split('/').filter(Boolean);
   var active = parts[0] || '', main;
-  if (parts.length >= 2) main = viewTopic(parts[0], parts[1]);
+  if (parts[0] === 'tools') main = parts[1] ? viewTool(parts[1]) : viewTools();
+  else if (parts.length >= 2) main = viewTopic(parts[0], parts[1]);
   else if (parts.length === 1) main = viewSec(parts[0]);
   else main = viewHome();
   document.body.innerHTML = '<div class="shell">' + sidebar(active) + '<div class="main">' + main + '</div></div>';

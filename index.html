@@ -194,6 +194,70 @@ footer a{color:var(--cta-ink)}
 
 /* ป้ายบอกที่มาบนหัว section */
 code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--bg-alt);border-radius:5px;padding:1px 6px}
+
+/* การ์ดเครื่องมือ (ย่อ) กดได้ */
+.tool{display:block;width:100%;text-align:left;background:var(--ink);color:#fff;border:0;border-radius:14px;padding:20px 22px;
+      box-shadow:var(--shadow);cursor:pointer;transition:.14s;font:inherit}
+.tool:hover{transform:translateY(-1px);box-shadow:0 1px 2px rgba(27,26,24,.06),0 18px 34px -22px rgba(27,26,24,.4)}
+.tool .th{display:flex;align-items:center;gap:13px;margin-bottom:11px}
+.tool .tarw{margin-left:auto;color:var(--cta);font-size:.95rem}
+.tool .tmode.w{background:rgba(223,107,60,.24);color:#FFC3A6}
+
+/* chain */
+.chain{display:flex;align-items:stretch;overflow-x:auto;padding-bottom:4px}
+.cstep{flex:1 1 0;min-width:150px;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;padding:12px 13px}
+.cstep code{background:var(--ink);color:var(--cta);font-size:.76rem;padding:2px 7px;border-radius:5px}
+.cstep .cm{font-size:.87rem;font-weight:700;margin:6px 0 3px;line-height:1.3}
+.cstep .cn{font-size:.76rem;color:var(--ink-mute)}
+
+/* kv */
+.kv2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:24px}
+@media(max-width:760px){.kv2{grid-template-columns:1fr}}
+.kv{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:15px 18px}
+.kvl{font-size:.64rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:5px}
+.kvv{font-size:.92rem;color:var(--ink)}
+
+/* proof */
+.proof{margin-top:13px;border-radius:12px;padding:15px 18px;border:1px solid}
+.proof.ok{background:var(--c-green-t);border-color:var(--c-green)}
+.proof.no{background:var(--c-amber-t);border-color:var(--c-amber)}
+.proof .pl{font-weight:700;font-size:.92rem;margin-bottom:3px}
+.proof.ok .pl{color:#2F6B3A}.proof.no .pl{color:#7A5A0E}
+.proof .pd{font-size:.87rem}
+.proof.ok .pd{color:#3D7A49}.proof.no .pd{color:#6E5310}
+
+/* modes table */
+.modes{display:flex;flex-direction:column;gap:11px}
+.mrow{display:grid;grid-template-columns:200px 1fr 250px;gap:16px;align-items:start;background:var(--card);
+      border:1px solid var(--card-line);border-left:4px solid var(--ink-mute);border-radius:12px;padding:15px 18px;box-shadow:var(--shadow)}
+@media(max-width:900px){.mrow{grid-template-columns:1fr;gap:8px}}
+.mrow.write{border-left-color:var(--c-orange)}
+.mrow.read{border-left-color:var(--c-green)}
+.mrow.safe{border-left-color:var(--c-blue)}
+.mn{font-weight:700;font-size:.95rem}
+.mn .dflt{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.05em;background:var(--bg-alt);color:var(--ink-mute);
+          border-radius:999px;padding:2px 7px;margin-left:7px;vertical-align:middle}
+.md{font-size:.88rem;color:var(--ink-soft)}
+.mw{display:flex;flex-direction:column;gap:4px}
+.wtag{align-self:flex-start;font-size:.68rem;font-weight:700;border-radius:999px;padding:3px 10px}
+.wtag.write{background:var(--c-orange-t);color:#A44518}
+.wtag.read{background:var(--c-green-t);color:#2F6B3A}
+.wtag.safe{background:var(--c-blue-t);color:#2A5C96}
+.wx{font-size:.8rem;color:var(--ink-mute)}
+
+/* preps */
+.preps{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:820px){.preps{grid-template-columns:1fr}}
+.prow{display:flex;gap:13px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.pn{width:24px;height:24px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;
+    font-size:.75rem;font-weight:700;flex:none}
+.pt{font-weight:700;font-size:.9rem;line-height:1.35}
+.pw{font-size:.82rem;color:var(--ink-mute);margin-top:2px}
+
+/* rules */
+.rules{margin:0;padding-left:1.2em;font-size:.92rem;color:var(--ink-soft)}
+.rules li{margin-bottom:8px}
+.rules li::marker{color:var(--c-orange)}
 </style>
 
 <script>
@@ -242,6 +306,8 @@ var DATA = {
     { id: 'ds', icon: 'palette', label: 'Design System' },
     { id: 'qa', icon: 'check',   label: 'Design QA' },
     { id: 'dv', icon: 'send',    label: 'ส่งงานให้ Dev', dot: true },
+    { sep: 'เครื่องมือ' },
+    { id: 'tools', icon: 'wrench', label: 'เครื่องมือ (Claude)' },
     { sep: 'ทีม' },
     { id: 'role', icon: 'user',  label: 'Role', off: true }
   ],
@@ -261,12 +327,7 @@ var DATA = {
         { icon: 'clip', color: 'orange', t: 'Governance', d: 'ใครแก้ DS ได้ · เกณฑ์ว่าอะไรเชื่อถือได้ · ขั้นตอน publish', ext: W + 'ds-governance.md', up: 'ทวนล่าสุด 15 ก.ค. 2026' },
         { icon: 'target', color: 'purple', t: 'กติกา AI', d: 'AI generate UI และ audit ได้แค่ไหน ห้ามทำอะไร', ext: WD + 'ai-rules.md', up: 'ทวนล่าสุด 20 ก.ค. 2026' }
       ],
-      tools: [
-        { cmd: 'ds-audit', t: 'ตรวจ · แก้ · ปล่อย DS',
-          d: 'สแกนหา hardcode และของที่ไม่ผูก token → แก้ให้ → เตรียม publish และร่างประกาศแจ้งทีม',
-          modes: ['หา hardcode', 'แก้ให้', 'เตรียม publish'],
-          scope: '2 ขอบเขต — ไฟล์ DS เอง หรือไฟล์งานที่ใช้ DS' }
-      ]
+      tools: ['ds-audit']
     },
     qa: {
       color: 'green', icon: 'check', title: 'Design QA', tag: 'ตรวจของจริง · บันทึกจุดที่ไม่ตรง',
@@ -360,6 +421,97 @@ var DATA = {
       ],
       note: 'คู่มือรายงาน (30 เม.ย.) ยังลิสต์ฟอนต์ไว้ 3 ตัว แต่ทะเบียนมี 4 แล้ว — <b>ThaiSans Neue ยังไม่ถูกเพิ่มในคู่มือ</b> ใครอ่านคู่มืออย่างเดียวจะไม่รู้ว่ามีตัวนี้'
     }
+  },
+
+  toolChain: [
+    { cmd: 'ds-audit', mode: 'หา hardcode', n: 'รู้ว่าไฟล์มีอะไรผิด' },
+    { cmd: 'ds-audit', mode: 'แก้ให้', n: 'แก้ตามที่เลือก' },
+    { cmd: 'handoff', mode: 'เช็คว่าพร้อมส่งไหม', n: 'Ready / Not Ready' },
+    { cmd: 'handoff', mode: 'ร่าง handoff doc', n: 'ส่งให้ dev' },
+    { cmd: 'qa-check', mode: 'เทียบ design ↔ build', n: 'หลัง dev ทำเสร็จ' }
+  ],
+
+  tool: {
+    'ds-audit': {
+      icon: 'palette', color: 'blue', title: 'ตรวจ · แก้ · ปล่อย DS', cmd: 'ds-audit',
+      tag: 'สุขภาพไฟล์ Figma', sec: 'ds',
+      lede: 'สแกนไฟล์ Figma หา hardcode สี/typography, token ผิดที่, detach และ layer naming — แล้วแก้ให้ตามที่คุณเลือก หรือช่วยตอนจะปล่อย library',
+      when: 'ก่อนส่ง review · ก่อนส่ง dev · หรือตอนจะ publish library',
+      type: 'พิมพ์ /ds-audit แล้วบอกว่าไฟล์ไหน + ตรวจมิติอะไร (สี / typography / effects / radius / spacing / ทั้งหมด)',
+      modes: [
+        { m: 'หา hardcode', dflt: true, d: 'scan → วินิจฉัย → รายงานว่าค่าที่เจอคืออะไร ควรเป็น token ตัวไหน', w: 'อ่านอย่างเดียว', wk: 'read' },
+        { m: 'แก้ให้', d: 'ผูก token / swap เป็น DS / rename layer ตามที่คุณเลือกทีละข้อ', w: 'เขียนไฟล์ Figma จริง', wk: 'write' },
+        { m: 'เตรียม publish', d: 'pre-publish check → changelog → ร่างประกาศแจ้งทีม', w: 'ไม่กด publish แทน — ร่างให้แล้วคุณกดเอง', wk: 'safe' }
+      ],
+      prep: [
+        { t: 'ลิงก์ไฟล์ Figma + ขอบเขต', w: 'ทั้งไฟล์ใหญ่มากอาจ timeout — ซอยเป็น page ก่อนถ้าไม่แน่ใจ' },
+        { t: 'บอกว่าเป็นไฟล์ DS หรือไฟล์งาน', w: 'ไฟล์งานต้องตรวจ detach + layer naming เพิ่ม' },
+        { t: 'ผลตรวจรอบก่อน (เฉพาะโหมดแก้ให้)', w: 'ไม่มี = ทำไม่ได้ ต้องหาให้จบก่อน' },
+        { t: 'exempt list ใน golden-set ของ BU นั้น', w: 'ไม่มี = ตัวเลข % ที่ออกมาจะหลอกทีม' }
+      ],
+      rules: [
+        'ไม่มีผลตรวจ ห้ามแก้ — จะไม่รู้ว่าแก้ครบไหมและตรวจซ้ำยังไง',
+        'เซฟ version ก่อนแก้ทุกครั้ง + เช็คชื่อไฟล์ก่อนเขียน (เขียนผิดไฟล์ย้อนยาก)',
+        'แก้ที่ main component ไม่ใช่ที่ instance — แก้ผิดชั้นจะกลายเป็น override เพิ่มปัญหา',
+        'ห้ามแตะของใน exempt list เช่นสีแบรนด์ภายนอกหรือ artwork',
+        'swap แล้วหน้าตาเพี้ยน หยุดทันที ไม่ทำต่อให้ครบแล้วค่อยดู'
+      ],
+      notdo: 'ไม่สร้าง component ใหม่ใน DS · ไม่รวม/ลบ component ที่ซ้ำ · ไม่ตัดสินว่าอะไรควร exempt — สามอย่างนี้เป็นการตัดสินใจ ไม่ใช่งานกล',
+      proof: { ok: true, t: 'ใช้จริงแล้ว', d: 'OLS หน้า AllContent-Guest (6 ส.ค.) — hardcode 56 → 9 จุด · layer ชื่อ default 19 → 0 · เทียบภาพก่อน/หลังแล้วไม่เปลี่ยนเลย' }
+    },
+
+    'qa-check': {
+      icon: 'check', color: 'green', title: 'Design QA', cmd: 'qa-check',
+      tag: 'เทียบของจริงกับที่ออกแบบ', sec: 'qa',
+      lede: 'ตรวจว่าของที่ dev ทำออกมาตรงกับที่ออกแบบไว้ไหม — หรือถ้าคุณตรวจเองมาแล้ว ให้มันย้ายหมุดจากบอร์ด Figma ลง Sheet ให้',
+      when: 'หลัง dev ขึ้น staging หรือ preprod แล้ว ก่อนปล่อยจริง',
+      type: 'พิมพ์ /qa-check — มันจะเดาโหมดจากสิ่งที่คุณให้มา ไม่ต้องจำชื่อโหมด',
+      modes: [
+        { m: 'เทียบ design ↔ build', d: 'AI เก็บหลักฐาน 2 ฝั่ง → ไล่ diff 7 หมวด + a11y → ออกรายงาน', w: 'ค่าเริ่มต้นบอกในแชท · ลงผลให้เมื่อคุณสั่ง', wk: 'safe' },
+        { m: 'ย้ายหมุดลง Sheet', d: 'คุณตรวจเองแล้ววางหมุดในบอร์ด → AI อ่านทั้งบอร์ดลง Sheet + สรุปให้', w: 'เขียน Google Sheet เมื่อคุณยืนยัน', wk: 'write' },
+        { m: 'จัด bug list ที่มีอยู่', d: 'เติม severity + หมวด + รวมรายการซ้ำ + เรียงลำดับ', w: 'บอกในแชท', wk: 'read' }
+      ],
+      prep: [
+        { t: 'บอร์ด QA ใน Figma', w: 'duplicate จากแม่แบบ · 1 เฟรม = 1 หน้า = 1 platform' },
+        { t: 'Sheet + แท็บของ platform นั้น', w: '1 แท็บ = 1 platform ไม่รวมกัน · ระบบจะบอกว่าเครื่องคุณใช้บัญชีไหน' },
+        { t: 'URL ของหน้าจริง หรือหมุดที่วางไว้แล้ว', w: 'มีหมุดอยู่แล้ว = โหมดย้ายหมุด ไม่แคปใหม่ทับ' },
+        { t: 'build / environment ที่เทส', w: 'ไม่ระบุแล้ว re-test เทียบไม่ได้ว่าแก้แล้วจริง' }
+      ],
+      rules: [
+        'ค่าเริ่มต้นคือบอกในแชทเฉย ๆ — จะไปเขียนบอร์ด/Sheet/Jira ต้องประกาศก่อนแล้วรอยืนยัน',
+        'บอร์ด Figma คือต้นฉบับ ไม่ใช่ Sheet — แก้ที่บอร์ดแล้วสั่งเขียนใหม่ อย่าพิมพ์แก้ใน Sheet เอง',
+        'ไม่มีการ์ดไหนถูกข้ามเงียบ ๆ — อ่านไม่ออกต้องรายงานว่ามีกี่ใบและอยู่ตรงไหน',
+        'AI ห้ามตัดสินเรื่อง content/data เอง เพราะ mockup ใช้ข้อมูลสมมติเสมอ'
+      ],
+      proof: { ok: true, t: 'ใช้จริงแล้ว (บางโหมด)', d: 'โหมดย้ายหมุดลง Sheet — B2C App 120 รายการ แล้วปิด cycle ทั้งหมด 139 รายการที่ 95.7% (11 ส.ค.) · ⚠️ โหมดเทียบ design ↔ build ยังไม่เคยวิ่งจบทั้งรอบ' }
+    },
+
+    'handoff': {
+      icon: 'send', color: 'orange', title: 'ส่งงานให้ Dev', cmd: 'handoff',
+      tag: 'เช็คความพร้อม + ร่างเอกสาร', sec: 'dv',
+      lede: 'ไล่ checklist ว่าไฟล์พร้อมส่งจริงไหม แล้วค่อยร่างเอกสารส่งมอบมาตรฐานทีม',
+      when: 'หลังทำไฟล์สะอาดแล้ว ก่อนส่งให้ dev',
+      type: 'พิมพ์ /handoff แล้วแนบลิงก์ Figma frame + Jira ticket ถ้ามี',
+      modes: [
+        { m: 'เช็คว่าพร้อมส่งไหม', d: 'ไล่ 3 หมวด — คุณภาพไฟล์ · ความครบถ้วน · ความพร้อมส่ง → ตัดสิน Ready / Not Ready', w: 'บอกในแชท', wk: 'read' },
+        { m: 'ร่าง handoff doc', dflt: true, d: 'เช็คก่อนเสมอ แล้วร่างเอกสารจาก spec + AC ที่มี', w: 'ออกเอกสาร ไม่แตะไฟล์ Figma', wk: 'safe' }
+      ],
+      prep: [
+        { t: 'ลิงก์ Figma frame + ขอบเขต', w: 'หน้าไหนบ้างที่จะส่ง' },
+        { t: 'platform ที่ต้องส่ง', w: 'ใช้เช็คว่าออกแบบครบตาม scope ไหม' },
+        { t: 'จอเล็กสุดที่ support', w: 'ใช้ตรวจ edge case' },
+        { t: 'Jira ticket / PRD ถ้ามี', w: 'ดึง spec กับ AC มาใส่ในเอกสาร' },
+        { t: 'design decision ที่ dev น่าจะสงสัย', w: 'ใส่เหตุผลไว้ล่วงหน้า ดีกว่าให้ถามกลับทีหลัง' }
+      ],
+      rules: [
+        'ร่างเอกสารจากไฟล์ที่ยังไม่พร้อม = ส่งปัญหาต่อให้ dev แบบมีเอกสารห่อไว้ — จึงต้องเช็คก่อนทุกครั้ง',
+        'ผลออกมา Not Ready ให้บอกว่าต้องแก้อะไรก่อน แล้วหยุด ยังไม่ร่างเอกสาร',
+        'skill นี้ไม่แก้ไฟล์ Figma — จะให้แก้ให้ใช้ ds-audit โหมดแก้',
+        'a11y requirement ต้องอยู่ในทุก handoff ไม่ใช่ optional',
+        'ระบุ location ทุก issue — "มี hardcode 12 จุด" โดยไม่บอกที่ ใช้ไม่ได้'
+      ],
+      proof: { ok: false, t: 'ยังไม่เคยรัน', d: 'เขียนไว้ครบแล้วแต่ยังไม่เคยวิ่งจบกับงานจริงสักรอบ — คนแรกที่ลองจะเจอสะดุด ทักได้เลยจะได้แก้' }
+    }
   }
 };
 
@@ -410,16 +562,22 @@ function topicCard(t, secId) {
 }
 
 
-/* ---------- เครื่องมือ (skill) — ไม่มีอะไรให้เปิด มีแต่คำสั่งให้พิมพ์ ---------- */
-function toolCard(t) {
-  return '<div class="tool">' +
+/* ---------- การ์ดเครื่องมือ (ย่อ) — กดเข้าหน้าเต็ม ---------- */
+function toolCard(key) {
+  var t = DATA.tool[key];
+  if (!t) return '';
+  return '<button class="tool" data-go="tools/' + key + '">' +
     '<div class="th"><span class="ti">' + ic('wrench') + '</span>' +
-    '<div><div class="tt">' + esc(t.t) + '</div>' +
-    '<code class="tcmd">/' + esc(t.cmd) + '</code></div></div>' +
-    '<div class="td">' + esc(t.d) + '</div>' +
-    '<div class="tm">' + t.modes.map(function (m) { return '<span class="tmode">' + esc(m) + '</span>'; }).join('') + '</div>' +
-    (t.scope ? '<div class="tsc">' + esc(t.scope) + '</div>' : '') +
-    '</div>';
+    '<div><div class="tt">' + esc(t.title) + '</div>' +
+    '<code class="tcmd">/' + esc(t.cmd) + '</code></div>' +
+    '<span class="tarw">→</span></div>' +
+    '<div class="td">' + esc(t.lede) + '</div>' +
+    '<div class="tm">' + t.modes.map(function (m) {
+      return '<span class="tmode' + (m.wk === 'write' ? ' w' : '') + '">' + esc(m.m) + (m.wk === 'write' ? ' ✎' : '') + '</span>';
+    }).join('') + '</div>' +
+    '<div class="tsc">' + (t.modes.filter(function (m) { return m.wk === 'write'; }).length
+      ? '✎ = โหมดที่เขียนของจริง · กดดูรายละเอียดก่อนใช้' : 'ไม่มีโหมดไหนเขียนของจริง') + '</div>' +
+    '</button>';
 }
 
 function lockBox(l) {
@@ -530,6 +688,92 @@ function viewTopic(secId, topId) {
   return '<div class="inner">' + body + foot() + '</div>';
 }
 
+
+/* ---------- หน้ารวมเครื่องมือ ---------- */
+function viewTools() {
+  var keys = Object.keys(DATA.tool);
+  var chain = DATA.toolChain.map(function (c, i) {
+    return (i ? '<div class="arrow">→</div>' : '') +
+      '<div class="cstep"><code>/' + esc(c.cmd) + '</code><div class="cm">' + esc(c.mode) + '</div>' +
+      '<div class="cn">' + esc(c.n) + '</div></div>';
+  }).join('');
+  var cards = keys.map(function (k) {
+    var t = DATA.tool[k];
+    var writes = t.modes.filter(function (m) { return m.wk === 'write'; }).length;
+    return topicCard({
+      id: k, icon: t.icon, color: t.color, t: '/' + t.cmd, d: t.title + ' — ' + t.tag,
+      up: t.modes.length + ' โหมด' + (writes ? ' · ' + writes + ' โหมดเขียนของจริง' : ''),
+      wait: t.proof.ok ? null : 'ยังไม่เคยรัน'
+    }, 'tools');
+  }).join('');
+
+  return '<div class="inner">' +
+    head({ icon: 'wrench', title: 'เครื่องมือ', tag: 'คำสั่งที่พิมพ์ใน Claude', color: '',
+           lede: 'ไม่ใช่เอกสาร — เป็นคำสั่งที่พิมพ์แล้วมันทำงานกับไฟล์จริงให้ · ทุกตัวบอกไว้ว่าโหมดไหนเขียนของจริง โหมดไหนแค่บอกในแชท' }) +
+    '<div class="block first"><h2 class="sec">ใช้ตัวไหนตอนไหน</h2>' +
+      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น — จากทำไฟล์เสร็จ ถึงตรวจหลัง dev ทำ</p>' +
+      '<div class="chain">' + chain + '</div></div>' +
+    '<div class="block"><h2 class="sec">เครื่องมือทั้งหมด</h2>' +
+      '<p class="sec-lede">กดเข้าไปดูว่าต้องเตรียมอะไร มันแตะอะไร และมีกฎกันพลาดอะไรบ้าง</p>' +
+      '<div class="cardgrid">' + cards + '</div></div>' +
+    foot() + '</div>';
+}
+
+/* ---------- หน้าเครื่องมือรายตัว ---------- */
+function viewTool(key) {
+  var t = DATA.tool[key];
+  if (!t) return viewTools();
+  var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
+    '<button data-go="tools">เครื่องมือ</button><span class="sep">/</span><span>/' + esc(t.cmd) + '</span></div>';
+
+  var WK = { read: ['อ่านอย่างเดียว', 'read'], write: ['เขียนของจริง', 'write'], safe: ['ไม่แตะของจริง', 'safe'] };
+  var modes = t.modes.map(function (m) {
+    var w = WK[m.wk] || WK.safe;
+    return '<div class="mrow ' + w[1] + '">' +
+      '<div class="mn">' + esc(m.m) + (m.dflt ? '<span class="dflt">ค่าเริ่มต้น</span>' : '') + '</div>' +
+      '<div class="md">' + esc(m.d) + '</div>' +
+      '<div class="mw"><span class="wtag ' + w[1] + '">' + esc(w[0]) + '</span><span class="wx">' + esc(m.w) + '</span></div>' +
+      '</div>';
+  }).join('');
+
+  var prep = t.prep.map(function (p, i) {
+    return '<div class="prow"><div class="pn">' + (i + 1) + '</div>' +
+      '<div><div class="pt">' + esc(p.t) + '</div><div class="pw">' + esc(p.w) + '</div></div></div>';
+  }).join('');
+
+  var rules = t.rules.map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('');
+
+  return '<div class="inner">' +
+    crumb +
+    '<div class="shead ' + (t.color || '') + '"><div class="badge">' + ic(t.icon) + '</div>' +
+    '<div><h1>/' + esc(t.cmd) + '</h1><p class="tagline">' + esc(t.title) + ' · ' + esc(t.tag) + '</p></div></div>' +
+    '<p class="lede">' + esc(t.lede) + '</p>' +
+
+    '<div class="kv2">' +
+      '<div class="kv"><div class="kvl">ใช้เมื่อไหร่</div><div class="kvv">' + esc(t.when) + '</div></div>' +
+      '<div class="kv"><div class="kvl">เริ่มยังไง</div><div class="kvv">' + esc(t.type) + '</div></div>' +
+    '</div>' +
+
+    '<div class="proof ' + (t.proof.ok ? 'ok' : 'no') + '">' +
+      '<div class="pl">' + (t.proof.ok ? '✅ ' : '⬜ ') + esc(t.proof.t) + '</div>' +
+      '<div class="pd">' + esc(t.proof.d) + '</div></div>' +
+
+    '<div class="block"><h2 class="sec">โหมด และมันแตะอะไร</h2>' +
+      '<p class="sec-lede">ดูคอลัมน์ขวาก่อนใช้ — โหมดที่เขียนของจริงย้อนคืนยากกว่าโหมดที่แค่รายงาน</p>' +
+      '<div class="modes">' + modes + '</div></div>' +
+
+    '<div class="block"><h2 class="sec">ต้องเตรียมอะไร</h2>' +
+      '<p class="sec-lede">ระบบจะเช็คเองก่อนว่าอะไรพร้อมแล้ว แล้วขอเฉพาะที่ขาด — ไม่พ่นรายการยาวให้ไล่หาเอง</p>' +
+      '<div class="preps">' + prep + '</div></div>' +
+
+    '<div class="block"><h2 class="sec">กฎกันพลาด</h2>' +
+      '<p class="sec-lede">ระบบบังคับตัวเองตามนี้ ไม่ใช่ขอความร่วมมือ</p>' +
+      '<ul class="rules">' + rules + '</ul>' +
+      (t.notdo ? '<div class="note" style="margin-top:16px"><b>สิ่งที่มันจะไม่ทำ</b> — ' + esc(t.notdo) + '</div>' : '') +
+    '</div>' +
+    foot() + '</div>';
+}
+
 function foot() {
   return '<footer>DesignOps · SkillLane UX/UI — ปรับปรุง ' + esc(DATA.updated) +
     ' · <a href="' + DATA.roadmap + '" target="_blank" rel="noopener">Roadmap 2026 ↗</a>' +
@@ -539,7 +783,8 @@ function foot() {
 function render() {
   var r = route(), parts = r.split('/').filter(Boolean);
   var active = parts[0] || '', main;
-  if (parts.length >= 2) main = viewTopic(parts[0], parts[1]);
+  if (parts[0] === 'tools') main = parts[1] ? viewTool(parts[1]) : viewTools();
+  else if (parts.length >= 2) main = viewTopic(parts[0], parts[1]);
   else if (parts.length === 1) main = viewSec(parts[0]);
   else main = viewHome();
   document.body.innerHTML = '<div class="shell">' + sidebar(active) + '<div class="main">' + main + '</div></div>';
