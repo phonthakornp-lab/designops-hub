@@ -39,8 +39,13 @@ function blocks(list) {
             '<div class="big">' + x.b + '</div><div class="sub">' + x.s + '</div></div>';
         }).join('') + '</div>';
       case 'img':
-        return '<figure class="fig"><img src="' + b.src + '" alt="' + (b.alt || '') + '">' +
+        return '<figure class="fig' + (b.narrow ? ' narrow' : '') + '"><img src="' + b.src + '" alt="' + (b.alt || '') + '">' +
           (b.cap ? '<figcaption>' + b.cap + '</figcaption>' : '') + '</figure>';
+      case 'pair':
+        return '<div class="figpair">' + [b.a, b.b].map(function (x) {
+          return '<figure class="fig"><img src="' + x.src + '" alt="' + (x.alt || '') + '">' +
+            (x.cap ? '<figcaption>' + x.cap + '</figcaption>' : '') + '</figure>';
+        }).join('') + '</div>';
       case 'faq':
         return '<div class="faq">' + b.items.map(function (x) {
           return '<div class="qa"><div class="q">' + x.q + '</div><div class="a">' + x.a + '</div></div>';

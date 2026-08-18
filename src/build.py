@@ -12,8 +12,11 @@ fonts = open('fonts.css', encoding='utf-8').read()
 assert '/*@FONTS@*/' in head
 head = head.replace('/*@FONTS@*/', fonts)
 
-qa = qa.replace("'IMG_BOARD_SRC'", 'IMG_BOARD')
-assert 'IMG_BOARD_SRC' not in qa, 'ยังมี marker ภาพเหลือ'
+for m in ['BOARD', 'DONE', 'ZONE', 'CARD', 'SKIP']:
+    qa = qa.replace("'IMG_%s_SRC'" % m, 'IMG_%s' % m)
+import re as _re
+left = _re.findall(r"'IMG_\w+_SRC'", qa)
+if left: raise SystemExit('ยังมี marker ภาพเหลือ: %s' % left)
 
 body = icons.replace('<script>', '') + '\n' + img + '\n' + data + '\n' + qa + '\n' + blk + '\n' + logic
 r = subprocess.run(['node', '--check', '/dev/stdin'], input=body, text=True, capture_output=True)
