@@ -4,7 +4,7 @@ var W  = DB + '/blob/main/wiki/shared/';
 var WD = W + 'design-system/';
 
 var DATA = {
-  updated: '17 ส.ค. 2026',
+  updated: '18 ส.ค. 2026',
   roadmap: 'https://claude.ai/code/artifact/8cf346ea-80fb-4ade-a91d-2a459c66e097',
 
   nav: [

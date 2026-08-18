@@ -30,7 +30,7 @@ function head(s, crumb) {
 }
 
 function topicCard(t, secId) {
-  var arw = t.ext ? '↗' : (t.id ? '→' : '');
+  var arw = t.goTool ? '→' : (t.ext ? '↗' : (t.id ? '→' : ''));
   var inner =
     '<span class="ico">' + ic(t.icon) + '</span>' +
     '<span class="t">' + esc(t.t) + '</span>' +
@@ -39,6 +39,7 @@ function topicCard(t, secId) {
     (arw ? '<span class="arw">' + arw + '</span>' : '') +
     (t.wait ? '<span class="badge2">' + esc(t.wait) + '</span>' : '');
   var cls = 'tc ' + (t.color || '');
+  if (t.goTool) return '<button class="' + cls + '" data-go="tools/' + t.goTool + '">' + inner.replace('<span class="arw">↗</span>', '<span class="arw">→</span>') + '</button>';
   if (t.ext) return '<a class="' + cls + '" href="' + t.ext + '" target="_blank" rel="noopener">' + inner + '</a>';
   if (t.id) return '<button class="' + cls + '" data-go="' + secId + '/' + t.id + '">' + inner + '</button>';
   return '<div class="' + cls + ' off">' + inner + '</div>';
@@ -96,7 +97,7 @@ function viewHome() {
     '<div class="block"><h2 class="sec">Playbook</h2>' +
     '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ · ชื่อหมวดตรงกับชื่อ skill ที่พิมพ์ในเทอร์มินัล</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
-    '<div class="note"><b>เว็บนี้ไม่เก็บเนื้อหา</b> — ทุกการ์ดพาไปหาต้นฉบับที่ของอยู่จริง เพื่อไม่ให้เกิดสำเนาที่เก่าโดยไม่มีใครรู้ · การ์ด ↗ = ออกไปข้างนอก · → = หน้าในเว็บนี้</div>' +
+    '<div class="note"><b>ของที่ DesignOps เขียนเอง อยู่ในเว็บนี้ · ของที่มีเจ้าของอื่นดูแล ลิงก์ออกไปต้นฉบับ</b> — วิธีทำงานอ่านจบได้ที่นี่ ไม่ต้องกระโดดไปหลายที่ · ส่วนมาตรฐานกลางกับทะเบียนต่าง ๆ พาไปหาตัวจริง เพื่อไม่ให้เกิดสำเนาที่เก่าโดยไม่มีใครรู้ · การ์ด → = หน้าในเว็บนี้ · ↗ = ออกไปข้างนอก</div>' +
     foot() + '</div>';
 }
 
@@ -159,6 +160,8 @@ function viewTopic(secId, topId) {
       }).join('') + '</div>' +
       (t.note ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>';
   }
+
+  if (t.blocks) body += '<div class="prose">' + blocks(t.blocks) + '</div>';
 
   if (t.legend && t.legend.length) {
     body += '<div class="block"><h2 class="sec">สถานะหมายความว่าอะไร</h2>' +

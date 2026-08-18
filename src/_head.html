@@ -243,4 +243,50 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--b
 .rules{margin:0;padding-left:1.2em;font-size:.92rem;color:var(--ink-soft)}
 .rules li{margin-bottom:8px}
 .rules li::marker{color:var(--c-orange)}
+
+/* ---------- เนื้อหาในเว็บ (prose blocks) ---------- */
+.prose{margin-top:6px}
+.prose .body{font-size:.96rem;color:var(--ink-soft);max-width:74ch;margin:0 0 14px}
+.prose code{font-family:ui-monospace,Menlo,monospace;font-size:.86em;background:var(--bg-alt);border-radius:5px;padding:1px 6px}
+.cal{border-radius:12px;padding:15px 19px;font-size:.91rem;margin:16px 0;border:1px solid;line-height:1.6}
+.cal.warn{background:var(--c-amber-t);border-color:var(--c-amber);color:#6E5310}
+.cal.warn b{color:#4E3A08}
+.cal.note{background:var(--bg-soft);border-color:var(--line);color:var(--ink-soft)}
+.cal.note b{color:var(--ink)}
+.cal.ok{background:var(--c-green-t);border-color:var(--c-green);color:#2F6B3A}
+
+.tw{overflow-x:auto;border:1px solid var(--card-line);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow);margin:14px 0}
+table.tb{border-collapse:collapse;width:100%;min-width:620px;font-size:.9rem}
+table.tb th,table.tb td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+table.tb tbody tr:last-child td{border-bottom:0}
+table.tb thead th{background:var(--bg-alt);font-size:.67rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;white-space:nowrap}
+table.tb thead th.h-a{background:var(--c-blue-t);color:var(--c-blue)}
+table.tb thead th.h-b{background:var(--c-orange-t);color:var(--c-orange)}
+table.tb td.k{font-weight:600;color:var(--ink);background:var(--bg-soft);white-space:nowrap}
+table.tb td small{display:block;color:var(--ink-mute);font-size:.83rem;margin-top:2px}
+
+.stepgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:14px 0}
+@media(max-width:1000px){.stepgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.stepgrid{grid-template-columns:1fr}}
+.stepc{background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:15px 17px;box-shadow:var(--shadow)}
+.stepc .sn{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--ink-mute)}
+.stepc .st{font-weight:700;font-size:.93rem;margin:4px 0 5px;line-height:1.35}
+.stepc .sd{font-size:.85rem;color:var(--ink-soft);line-height:1.55}
+.who{display:inline-block;font-size:.68rem;font-weight:700;border-radius:6px;padding:2px 8px;margin-top:9px}
+.who.a{background:var(--c-blue-t);color:var(--c-blue)}
+.who.h{background:var(--c-orange-t);color:var(--c-orange)}
+
+.blist{margin:12px 0;padding-left:1.2em;font-size:.93rem;color:var(--ink-soft);max-width:76ch}
+.blist li{margin-bottom:9px}
+.blist li::marker{color:var(--cta-ink)}
+
+.fig{margin:16px 0;border:1px solid var(--card-line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+.fig img{display:block;width:100%;height:auto;background:var(--bg-alt)}
+.fig figcaption{padding:13px 18px;border-top:1px solid var(--line);font-size:.86rem;color:var(--ink-soft);background:var(--bg-soft)}
+.fig figcaption b{color:var(--ink)}
+
+.faq{border-top:1px solid var(--line);margin-top:12px}
+.faq .qa{border-bottom:1px solid var(--line);padding:16px 0}
+.faq .q{font-weight:700;font-size:.96rem;margin-bottom:5px}
+.faq .a{font-size:.9rem;color:var(--ink-soft);max-width:78ch;line-height:1.62}
 </style>
