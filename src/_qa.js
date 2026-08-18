@@ -6,8 +6,8 @@ DATA.sec.qa.topics = [
   { id: 'b2c',  icon: 'chart', color: 'orange', t: 'ตัวอย่างจริง: B2C App', d: 'รอบที่ทำจบแล้ว 139 รายการ — เจออะไร แก้ยังไง', up: 'ปิด cycle 95.7%' },
   { id: 'tpl',  icon: 'frame', color: 'blue',   t: 'Template', d: 'บอร์ด Figma + Sheet รายงาน — โครงและวิธีหยิบ', up: '2 แม่แบบ' },
   { id: 'iss',  icon: 'tag',   color: 'purple', t: 'ประเภท issue', d: '9 หมวด · ความรุนแรง 3 · สถานะ 4', up: 'enum มาตรฐาน' },
-  { icon: 'wrench', color: 'amber', t: 'เครื่องมือ /qa-check', d: 'ต้องเตรียมอะไร มันแตะอะไร กฎกันพลาด', goTool: 'qa-check', up: '3 โหมด' }
 ];
+DATA.sec.qa.tools = ['qa-check'];
 
 DATA.topic.how = {
   parent: 'qa', color: 'green', icon: 'book',

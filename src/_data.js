@@ -57,13 +57,14 @@ var DATA = {
         d: 'เคยทำจริงแค่ท่อนแรก (ตรวจและแก้ไฟล์) · อีก 2 ท่อนยังไม่เคยวิ่งจบ ถ้าเขียนตอนนี้จะได้คู่มือที่ 2 ใน 3 ท่อนยังไม่ยืนยัน',
         todo: ['รัน handoff ให้จบ 1 รอบกับงานจริง', 'กรอก Deliver Kit ให้ครบจนพลิกเป็น Ready for Dev', 'แล้วค่อยถอดออกมาเป็น playbook']
       },
+      docsHd: 'เอกสารอ้างอิง',
+      docsLede: 'ของที่ต้องหยิบไปใช้ตอนส่งงาน',
       topics: [
-        { icon: 'wrench', color: 'green', t: 'ทำไฟล์ให้สะอาด', d: 'หา hardcode / detach แล้วแก้ให้ — พิสูจน์แล้วกับ OLS', up: 'hardcode 56 → 9' },
-        { icon: 'clip', color: 'orange', t: 'เช็คว่าพร้อมส่งไหม', d: 'คุณภาพไฟล์ · ความครบถ้วน · ความพร้อมส่ง', wait: 'ยังไม่เคยรัน' },
-        { icon: 'doc', color: 'orange', t: 'ร่างเอกสารส่งมอบ', d: 'handoff doc มาตรฐานทีม', wait: 'ยังไม่เคยรัน' },
-        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'Checklist + ฟอร์ม + สถานะ Ready for Dev', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish แล้ว' },
+        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'หน้า Deliver — Checklist 7 ข้อ + ฟอร์ม + สถานะ Ready for Dev', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish แล้ว' },
+        { icon: 'doc', color: 'green', t: 'โครง handoff doc', d: 'หัวข้อที่เอกสารส่งมอบต้องมี — spec ต่อ component · states · a11y · edge case', ext: 'https://github.com/uxui-skl/design-brain/blob/main/templates/handoff-doc.md', up: 'design-brain' },
         { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'อธิบายเหตุผลการออกแบบให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
-      ]
+      ],
+      tools: ['ds-audit', 'handoff']
     },
     role: {
       color: '', icon: 'user', title: 'Role', tag: 'DesignOps ช่วยอะไรได้ · ขอยังไง',
