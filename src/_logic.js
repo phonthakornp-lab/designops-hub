@@ -87,7 +87,7 @@ function viewHome() {
 
   return '<div class="inner">' +
     head({ icon: 'home', title: 'DesignOps', tag: 'playbook · ของอ้างอิง · ทางเข้าต้นฉบับ', color: '',
-           lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม — วิธีทำงานแต่ละเรื่อง และของอ้างอิงว่าตัวจริงอยู่ที่ไหน' }) +
+           lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม' }) +
     '<div class="stats">' +
       '<div class="stat hero"><div class="lbl">รายการพร้อมใช้</div><div class="big">' + open + ' / ' + total + '</div><div class="sub">ที่เหลือกำลังเตรียม</div></div>' +
       '<div class="stat"><div class="lbl">หมวดใน Playbook</div><div class="big">' + secs.length + '</div><div class="sub">คู่กับ skill ที่ทีมใช้อยู่</div></div>' +
@@ -95,9 +95,9 @@ function viewHome() {
       '<div class="stat"><div class="lbl">ปลายทาง</div><div class="big">4</div><div class="sub">Confluence · Figma · design-brain · Jira</div></div>' +
     '</div>' +
     '<div class="block"><h2 class="sec">Playbook</h2>' +
-    '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ · ชื่อหมวดตรงกับชื่อ skill ที่พิมพ์ในเทอร์มินัล</p>' +
+    '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
-    '<div class="note"><b>ของที่ DesignOps เขียนเอง อยู่ในเว็บนี้ · ของที่มีเจ้าของอื่นดูแล ลิงก์ออกไปต้นฉบับ</b> — วิธีทำงานอ่านจบได้ที่นี่ ไม่ต้องกระโดดไปหลายที่ · ส่วนมาตรฐานกลางกับทะเบียนต่าง ๆ พาไปหาตัวจริง เพื่อไม่ให้เกิดสำเนาที่เก่าโดยไม่มีใครรู้ · การ์ด → = หน้าในเว็บนี้ · ↗ = ออกไปข้างนอก</div>' +
+    '<div class="note">การ์ด <b>→</b> คือหน้าในเว็บนี้ · <b>↗</b> คือออกไปต้นฉบับข้างนอก</div>' +
     foot() + '</div>';
 }
 
@@ -111,12 +111,12 @@ function viewSec(id) {
   if (s.lock) body += lockBox(s.lock);
   if (s.topics.length) {
     body += '<div class="block"><h2 class="sec">' + esc(s.docsHd || 'เรื่องในหมวดนี้') + '</h2>' +
-      '<p class="sec-lede">' + esc(s.docsLede || 'การ์ดที่มี ↗ จะเปิดต้นฉบับข้างนอก · การ์ดที่มี → เป็นหน้าย่อยในเว็บนี้') + '</p>' +
+      '<p class="sec-lede">' + esc(s.docsLede || '') + '</p>' +
       '<div class="cardgrid">' + s.topics.map(function (t) { return topicCard(t, id); }).join('') + '</div></div>';
   }
   if (s.tools && s.tools.length) {
     body += '<div class="block"><h2 class="sec">เครื่องมือ</h2>' +
-      '<p class="sec-lede">ไม่ใช่เอกสาร — เป็นคำสั่งที่พิมพ์ใน Claude แล้วมันทำงานกับไฟล์จริงให้</p>' +
+      '<p class="sec-lede">คำสั่งที่พิมพ์ใน Claude</p>' +
       '<div class="tools">' + s.tools.map(toolCard).join('') + '</div></div>';
   }
   return '<div class="inner">' + body + foot() + '</div>';
@@ -134,7 +134,7 @@ function viewTopic(secId, topId) {
 
   if (t.start && t.start.length) {
     body += '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
-      '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์ แล้วกดไปที่ต้นฉบับได้เลย</p>' +
+      '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์</p>' +
       '<div class="entries">' + t.start.map(function (e) {
         return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
           '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
@@ -144,7 +144,7 @@ function viewTopic(secId, topId) {
 
   if (t.cards && t.cards.length) {
     body += '<div class="block' + (t.start ? '' : ' first') + '"><h2 class="sec">' + esc(t.cardsHd || 'เอกสาร') + '</h2>' +
-      '<p class="sec-lede">' + esc(t.cardsLede || 'กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา') + '</p>' +
+      '<p class="sec-lede">' + esc(t.cardsLede || '') + '</p>' +
       '<div class="cardgrid">' + t.cards.map(function (c) { return topicCard(c, secId); }).join('') + '</div>' +
       (t.note && !t.records ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>';
   }
@@ -195,12 +195,12 @@ function viewTools() {
 
   return '<div class="inner">' +
     head({ icon: 'wrench', title: 'เครื่องมือ', tag: 'คำสั่งที่พิมพ์ใน Claude', color: '',
-           lede: 'ไม่ใช่เอกสาร — เป็นคำสั่งที่พิมพ์แล้วมันทำงานกับไฟล์จริงให้ · ทุกตัวบอกไว้ว่าโหมดไหนเขียนของจริง โหมดไหนแค่บอกในแชท' }) +
+           lede: 'คำสั่งที่พิมพ์แล้วมันทำงานกับไฟล์จริงให้ · ทุกตัวบอกว่าโหมดไหนเขียนของจริง' }) +
     '<div class="block first"><h2 class="sec">ใช้ตัวไหนตอนไหน</h2>' +
-      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น — จากทำไฟล์เสร็จ ถึงตรวจหลัง dev ทำ</p>' +
+      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น</p>' +
       '<div class="chain">' + chain + '</div></div>' +
     '<div class="block"><h2 class="sec">เครื่องมือทั้งหมด</h2>' +
-      '<p class="sec-lede">กดเข้าไปดูว่าต้องเตรียมอะไร มันแตะอะไร และมีกฎกันพลาดอะไรบ้าง</p>' +
+      '<p class="sec-lede">กดดูว่าต้องเตรียมอะไร และมันแตะอะไร</p>' +
       '<div class="cardgrid">' + cards + '</div></div>' +
     foot() + '</div>';
 }
@@ -245,15 +245,15 @@ function viewTool(key) {
       '<div class="pd">' + esc(t.proof.d) + '</div></div>' +
 
     '<div class="block"><h2 class="sec">โหมด และมันแตะอะไร</h2>' +
-      '<p class="sec-lede">ดูคอลัมน์ขวาก่อนใช้ — โหมดที่เขียนของจริงย้อนคืนยากกว่าโหมดที่แค่รายงาน</p>' +
+      '<p class="sec-lede">ดูคอลัมน์ขวาก่อนใช้</p>' +
       '<div class="modes">' + modes + '</div></div>' +
 
     '<div class="block"><h2 class="sec">ต้องเตรียมอะไร</h2>' +
-      '<p class="sec-lede">ระบบจะเช็คเองก่อนว่าอะไรพร้อมแล้ว แล้วขอเฉพาะที่ขาด — ไม่พ่นรายการยาวให้ไล่หาเอง</p>' +
+      '<p class="sec-lede">ระบบเช็คเองก่อน แล้วขอเฉพาะที่ขาด</p>' +
       '<div class="preps">' + prep + '</div></div>' +
 
     '<div class="block"><h2 class="sec">กฎกันพลาด</h2>' +
-      '<p class="sec-lede">ระบบบังคับตัวเองตามนี้ ไม่ใช่ขอความร่วมมือ</p>' +
+      '<p class="sec-lede">ระบบบังคับตัวเองตามนี้</p>' +
       '<ul class="rules">' + rules + '</ul>' +
       (t.notdo ? '<div class="note" style="margin-top:16px"><b>สิ่งที่มันจะไม่ทำ</b> — ' + esc(t.notdo) + '</div>' : '') +
     '</div>' +

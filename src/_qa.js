@@ -1,11 +1,11 @@
 /* ---------- เนื้อหาหมวด Design QA (อยู่ในเว็บ ไม่ลิงก์ออก) ---------- */
 DATA.sec.qa.docsHd = 'เข้ามาแล้วต้องรู้อะไรบ้าง';
-DATA.sec.qa.docsLede = 'เนื้อหาทั้งหมดอยู่ในเว็บนี้ ไม่ต้องกระโดดออกไปอ่านที่อื่น — เปิดเรียงจากซ้ายไปขวาได้เลยถ้าเพิ่งเริ่ม';
+DATA.sec.qa.docsLede = 'เพิ่งเริ่ม — เปิดเรียงจากซ้ายไปขวา';
 DATA.sec.qa.topics = [
-  { id: 'how',  icon: 'book',  color: 'green',  t: 'วิธีการใช้งาน', d: 'อ่านก่อนเริ่ม — 2 แบบ เลือกจากคำถามเดียว', up: 'playbook เต็ม' },
-  { id: 'b2c',  icon: 'chart', color: 'orange', t: 'ตัวอย่างจริง: B2C App', d: 'รอบที่ทำจบแล้ว 139 รายการ — เจออะไร แก้ยังไง', up: 'ปิด cycle 95.7%' },
-  { id: 'tpl',  icon: 'frame', color: 'blue',   t: 'Template', d: 'บอร์ด Figma + Sheet รายงาน — โครงและวิธีหยิบ', up: '2 แม่แบบ' },
-  { id: 'iss',  icon: 'tag',   color: 'purple', t: 'ประเภท issue', d: '9 หมวด · ความรุนแรง 3 · สถานะ 4', up: 'enum มาตรฐาน' },
+  { id: 'how',  icon: 'book',  color: 'green',  t: 'วิธีการใช้งาน', d: '2 แบบ เลือกจากคำถามเดียว', up: 'playbook เต็ม' },
+  { id: 'b2c',  icon: 'chart', color: 'orange', t: 'ตัวอย่างจริง: B2C App', d: 'เจออะไร แก้ยังไง', up: '139 รายการ · ปิด 95.7%' },
+  { id: 'tpl',  icon: 'frame', color: 'blue',   t: 'Template', d: 'บอร์ด Figma + Sheet', up: '2 แม่แบบ' },
+  { id: 'iss',  icon: 'tag',   color: 'purple', t: 'ประเภท issue', d: '', up: '9 หมวด · severity 3 · status 4' },
 ];
 DATA.sec.qa.tools = ['qa-check'];
 

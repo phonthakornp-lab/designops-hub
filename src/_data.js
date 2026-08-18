@@ -22,24 +22,24 @@ var DATA = {
   sec: {
     ds: {
       color: 'blue', icon: 'palette', title: 'Design System', tag: 'token · naming · ลิขสิทธิ์',
-      lede: 'รากฐานที่ทุก product ใช้ร่วมกัน · เอกสารตัวจริงทั้งหมดอยู่ใน design-brain (repo ทีม) — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
+      lede: 'เอกสารตัวจริงอยู่ใน design-brain ทั้งหมด — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
       docsHd: 'เอกสารอ้างอิง',
-      docsLede: 'ทั้งหมดอยู่ใน design-brain · ต้องเป็นสมาชิก org ถึงจะเปิดได้',
+      docsLede: 'ต้องเป็นสมาชิก org ถึงจะเปิดได้',
       topics: [
-        { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน ไฟล์ Figma อันไหน — 5 ไฟล์พร้อม key', ext: W + 'design-system.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
-        { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'สี · typography · spacing ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรจะเป็น', ext: WD + 'foundation.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
-        { id: 'golden', icon: 'badge', color: 'green', t: 'Golden Set', d: 'ค่าไหนเชื่อได้ แยกตาม product', up: '4 product' },
-        { id: 'token', icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'ตั้งชื่อ token ยังไง และ 3 ค่ายต่างกันตรงไหน', up: '3 เอกสาร' },
-        { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียนลิขสิทธิ์ฟอนต์ + วิธีรายงานการใช้', up: '8 รายการ' },
-        { icon: 'clip', color: 'orange', t: 'Governance', d: 'ใครแก้ DS ได้ · เกณฑ์ว่าอะไรเชื่อถือได้ · ขั้นตอน publish', ext: W + 'ds-governance.md', up: 'ทวนล่าสุด 15 ก.ค. 2026' },
-        { icon: 'target', color: 'purple', t: 'กติกา AI', d: 'AI generate UI และ audit ได้แค่ไหน ห้ามทำอะไร', ext: WD + 'ai-rules.md', up: 'ทวนล่าสุด 20 ก.ค. 2026' }
+        { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน · 5 ไฟล์', ext: W + 'design-system.md', up: '3 ส.ค. 2026' },
+        { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรเป็น', ext: WD + 'foundation.md', up: '3 ส.ค. 2026' },
+        { id: 'golden', icon: 'badge', color: 'green', t: 'Golden Set', d: 'ค่าที่เชื่อได้ แยกตาม product', up: '4 product' },
+        { id: 'token', icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'ตั้งชื่อ token ยังไง', up: '3 เอกสาร' },
+        { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียนลิขสิทธิ์ฟอนต์', up: '8 รายการ' },
+        { icon: 'clip', color: 'orange', t: 'Governance', d: 'ใครแก้ DS ได้ · ขั้นตอน publish', ext: W + 'ds-governance.md', up: '15 ก.ค. 2026' },
+        { icon: 'target', color: 'purple', t: 'กติกา AI', d: 'AI ทำอะไรได้แค่ไหน', ext: WD + 'ai-rules.md', up: '20 ก.ค. 2026' }
       ],
       tools: ['ds-audit']
     },
     qa: {
       color: 'green', icon: 'check', title: 'Design QA', tag: 'ตรวจของจริง · บันทึกจุดที่ไม่ตรง',
       skill: 'qa-check',
-      lede: 'ตรวจว่าของที่ Dev ทำออกมาตรงกับที่ออกแบบไว้ไหม แล้วบันทึกทุกจุดที่ไม่ตรงไว้ในที่เดียว ให้ Dev แก้ได้ตรงจุดโดยไม่ต้องเดา',
+      lede: 'ตรวจว่าของที่ Dev ทำออกมาตรงกับที่ออกแบบไว้ไหม แล้วบันทึกจุดที่ไม่ตรงไว้ที่เดียว',
       topics: [
         { icon: 'book', color: 'green', t: 'Playbook', d: 'อ่านก่อนเริ่ม — 2 แบบ เลือกจากคำถามเดียว', ext: 'https://claude.ai/code/artifact/099d7d0d-4141-4f20-a59b-5df40f7b6c28', up: 'พร้อมใช้' },
         { icon: 'frame', color: 'blue', t: 'บอร์ด QA (Figma)', d: 'แม่แบบบอร์ด — duplicate ไปใช้ 1 เฟรม = 1 หน้า', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma master' },
@@ -58,11 +58,11 @@ var DATA = {
         todo: ['รัน handoff ให้จบ 1 รอบกับงานจริง', 'กรอก Deliver Kit ให้ครบจนพลิกเป็น Ready for Dev', 'แล้วค่อยถอดออกมาเป็น playbook']
       },
       docsHd: 'เอกสารอ้างอิง',
-      docsLede: 'ของที่ต้องหยิบไปใช้ตอนส่งงาน',
+      docsLede: '',
       topics: [
-        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'หน้า Deliver — Checklist 7 ข้อ + ฟอร์ม + สถานะ Ready for Dev', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish แล้ว' },
-        { icon: 'doc', color: 'green', t: 'โครง handoff doc', d: 'หัวข้อที่เอกสารส่งมอบต้องมี — spec ต่อ component · states · a11y · edge case', ext: 'https://github.com/uxui-skl/design-brain/blob/main/templates/handoff-doc.md', up: 'design-brain' },
-        { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'อธิบายเหตุผลการออกแบบให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
+        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'Checklist 7 ข้อ + ฟอร์ม + สถานะ', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish แล้ว' },
+        { icon: 'doc', color: 'green', t: 'โครง handoff doc', d: 'หัวข้อที่เอกสารต้องมี', ext: 'https://github.com/uxui-skl/design-brain/blob/main/templates/handoff-doc.md', up: 'design-brain' },
+        { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'เหตุผลการออกแบบ ให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
       ],
       tools: ['ds-audit', 'handoff']
     },

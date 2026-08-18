@@ -395,24 +395,24 @@ var DATA = {
   sec: {
     ds: {
       color: 'blue', icon: 'palette', title: 'Design System', tag: 'token · naming · ลิขสิทธิ์',
-      lede: 'รากฐานที่ทุก product ใช้ร่วมกัน · เอกสารตัวจริงทั้งหมดอยู่ใน design-brain (repo ทีม) — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
+      lede: 'เอกสารตัวจริงอยู่ใน design-brain ทั้งหมด — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
       docsHd: 'เอกสารอ้างอิง',
-      docsLede: 'ทั้งหมดอยู่ใน design-brain · ต้องเป็นสมาชิก org ถึงจะเปิดได้',
+      docsLede: 'ต้องเป็นสมาชิก org ถึงจะเปิดได้',
       topics: [
-        { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน ไฟล์ Figma อันไหน — 5 ไฟล์พร้อม key', ext: W + 'design-system.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
-        { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'สี · typography · spacing ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรจะเป็น', ext: WD + 'foundation.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
-        { id: 'golden', icon: 'badge', color: 'green', t: 'Golden Set', d: 'ค่าไหนเชื่อได้ แยกตาม product', up: '4 product' },
-        { id: 'token', icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'ตั้งชื่อ token ยังไง และ 3 ค่ายต่างกันตรงไหน', up: '3 เอกสาร' },
-        { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียนลิขสิทธิ์ฟอนต์ + วิธีรายงานการใช้', up: '8 รายการ' },
-        { icon: 'clip', color: 'orange', t: 'Governance', d: 'ใครแก้ DS ได้ · เกณฑ์ว่าอะไรเชื่อถือได้ · ขั้นตอน publish', ext: W + 'ds-governance.md', up: 'ทวนล่าสุด 15 ก.ค. 2026' },
-        { icon: 'target', color: 'purple', t: 'กติกา AI', d: 'AI generate UI และ audit ได้แค่ไหน ห้ามทำอะไร', ext: WD + 'ai-rules.md', up: 'ทวนล่าสุด 20 ก.ค. 2026' }
+        { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน · 5 ไฟล์', ext: W + 'design-system.md', up: '3 ส.ค. 2026' },
+        { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรเป็น', ext: WD + 'foundation.md', up: '3 ส.ค. 2026' },
+        { id: 'golden', icon: 'badge', color: 'green', t: 'Golden Set', d: 'ค่าที่เชื่อได้ แยกตาม product', up: '4 product' },
+        { id: 'token', icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'ตั้งชื่อ token ยังไง', up: '3 เอกสาร' },
+        { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียนลิขสิทธิ์ฟอนต์', up: '8 รายการ' },
+        { icon: 'clip', color: 'orange', t: 'Governance', d: 'ใครแก้ DS ได้ · ขั้นตอน publish', ext: W + 'ds-governance.md', up: '15 ก.ค. 2026' },
+        { icon: 'target', color: 'purple', t: 'กติกา AI', d: 'AI ทำอะไรได้แค่ไหน', ext: WD + 'ai-rules.md', up: '20 ก.ค. 2026' }
       ],
       tools: ['ds-audit']
     },
     qa: {
       color: 'green', icon: 'check', title: 'Design QA', tag: 'ตรวจของจริง · บันทึกจุดที่ไม่ตรง',
       skill: 'qa-check',
-      lede: 'ตรวจว่าของที่ Dev ทำออกมาตรงกับที่ออกแบบไว้ไหม แล้วบันทึกทุกจุดที่ไม่ตรงไว้ในที่เดียว ให้ Dev แก้ได้ตรงจุดโดยไม่ต้องเดา',
+      lede: 'ตรวจว่าของที่ Dev ทำออกมาตรงกับที่ออกแบบไว้ไหม แล้วบันทึกจุดที่ไม่ตรงไว้ที่เดียว',
       topics: [
         { icon: 'book', color: 'green', t: 'Playbook', d: 'อ่านก่อนเริ่ม — 2 แบบ เลือกจากคำถามเดียว', ext: 'https://claude.ai/code/artifact/099d7d0d-4141-4f20-a59b-5df40f7b6c28', up: 'พร้อมใช้' },
         { icon: 'frame', color: 'blue', t: 'บอร์ด QA (Figma)', d: 'แม่แบบบอร์ด — duplicate ไปใช้ 1 เฟรม = 1 หน้า', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma master' },
@@ -431,11 +431,11 @@ var DATA = {
         todo: ['รัน handoff ให้จบ 1 รอบกับงานจริง', 'กรอก Deliver Kit ให้ครบจนพลิกเป็น Ready for Dev', 'แล้วค่อยถอดออกมาเป็น playbook']
       },
       docsHd: 'เอกสารอ้างอิง',
-      docsLede: 'ของที่ต้องหยิบไปใช้ตอนส่งงาน',
+      docsLede: '',
       topics: [
-        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'หน้า Deliver — Checklist 7 ข้อ + ฟอร์ม + สถานะ Ready for Dev', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish แล้ว' },
-        { icon: 'doc', color: 'green', t: 'โครง handoff doc', d: 'หัวข้อที่เอกสารส่งมอบต้องมี — spec ต่อ component · states · a11y · edge case', ext: 'https://github.com/uxui-skl/design-brain/blob/main/templates/handoff-doc.md', up: 'design-brain' },
-        { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'อธิบายเหตุผลการออกแบบให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
+        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'Checklist 7 ข้อ + ฟอร์ม + สถานะ', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish แล้ว' },
+        { icon: 'doc', color: 'green', t: 'โครง handoff doc', d: 'หัวข้อที่เอกสารต้องมี', ext: 'https://github.com/uxui-skl/design-brain/blob/main/templates/handoff-doc.md', up: 'design-brain' },
+        { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'เหตุผลการออกแบบ ให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
       ],
       tools: ['ds-audit', 'handoff']
     },
@@ -599,12 +599,12 @@ var DATA = {
 
 /* ---------- เนื้อหาหมวด Design QA (อยู่ในเว็บ ไม่ลิงก์ออก) ---------- */
 DATA.sec.qa.docsHd = 'เข้ามาแล้วต้องรู้อะไรบ้าง';
-DATA.sec.qa.docsLede = 'เนื้อหาทั้งหมดอยู่ในเว็บนี้ ไม่ต้องกระโดดออกไปอ่านที่อื่น — เปิดเรียงจากซ้ายไปขวาได้เลยถ้าเพิ่งเริ่ม';
+DATA.sec.qa.docsLede = 'เพิ่งเริ่ม — เปิดเรียงจากซ้ายไปขวา';
 DATA.sec.qa.topics = [
-  { id: 'how',  icon: 'book',  color: 'green',  t: 'วิธีการใช้งาน', d: 'อ่านก่อนเริ่ม — 2 แบบ เลือกจากคำถามเดียว', up: 'playbook เต็ม' },
-  { id: 'b2c',  icon: 'chart', color: 'orange', t: 'ตัวอย่างจริง: B2C App', d: 'รอบที่ทำจบแล้ว 139 รายการ — เจออะไร แก้ยังไง', up: 'ปิด cycle 95.7%' },
-  { id: 'tpl',  icon: 'frame', color: 'blue',   t: 'Template', d: 'บอร์ด Figma + Sheet รายงาน — โครงและวิธีหยิบ', up: '2 แม่แบบ' },
-  { id: 'iss',  icon: 'tag',   color: 'purple', t: 'ประเภท issue', d: '9 หมวด · ความรุนแรง 3 · สถานะ 4', up: 'enum มาตรฐาน' },
+  { id: 'how',  icon: 'book',  color: 'green',  t: 'วิธีการใช้งาน', d: '2 แบบ เลือกจากคำถามเดียว', up: 'playbook เต็ม' },
+  { id: 'b2c',  icon: 'chart', color: 'orange', t: 'ตัวอย่างจริง: B2C App', d: 'เจออะไร แก้ยังไง', up: '139 รายการ · ปิด 95.7%' },
+  { id: 'tpl',  icon: 'frame', color: 'blue',   t: 'Template', d: 'บอร์ด Figma + Sheet', up: '2 แม่แบบ' },
+  { id: 'iss',  icon: 'tag',   color: 'purple', t: 'ประเภท issue', d: '', up: '9 หมวด · severity 3 · status 4' },
 ];
 DATA.sec.qa.tools = ['qa-check'];
 
@@ -1014,7 +1014,7 @@ function viewHome() {
 
   return '<div class="inner">' +
     head({ icon: 'home', title: 'DesignOps', tag: 'playbook · ของอ้างอิง · ทางเข้าต้นฉบับ', color: '',
-           lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม — วิธีทำงานแต่ละเรื่อง และของอ้างอิงว่าตัวจริงอยู่ที่ไหน' }) +
+           lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม' }) +
     '<div class="stats">' +
       '<div class="stat hero"><div class="lbl">รายการพร้อมใช้</div><div class="big">' + open + ' / ' + total + '</div><div class="sub">ที่เหลือกำลังเตรียม</div></div>' +
       '<div class="stat"><div class="lbl">หมวดใน Playbook</div><div class="big">' + secs.length + '</div><div class="sub">คู่กับ skill ที่ทีมใช้อยู่</div></div>' +
@@ -1022,9 +1022,9 @@ function viewHome() {
       '<div class="stat"><div class="lbl">ปลายทาง</div><div class="big">4</div><div class="sub">Confluence · Figma · design-brain · Jira</div></div>' +
     '</div>' +
     '<div class="block"><h2 class="sec">Playbook</h2>' +
-    '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ · ชื่อหมวดตรงกับชื่อ skill ที่พิมพ์ในเทอร์มินัล</p>' +
+    '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
-    '<div class="note"><b>ของที่ DesignOps เขียนเอง อยู่ในเว็บนี้ · ของที่มีเจ้าของอื่นดูแล ลิงก์ออกไปต้นฉบับ</b> — วิธีทำงานอ่านจบได้ที่นี่ ไม่ต้องกระโดดไปหลายที่ · ส่วนมาตรฐานกลางกับทะเบียนต่าง ๆ พาไปหาตัวจริง เพื่อไม่ให้เกิดสำเนาที่เก่าโดยไม่มีใครรู้ · การ์ด → = หน้าในเว็บนี้ · ↗ = ออกไปข้างนอก</div>' +
+    '<div class="note">การ์ด <b>→</b> คือหน้าในเว็บนี้ · <b>↗</b> คือออกไปต้นฉบับข้างนอก</div>' +
     foot() + '</div>';
 }
 
@@ -1038,12 +1038,12 @@ function viewSec(id) {
   if (s.lock) body += lockBox(s.lock);
   if (s.topics.length) {
     body += '<div class="block"><h2 class="sec">' + esc(s.docsHd || 'เรื่องในหมวดนี้') + '</h2>' +
-      '<p class="sec-lede">' + esc(s.docsLede || 'การ์ดที่มี ↗ จะเปิดต้นฉบับข้างนอก · การ์ดที่มี → เป็นหน้าย่อยในเว็บนี้') + '</p>' +
+      '<p class="sec-lede">' + esc(s.docsLede || '') + '</p>' +
       '<div class="cardgrid">' + s.topics.map(function (t) { return topicCard(t, id); }).join('') + '</div></div>';
   }
   if (s.tools && s.tools.length) {
     body += '<div class="block"><h2 class="sec">เครื่องมือ</h2>' +
-      '<p class="sec-lede">ไม่ใช่เอกสาร — เป็นคำสั่งที่พิมพ์ใน Claude แล้วมันทำงานกับไฟล์จริงให้</p>' +
+      '<p class="sec-lede">คำสั่งที่พิมพ์ใน Claude</p>' +
       '<div class="tools">' + s.tools.map(toolCard).join('') + '</div></div>';
   }
   return '<div class="inner">' + body + foot() + '</div>';
@@ -1061,7 +1061,7 @@ function viewTopic(secId, topId) {
 
   if (t.start && t.start.length) {
     body += '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
-      '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์ แล้วกดไปที่ต้นฉบับได้เลย</p>' +
+      '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์</p>' +
       '<div class="entries">' + t.start.map(function (e) {
         return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
           '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
@@ -1071,7 +1071,7 @@ function viewTopic(secId, topId) {
 
   if (t.cards && t.cards.length) {
     body += '<div class="block' + (t.start ? '' : ' first') + '"><h2 class="sec">' + esc(t.cardsHd || 'เอกสาร') + '</h2>' +
-      '<p class="sec-lede">' + esc(t.cardsLede || 'กดแล้วเปิดต้นฉบับ ไม่ใช่สำเนา') + '</p>' +
+      '<p class="sec-lede">' + esc(t.cardsLede || '') + '</p>' +
       '<div class="cardgrid">' + t.cards.map(function (c) { return topicCard(c, secId); }).join('') + '</div>' +
       (t.note && !t.records ? '<div class="note">⚠️ ' + t.note + '</div>' : '') + '</div>';
   }
@@ -1122,12 +1122,12 @@ function viewTools() {
 
   return '<div class="inner">' +
     head({ icon: 'wrench', title: 'เครื่องมือ', tag: 'คำสั่งที่พิมพ์ใน Claude', color: '',
-           lede: 'ไม่ใช่เอกสาร — เป็นคำสั่งที่พิมพ์แล้วมันทำงานกับไฟล์จริงให้ · ทุกตัวบอกไว้ว่าโหมดไหนเขียนของจริง โหมดไหนแค่บอกในแชท' }) +
+           lede: 'คำสั่งที่พิมพ์แล้วมันทำงานกับไฟล์จริงให้ · ทุกตัวบอกว่าโหมดไหนเขียนของจริง' }) +
     '<div class="block first"><h2 class="sec">ใช้ตัวไหนตอนไหน</h2>' +
-      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น — จากทำไฟล์เสร็จ ถึงตรวจหลัง dev ทำ</p>' +
+      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น</p>' +
       '<div class="chain">' + chain + '</div></div>' +
     '<div class="block"><h2 class="sec">เครื่องมือทั้งหมด</h2>' +
-      '<p class="sec-lede">กดเข้าไปดูว่าต้องเตรียมอะไร มันแตะอะไร และมีกฎกันพลาดอะไรบ้าง</p>' +
+      '<p class="sec-lede">กดดูว่าต้องเตรียมอะไร และมันแตะอะไร</p>' +
       '<div class="cardgrid">' + cards + '</div></div>' +
     foot() + '</div>';
 }
@@ -1172,15 +1172,15 @@ function viewTool(key) {
       '<div class="pd">' + esc(t.proof.d) + '</div></div>' +
 
     '<div class="block"><h2 class="sec">โหมด และมันแตะอะไร</h2>' +
-      '<p class="sec-lede">ดูคอลัมน์ขวาก่อนใช้ — โหมดที่เขียนของจริงย้อนคืนยากกว่าโหมดที่แค่รายงาน</p>' +
+      '<p class="sec-lede">ดูคอลัมน์ขวาก่อนใช้</p>' +
       '<div class="modes">' + modes + '</div></div>' +
 
     '<div class="block"><h2 class="sec">ต้องเตรียมอะไร</h2>' +
-      '<p class="sec-lede">ระบบจะเช็คเองก่อนว่าอะไรพร้อมแล้ว แล้วขอเฉพาะที่ขาด — ไม่พ่นรายการยาวให้ไล่หาเอง</p>' +
+      '<p class="sec-lede">ระบบเช็คเองก่อน แล้วขอเฉพาะที่ขาด</p>' +
       '<div class="preps">' + prep + '</div></div>' +
 
     '<div class="block"><h2 class="sec">กฎกันพลาด</h2>' +
-      '<p class="sec-lede">ระบบบังคับตัวเองตามนี้ ไม่ใช่ขอความร่วมมือ</p>' +
+      '<p class="sec-lede">ระบบบังคับตัวเองตามนี้</p>' +
       '<ul class="rules">' + rules + '</ul>' +
       (t.notdo ? '<div class="note" style="margin-top:16px"><b>สิ่งที่มันจะไม่ทำ</b> — ' + esc(t.notdo) + '</div>' : '') +
     '</div>' +
