@@ -155,6 +155,8 @@ DATA.topic.tpl = {
     ]},
 
     { k: 'h', t: 'บอร์ด Figma — โครง 4 ส่วน', d: '1 เฟรม = 1 หน้า = 1 platform · ความสูงยืดตามความยาวหน้าจริง' },
+    { k: 'img', src: 'IMG_BOARD_SRC', alt: 'บอร์ด Design QA เปล่าจาก master — แถบซ้าย, Design Spec, Production, รายการ issue',
+      cap: 'หน้าตาตอน duplicate มาใหม่ ๆ — ยังไม่มีอะไรข้างใน' },
     { k: 'table', head: ['ส่วน', 'ใส่อะไร'], rows: [
       ['แถบซ้าย', 'product · ชื่อหน้า · environment · platform · ขนาดจอ · ตัวนับ severity'],
       ['<code>Design Spec</code>', 'เฟรมงานออกแบบจาก Figma'],
@@ -169,7 +171,28 @@ DATA.topic.tpl = {
     ]},
     { k: 'warn', t: '<b>ชื่อคอลัมน์ขวาใช้ <code>Production</code> เสมอ</b> ไม่ว่าจะตรวจบน preprod หรือ staging — environment จริงไปกรอกที่แถบซ้าย · ถ้าเปลี่ยนชื่อตาม environment มันจะกลายเป็น moving target แล้ว AI หาคอลัมน์ไม่เจอ' },
 
-    { k: 'h', t: 'Sheet รายงาน — 9 คอลัมน์', d: 'หัวตารางอยู่แถว 16 · 1 แท็บ = 1 platform ไม่รวมกัน' },
+    { k: 'h', t: 'Sheet รายงาน — หน้าตาจริง', d: 'อ่านจากแม่แบบตัวจริง · 1 แท็บ = 1 platform ไม่รวมกัน' },
+    { k: 'sheet',
+      cols: [{ c: 'A', f: 1.1 }, { c: 'B', f: .9 }, { c: 'C', f: .9 }, { c: 'D', f: 2.4 }, { c: 'E', f: 1.1 }, { c: 'F', f: 1 }, { c: 'G', f: .9 }, { c: 'H', f: .8 }, { c: 'I', f: .9 }],
+      rows: [
+        { n: 1,  z: 'title', cells: [{ t: 'Design QA' }, {}, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 2,  z: 'meta',  cells: [{ t: 'Product/Project :' }, { t: 'B2C Application' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 3,  z: 'meta',  cells: [{ t: 'Owner :' }, { t: 'ชื่อผู้ตรวจ' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 4,  z: 'meta',  cells: [{ t: 'Date :' }, { t: '22 Jul 2026' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 5,  z: 'meta',  cells: [{ t: 'Environment :' }, { t: 'preprod' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 6,  z: 'meta hot', cells: [{ t: 'Version:' }, { t: '5.0.0_50016' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 7,  z: 'meta',  cells: [{ t: 'Platform :' }, { t: 'iOS' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 8,  z: 'meta',  cells: [{ t: 'Device Size :' }, { t: '1179 × 2556 px' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 10, z: 'sev',   cells: [{ t: 'Severity Status' }, {}, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 11, z: 'sev',   cells: [{ t: '🔴 Critical' }, { t: 'กระทบฟังก์ชันหลัก' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 12, z: 'sev',   cells: [{ t: '🟠 Major' }, { t: 'กระทบ UX' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 13, z: 'sev',   cells: [{ t: '🟡 Minor' }, { t: 'cosmetic' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 16, z: 'hdr',   cells: [{ t: 'Issue No.' }, { t: 'Severity' }, { t: 'Page' }, { t: 'Description' }, { t: 'Issue Types' }, { t: 'Figma Link' }, { t: 'Status' }, { t: 'Note' }, { t: 'Dev. Note' }] },
+        { n: 17, cells: [{ t: '1' }, { t: 'Critical' }, { t: 'Home' }, { t: 'Thumbnail radius ไม่ตรง spec…' }, { t: 'Sizing' }, { t: 'figma.com/…' }, { t: 'Open' }, {}, { t: '← dev' }] },
+        { n: 18, cells: [{ t: '2' }, { t: 'Major' }, { t: 'Home' }, { t: 'ระยะห่างระหว่างการ์ดมากเกินไป…' }, { t: 'Spacing & Layout' }, { t: 'figma.com/…' }, { t: 'Open' }, {}, {}] }
+      ],
+      cap: '<b>แถว 2–8 คือหัวรายงาน ต้องกรอกครบ</b> — โดยเฉพาะ <b>Version</b> เพราะถ้าไม่ระบุ build จะ re-test เทียบไม่ได้ว่าแก้แล้วจริง · <b>หัวตารางอยู่แถว 16 เสมอ</b> ห้ามเลื่อน · แถว 9, 14–15 เว้นว่างไว้' },
+    { k: 'h', t: '9 คอลัมน์ ใส่อะไรบ้าง' },
     { k: 'table', head: ['คอลัมน์', 'ใส่อะไร', 'AI กรอกได้ไหม'], rows: [
       ['A · Issue No.', 'เลขลำดับ — <b>ต้องตรงกับหมุดในบอร์ด</b>', '✅'],
       ['B · Severity', 'Critical / Major / Minor', '✅'],

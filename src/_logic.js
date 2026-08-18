@@ -34,7 +34,7 @@ function topicCard(t, secId) {
   var inner =
     '<span class="ico">' + ic(t.icon) + '</span>' +
     '<span class="t">' + esc(t.t) + '</span>' +
-    '<span class="d">' + esc(t.d) + '</span>' +
+    '<span class="d">' + (t.html ? t.d : esc(t.d)) + '</span>' +
     (t.up ? '<span class="up">' + esc(t.up) + '</span>' : '') +
     (arw ? '<span class="arw">' + arw + '</span>' : '') +
     (t.wait ? '<span class="badge2">' + esc(t.wait) + '</span>' : '');

@@ -52,8 +52,21 @@ function blocks(list) {
         }).join('') + '</div>';
       case 'link':
         return '<div class="cardgrid">' + b.items.map(function (x) {
-          return topicCard({ icon: x.icon || 'doc', color: x.color, t: x.t, d: x.d, ext: x.to, up: x.up }, '');
+          return topicCard({ icon: x.icon || 'doc', color: x.color, t: x.t, d: x.d, html: true, ext: x.to, up: x.up }, '');
         }).join('') + '</div>';
+      case 'sheet':
+        var cols = b.cols;
+        var head = '<div class="sr head"><div class="rn"></div>' +
+          cols.map(function (c) { return '<div class="sc" style="flex:' + (c.f || 1) + '">' + c.c + '</div>'; }).join('') + '</div>';
+        var rows = b.rows.map(function (r) {
+          return '<div class="sr ' + (r.z || '') + '"><div class="rn">' + r.n + '</div>' +
+            r.cells.map(function (c, i) {
+              var f = cols[i] ? (cols[i].f || 1) : 1;
+              return '<div class="sc" style="flex:' + f + '"' + (c.span ? ' data-span="1"' : '') + '>' + (c.t || '') + '</div>';
+            }).join('') + '</div>';
+        }).join('');
+        return '<div class="sheetwrap"><div class="sheet">' + head + rows + '</div>' +
+          (b.cap ? '<div class="sheetcap">' + b.cap + '</div>' : '') + '</div>';
       default:
         return '';
     }

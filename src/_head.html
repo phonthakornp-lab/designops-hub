@@ -294,4 +294,27 @@ table.tb td small{display:block;color:var(--ink-mute);font-size:.83rem;margin-to
 .figpair{display:grid;grid-template-columns:290px 1fr;gap:14px;align-items:start;margin:16px 0}
 @media(max-width:760px){.figpair{grid-template-columns:1fr}}
 .figpair .fig{margin:0}
+
+/* ผัง Google Sheet */
+.sheetwrap{margin:16px 0;border:1px solid var(--card-line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+.sheet{overflow-x:auto;font-size:.79rem;line-height:1.45}
+.sr{display:flex;min-width:900px;border-bottom:1px solid var(--line)}
+.sr:last-child{border-bottom:0}
+.sr .rn{flex:0 0 34px;background:var(--bg-alt);color:var(--ink-mute);text-align:center;font-variant-numeric:tabular-nums;
+        font-size:.72rem;padding:6px 0;border-right:1px solid var(--line);font-weight:600}
+.sr .sc{padding:6px 9px;border-right:1px solid var(--line);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-soft)}
+.sr .sc:last-child{border-right:0}
+.sr.head{background:var(--bg-alt);position:sticky;top:0}
+.sr.head .sc{text-align:center;font-weight:700;color:var(--ink-mute);font-size:.7rem;letter-spacing:.06em}
+.sr.title .sc:first-child{font-weight:700;color:var(--ink);font-size:.92rem}
+.sr.meta{background:var(--cta-tint)}
+.sr.meta .sc:first-child{font-weight:600;color:var(--cta-deep)}
+.sr.meta.hot{background:#C9F2FB}
+.sr.meta.hot .sc{font-weight:700;color:var(--cta-deep)}
+.sr.sev{background:var(--bg-soft)}
+.sr.hdr{background:var(--ink)}
+.sr.hdr .sc{color:#fff;font-weight:700}
+.sr.hdr .rn{background:var(--ink);color:rgba(255,255,255,.6);border-right-color:rgba(255,255,255,.15)}
+.sheetcap{padding:13px 18px;border-top:1px solid var(--line);font-size:.86rem;color:var(--ink-soft);background:var(--bg-soft)}
+.sheetcap b{color:var(--ink)}
 </style>

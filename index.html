@@ -309,6 +309,29 @@ table.tb td small{display:block;color:var(--ink-mute);font-size:.83rem;margin-to
 .figpair{display:grid;grid-template-columns:290px 1fr;gap:14px;align-items:start;margin:16px 0}
 @media(max-width:760px){.figpair{grid-template-columns:1fr}}
 .figpair .fig{margin:0}
+
+/* ผัง Google Sheet */
+.sheetwrap{margin:16px 0;border:1px solid var(--card-line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
+.sheet{overflow-x:auto;font-size:.79rem;line-height:1.45}
+.sr{display:flex;min-width:900px;border-bottom:1px solid var(--line)}
+.sr:last-child{border-bottom:0}
+.sr .rn{flex:0 0 34px;background:var(--bg-alt);color:var(--ink-mute);text-align:center;font-variant-numeric:tabular-nums;
+        font-size:.72rem;padding:6px 0;border-right:1px solid var(--line);font-weight:600}
+.sr .sc{padding:6px 9px;border-right:1px solid var(--line);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-soft)}
+.sr .sc:last-child{border-right:0}
+.sr.head{background:var(--bg-alt);position:sticky;top:0}
+.sr.head .sc{text-align:center;font-weight:700;color:var(--ink-mute);font-size:.7rem;letter-spacing:.06em}
+.sr.title .sc:first-child{font-weight:700;color:var(--ink);font-size:.92rem}
+.sr.meta{background:var(--cta-tint)}
+.sr.meta .sc:first-child{font-weight:600;color:var(--cta-deep)}
+.sr.meta.hot{background:#C9F2FB}
+.sr.meta.hot .sc{font-weight:700;color:var(--cta-deep)}
+.sr.sev{background:var(--bg-soft)}
+.sr.hdr{background:var(--ink)}
+.sr.hdr .sc{color:#fff;font-weight:700}
+.sr.hdr .rn{background:var(--ink);color:rgba(255,255,255,.6);border-right-color:rgba(255,255,255,.15)}
+.sheetcap{padding:13px 18px;border-top:1px solid var(--line);font-size:.86rem;color:var(--ink-soft);background:var(--bg-soft)}
+.sheetcap b{color:var(--ink)}
 </style>
 
 <script>
@@ -730,6 +753,8 @@ DATA.topic.tpl = {
     ]},
 
     { k: 'h', t: 'บอร์ด Figma — โครง 4 ส่วน', d: '1 เฟรม = 1 หน้า = 1 platform · ความสูงยืดตามความยาวหน้าจริง' },
+    { k: 'img', src: IMG_BOARD, alt: 'บอร์ด Design QA เปล่าจาก master — แถบซ้าย, Design Spec, Production, รายการ issue',
+      cap: 'หน้าตาตอน duplicate มาใหม่ ๆ — ยังไม่มีอะไรข้างใน' },
     { k: 'table', head: ['ส่วน', 'ใส่อะไร'], rows: [
       ['แถบซ้าย', 'product · ชื่อหน้า · environment · platform · ขนาดจอ · ตัวนับ severity'],
       ['<code>Design Spec</code>', 'เฟรมงานออกแบบจาก Figma'],
@@ -744,7 +769,28 @@ DATA.topic.tpl = {
     ]},
     { k: 'warn', t: '<b>ชื่อคอลัมน์ขวาใช้ <code>Production</code> เสมอ</b> ไม่ว่าจะตรวจบน preprod หรือ staging — environment จริงไปกรอกที่แถบซ้าย · ถ้าเปลี่ยนชื่อตาม environment มันจะกลายเป็น moving target แล้ว AI หาคอลัมน์ไม่เจอ' },
 
-    { k: 'h', t: 'Sheet รายงาน — 9 คอลัมน์', d: 'หัวตารางอยู่แถว 16 · 1 แท็บ = 1 platform ไม่รวมกัน' },
+    { k: 'h', t: 'Sheet รายงาน — หน้าตาจริง', d: 'อ่านจากแม่แบบตัวจริง · 1 แท็บ = 1 platform ไม่รวมกัน' },
+    { k: 'sheet',
+      cols: [{ c: 'A', f: 1.1 }, { c: 'B', f: .9 }, { c: 'C', f: .9 }, { c: 'D', f: 2.4 }, { c: 'E', f: 1.1 }, { c: 'F', f: 1 }, { c: 'G', f: .9 }, { c: 'H', f: .8 }, { c: 'I', f: .9 }],
+      rows: [
+        { n: 1,  z: 'title', cells: [{ t: 'Design QA' }, {}, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 2,  z: 'meta',  cells: [{ t: 'Product/Project :' }, { t: 'B2C Application' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 3,  z: 'meta',  cells: [{ t: 'Owner :' }, { t: 'ชื่อผู้ตรวจ' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 4,  z: 'meta',  cells: [{ t: 'Date :' }, { t: '22 Jul 2026' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 5,  z: 'meta',  cells: [{ t: 'Environment :' }, { t: 'preprod' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 6,  z: 'meta hot', cells: [{ t: 'Version:' }, { t: '5.0.0_50016' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 7,  z: 'meta',  cells: [{ t: 'Platform :' }, { t: 'iOS' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 8,  z: 'meta',  cells: [{ t: 'Device Size :' }, { t: '1179 × 2556 px' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 10, z: 'sev',   cells: [{ t: 'Severity Status' }, {}, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 11, z: 'sev',   cells: [{ t: '🔴 Critical' }, { t: 'กระทบฟังก์ชันหลัก' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 12, z: 'sev',   cells: [{ t: '🟠 Major' }, { t: 'กระทบ UX' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 13, z: 'sev',   cells: [{ t: '🟡 Minor' }, { t: 'cosmetic' }, {}, {}, {}, {}, {}, {}, {}] },
+        { n: 16, z: 'hdr',   cells: [{ t: 'Issue No.' }, { t: 'Severity' }, { t: 'Page' }, { t: 'Description' }, { t: 'Issue Types' }, { t: 'Figma Link' }, { t: 'Status' }, { t: 'Note' }, { t: 'Dev. Note' }] },
+        { n: 17, cells: [{ t: '1' }, { t: 'Critical' }, { t: 'Home' }, { t: 'Thumbnail radius ไม่ตรง spec…' }, { t: 'Sizing' }, { t: 'figma.com/…' }, { t: 'Open' }, {}, { t: '← dev' }] },
+        { n: 18, cells: [{ t: '2' }, { t: 'Major' }, { t: 'Home' }, { t: 'ระยะห่างระหว่างการ์ดมากเกินไป…' }, { t: 'Spacing & Layout' }, { t: 'figma.com/…' }, { t: 'Open' }, {}, {}] }
+      ],
+      cap: '<b>แถว 2–8 คือหัวรายงาน ต้องกรอกครบ</b> — โดยเฉพาะ <b>Version</b> เพราะถ้าไม่ระบุ build จะ re-test เทียบไม่ได้ว่าแก้แล้วจริง · <b>หัวตารางอยู่แถว 16 เสมอ</b> ห้ามเลื่อน · แถว 9, 14–15 เว้นว่างไว้' },
+    { k: 'h', t: '9 คอลัมน์ ใส่อะไรบ้าง' },
     { k: 'table', head: ['คอลัมน์', 'ใส่อะไร', 'AI กรอกได้ไหม'], rows: [
       ['A · Issue No.', 'เลขลำดับ — <b>ต้องตรงกับหมุดในบอร์ด</b>', '✅'],
       ['B · Severity', 'Critical / Major / Minor', '✅'],
@@ -857,8 +903,21 @@ function blocks(list) {
         }).join('') + '</div>';
       case 'link':
         return '<div class="cardgrid">' + b.items.map(function (x) {
-          return topicCard({ icon: x.icon || 'doc', color: x.color, t: x.t, d: x.d, ext: x.to, up: x.up }, '');
+          return topicCard({ icon: x.icon || 'doc', color: x.color, t: x.t, d: x.d, html: true, ext: x.to, up: x.up }, '');
         }).join('') + '</div>';
+      case 'sheet':
+        var cols = b.cols;
+        var head = '<div class="sr head"><div class="rn"></div>' +
+          cols.map(function (c) { return '<div class="sc" style="flex:' + (c.f || 1) + '">' + c.c + '</div>'; }).join('') + '</div>';
+        var rows = b.rows.map(function (r) {
+          return '<div class="sr ' + (r.z || '') + '"><div class="rn">' + r.n + '</div>' +
+            r.cells.map(function (c, i) {
+              var f = cols[i] ? (cols[i].f || 1) : 1;
+              return '<div class="sc" style="flex:' + f + '"' + (c.span ? ' data-span="1"' : '') + '>' + (c.t || '') + '</div>';
+            }).join('') + '</div>';
+        }).join('');
+        return '<div class="sheetwrap"><div class="sheet">' + head + rows + '</div>' +
+          (b.cap ? '<div class="sheetcap">' + b.cap + '</div>' : '') + '</div>';
       default:
         return '';
     }
@@ -901,7 +960,7 @@ function topicCard(t, secId) {
   var inner =
     '<span class="ico">' + ic(t.icon) + '</span>' +
     '<span class="t">' + esc(t.t) + '</span>' +
-    '<span class="d">' + esc(t.d) + '</span>' +
+    '<span class="d">' + (t.html ? t.d : esc(t.d)) + '</span>' +
     (t.up ? '<span class="up">' + esc(t.up) + '</span>' : '') +
     (arw ? '<span class="arw">' + arw + '</span>' : '') +
     (t.wait ? '<span class="badge2">' + esc(t.wait) + '</span>' : '');
