@@ -67,6 +67,8 @@ function blocks(list) {
         }).join('');
         return '<div class="sheetwrap"><div class="sheet">' + head + rows + '</div>' +
           (b.cap ? '<div class="sheetcap">' + b.cap + '</div>' : '') + '</div>';
+      case 'code':
+        return '<pre class="cmd"><code>' + b.t.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</code></pre>';
       default:
         return '';
     }

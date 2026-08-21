@@ -332,6 +332,10 @@ table.tb td small{display:block;color:var(--ink-mute);font-size:.83rem;margin-to
 .sr.hdr .rn{background:var(--ink);color:rgba(255,255,255,.6);border-right-color:rgba(255,255,255,.15)}
 .sheetcap{padding:13px 18px;border-top:1px solid var(--line);font-size:.86rem;color:var(--ink-soft);background:var(--bg-soft)}
 .sheetcap b{color:var(--ink)}
+
+pre.cmd{background:var(--ink);color:#E8F9FD;border-radius:11px;padding:14px 17px;overflow-x:auto;margin:12px 0;
+        font-family:ui-monospace,Menlo,monospace;font-size:.84rem;line-height:1.7}
+pre.cmd code{background:none;padding:0;color:inherit;font-size:1em}
 </style>
 
 <script>
@@ -850,6 +854,54 @@ DATA.topic.iss = {
   ]
 };
 
+/* ---------- ตั้งค่าครั้งแรก ---------- */
+DATA.topic.setup = {
+  parent: 'tools', color: 'amber', icon: 'wrench',
+  title: 'ตั้งค่าครั้งแรก', tag: 'ทำครั้งเดียวต่อเครื่อง',
+  lede: 'ทำตอนว่าง อย่าทำตอนมีงานด่วน — รอบแรกที่ตั้งค่าไปพร้อมกับตรวจงานจริง ใช้เวลานานกว่าที่ควรหลายเท่า',
+  blocks: [
+    { k: 'h', t: 'ใครต้องลงอะไร', d: 'ไม่ใช่ทุกคนต้องลงครบ' },
+    { k: 'table', head: ['คุณคือ', 'ต้องมี', 'เวลาที่ใช้'], rows: [
+      ['<b>คนที่รับ Design QA เป็นงานประจำ</b>', 'Figma MCP + <b>Playwright</b> + <b>gcloud</b>', '~30 นาที ครั้งเดียว'],
+      ['ทำ QA นาน ๆ ที', 'Figma MCP อย่างเดียว', '~5 นาที'],
+      ['แค่อ่าน playbook / ดูผล', 'ไม่ต้องลงอะไร', '—']
+    ]},
+    { k: 'note', t: '<b>ขาด Playwright หรือ gcloud ก็ยังตรวจได้</b> แค่ต้องทำมือมากขึ้น — ดูตารางท้ายหน้า · <b>ขาด Figma MCP คือทำไม่ได้เลย</b> เพราะอ่าน spec กับเขียนกลับบอร์ดต้องใช้' },
+
+    { k: 'h', t: '1 · Figma MCP', d: 'ทุกคนต้องมี — เป็นตัวเดียวที่ขาดไม่ได้' },
+    { k: 'list', items: [
+      'ต่อแบบ remote ตามขั้นตอนใน <b>tooling-setup</b> ของ design-brain',
+      '<b>ไม่ต้องใช้ Desktop Bridge</b> — พิสูจน์แล้วว่า <code>use_figma</code> ทำได้ครบทั้งอ่านและเขียน',
+      'เช็คว่าต่อติดไหม: ลองให้ Claude อ่าน frame อะไรก็ได้สัก 1 อัน'
+    ]},
+
+    { k: 'h', t: '2 · Playwright', d: 'สำหรับแคปหน้าเว็บเต็มหน้าหลาย breakpoint อัตโนมัติ' },
+    { k: 'code', t: 'npm i -g playwright\nnpx playwright install chromium' },
+    { k: 'note', t: 'ขั้นที่สองโหลด Chromium ~150MB <b>รันทิ้งไว้แล้วไปทำอย่างอื่นได้</b> — นี่คือขั้นที่กินเวลาที่สุด และเป็นเหตุผลว่าทำไมไม่ควรทำตอนมีงานด่วน' },
+
+    { k: 'h', t: '3 · gcloud', d: 'สำหรับให้ AI เขียนผลลง Google Sheet ให้เอง' },
+    { k: 'code', t: 'brew install --cask google-cloud-sdk\ngcloud auth login' },
+    { k: 'p', t: 'เสร็จแล้วเช็คว่าเครื่องคุณใช้บัญชีไหน:' },
+    { k: 'code', t: 'gcloud auth list --format="value(account)"' },
+    { k: 'warn', t: '<b>ต้องแชร์ Sheet เป็น Editor ให้บัญชีที่ขึ้นจากคำสั่งนี้</b> — ไม่ใช่บัญชีของคนอื่น และไม่ใช่บัญชีกลาง · token ผูกกับเครื่องที่รัน แชร์ผิดบัญชีจะเขียนไม่ได้ และ error ไม่ได้บอกตรง ๆ ว่าเพราะอะไร' },
+    { k: 'warn', t: '<b>token อายุประมาณ 1 ชั่วโมง</b> — ถ้ารอบ QA ยาวกว่านั้นจะเขียนไม่ได้กลางทาง · รัน <code>gcloud auth login</code> ใหม่แล้วสั่งต่อได้เลย ไม่ต้องเริ่มใหม่' },
+
+    { k: 'h', t: 'ไม่ลงตัวไหน ทำอะไรแทนได้', d: 'ผลปลายทางเหมือนกัน ต่างกันที่คนลงแรงแทน' },
+    { k: 'table', head: ['ขาด', 'ทำแทนยังไง', 'เสียอะไร'], rows: [
+      ['Playwright', 'แคปเองด้วย Chrome — เปิด DevTools แล้วใช้ <b>Capture full size screenshot</b> จะได้ภาพเต็มหน้า', 'ต้องทำมือทีละ breakpoint · รอบหน้าแคปได้ไม่เหมือนเดิมเป๊ะ'],
+      ['gcloud', 'AI ออกตารางให้ในแชท แล้ว copy ไปวางใน Sheet เอง', 'เสียเวลากรอก · เสี่ยงวางผิดคอลัมน์'],
+      ['Pillow', 'ใช้เฉพาะ native app ที่ต้องต่อภาพ scroll — เว็บไม่ต้องใช้', '—']
+    ]},
+    { k: 'warn', t: '<b>แคปเต็มหน้าเป็นข้อบังคับ ไม่ใช่ของดีมีก็ได้</b> — Design Spec เป็นหน้าเต็ม ถ้าได้แค่หน้าจอเดียวจะเทียบตำแหน่งข้ามคอลัมน์ไม่ได้เลย' },
+
+    { k: 'h', t: 'เช็คก่อนเริ่มงาน' },
+    { k: 'code', t: 'playwright --version\ngcloud auth list --format="value(account)"' },
+    { k: 'p', t: 'ขึ้นทั้งสองบรรทัด = พร้อมทำครบลูป · ขึ้นไม่ครบก็เริ่มได้ เดี๋ยวระบบจะบอกเองว่าทางไหนสั้นที่สุดกับสิ่งที่คุณมี' }
+  ]
+};
+
+DATA.sec.tools = { setupCard: true };
+
 /* ---------- ตัวเรนเดอร์เนื้อหาในเว็บ (บล็อก) ---------- */
 function blocks(list) {
   return (list || []).map(function (b) {
@@ -919,6 +971,8 @@ function blocks(list) {
         }).join('');
         return '<div class="sheetwrap"><div class="sheet">' + head + rows + '</div>' +
           (b.cap ? '<div class="sheetcap">' + b.cap + '</div>' : '') + '</div>';
+      case 'code':
+        return '<pre class="cmd"><code>' + b.t.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</code></pre>';
       default:
         return '';
     }
@@ -1024,6 +1078,10 @@ function viewHome() {
     '<div class="block"><h2 class="sec">Playbook</h2>' +
     '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
+    '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
+      '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
+      '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
+        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '~30 นาที' }, 'tools') + '</div></div>' +
     '<div class="note">การ์ด <b>→</b> คือหน้าในเว็บนี้ · <b>↗</b> คือออกไปต้นฉบับข้างนอก</div>' +
     foot() + '</div>';
 }
@@ -1129,6 +1187,10 @@ function viewTools() {
     '<div class="block"><h2 class="sec">เครื่องมือทั้งหมด</h2>' +
       '<p class="sec-lede">กดดูว่าต้องเตรียมอะไร และมันแตะอะไร</p>' +
       '<div class="cardgrid">' + cards + '</div></div>' +
+    '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
+      '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
+      '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
+        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '~30 นาที' }, 'tools') + '</div></div>' +
     foot() + '</div>';
 }
 
@@ -1196,7 +1258,7 @@ function foot() {
 function render() {
   var r = route(), parts = r.split('/').filter(Boolean);
   var active = parts[0] || '', main;
-  if (parts[0] === 'tools') main = parts[1] ? viewTool(parts[1]) : viewTools();
+  if (parts[0] === 'tools') main = parts[1] ? (parts[1] === 'setup' ? viewTopic('tools', 'setup') : viewTool(parts[1])) : viewTools();
   else if (parts.length >= 2) main = viewTopic(parts[0], parts[1]);
   else if (parts.length === 1) main = viewSec(parts[0]);
   else main = viewHome();

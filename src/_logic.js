@@ -97,6 +97,10 @@ function viewHome() {
     '<div class="block"><h2 class="sec">Playbook</h2>' +
     '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
+    '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
+      '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
+      '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
+        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '~30 นาที' }, 'tools') + '</div></div>' +
     '<div class="note">การ์ด <b>→</b> คือหน้าในเว็บนี้ · <b>↗</b> คือออกไปต้นฉบับข้างนอก</div>' +
     foot() + '</div>';
 }
@@ -202,6 +206,10 @@ function viewTools() {
     '<div class="block"><h2 class="sec">เครื่องมือทั้งหมด</h2>' +
       '<p class="sec-lede">กดดูว่าต้องเตรียมอะไร และมันแตะอะไร</p>' +
       '<div class="cardgrid">' + cards + '</div></div>' +
+    '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
+      '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
+      '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
+        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '~30 นาที' }, 'tools') + '</div></div>' +
     foot() + '</div>';
 }
 
@@ -269,7 +277,7 @@ function foot() {
 function render() {
   var r = route(), parts = r.split('/').filter(Boolean);
   var active = parts[0] || '', main;
-  if (parts[0] === 'tools') main = parts[1] ? viewTool(parts[1]) : viewTools();
+  if (parts[0] === 'tools') main = parts[1] ? (parts[1] === 'setup' ? viewTopic('tools', 'setup') : viewTool(parts[1])) : viewTools();
   else if (parts.length >= 2) main = viewTopic(parts[0], parts[1]);
   else if (parts.length === 1) main = viewSec(parts[0]);
   else main = viewHome();
