@@ -113,6 +113,13 @@ function viewSec(id) {
   var body = head(s, crumb) +
     (s.skill ? '<p class="sec-lede" style="margin-top:10px">เรียกด้วย <code>/' + esc(s.skill) + '</code> ใน Claude</p>' : '');
   if (s.lock) body += lockBox(s.lock);
+  if (s.summary) {
+    body += '<div class="stats" style="margin-top:26px">' + s.summary.map(function (x, i) {
+      return '<div class="stat' + (i === 0 ? ' hero' : '') + '"><div class="lbl">' + esc(x.l) + '</div>' +
+        '<div class="big">' + esc(x.b) + '</div><div class="sub">' + esc(x.s) + '</div></div>';
+    }).join('') + '</div>';
+  }
+
   if (s.topics.length) {
     body += '<div class="block"><h2 class="sec">' + esc(s.docsHd || 'เรื่องในหมวดนี้') + '</h2>' +
       '<p class="sec-lede">' + esc(s.docsLede || '') + '</p>' +

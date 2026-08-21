@@ -24,7 +24,13 @@ var DATA = {
       color: 'blue', icon: 'palette', title: 'Design System', tag: 'token · naming · ลิขสิทธิ์',
       lede: 'เอกสารตัวจริงอยู่ใน design-brain ทั้งหมด — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
       docsHd: 'เอกสารอ้างอิง',
-      docsLede: 'ต้องเป็นสมาชิก org ถึงจะเปิดได้',
+      docsLede: 'การ์ดที่ ↗ ไป design-brain ต้องเป็นสมาชิก GitHub org ถึงจะเปิดได้ — เปิดไม่ได้ก็ยังเห็นได้ว่ามีอะไรบ้างและทวนล่าสุดเมื่อไหร่',
+      summary: [
+        { l: 'product ที่มี Golden Set', b: '4', s: 'LMS · B2C · Mica · NCBS+OLS' },
+        { l: 'ไฟล์ DS ที่ขึ้นทะเบียน', b: '6', s: 'ตรวจค่าจริงจากไฟล์ ไม่ใช่ค่าที่ควรเป็น' },
+        { l: 'ฟอนต์ในทะเบียนลิขสิทธิ์', b: '4', s: '1 Active · 3 รอตรวจ' },
+        { l: 'ทวนล่าสุด', b: '3 ส.ค.', s: 'เอกสารหลัก 4 ใน 7 ใบ' }
+      ],
       topics: [
         { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน · 5 ไฟล์', ext: W + 'design-system.md', up: '3 ส.ค. 2026' },
         { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรเป็น', ext: WD + 'foundation.md', up: '3 ส.ค. 2026' },
