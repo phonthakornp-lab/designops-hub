@@ -25,6 +25,7 @@ DATA.topic.setup = {
 
     { k: 'h', t: '3 · gcloud', d: 'สำหรับให้ AI เขียนผลลง Google Sheet ให้เอง' },
     { k: 'code', t: 'brew install --cask google-cloud-sdk\ngcloud auth login' },
+    { k: 'ok', t: '<b>รันแค่ <code>gcloud auth login</code> พอ ไม่ต้อง <code>application-default login</code></b> — ยืนยันจากเครื่องที่ทำ QA ครบลูปจริงแล้ว (18 ส.ค.) · ทางที่ลองแล้วตัน อย่าเสียเวลาซ้ำ: service account key และ ADC ใช้ไม่ได้ทั้งคู่' },
     { k: 'p', t: 'เสร็จแล้วเช็คว่าเครื่องคุณใช้บัญชีไหน:' },
     { k: 'code', t: 'gcloud auth list --format="value(account)"' },
     { k: 'warn', t: '<b>ต้องแชร์ Sheet เป็น Editor ให้บัญชีที่ขึ้นจากคำสั่งนี้</b> — ไม่ใช่บัญชีของคนอื่น และไม่ใช่บัญชีกลาง · token ผูกกับเครื่องที่รัน แชร์ผิดบัญชีจะเขียนไม่ได้ และ error ไม่ได้บอกตรง ๆ ว่าเพราะอะไร' },
