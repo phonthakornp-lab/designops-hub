@@ -67,6 +67,29 @@ function blocks(list) {
         }).join('');
         return '<div class="sheetwrap"><div class="sheet">' + head + rows + '</div>' +
           (b.cap ? '<div class="sheetcap">' + b.cap + '</div>' : '') + '</div>';
+      case 'ba':
+        return '<div class="ba">' + [['no', b.no], ['yes', b.yes]].map(function (p) {
+          return '<div class="bac ' + p[0] + '"><span class="bl">' + p[1].t + '</span><ol>' +
+            p[1].items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ol></div>';
+        }).join('') + '</div>';
+      case 'srow':
+        var side = b.img ? '<figure class="sside" style="margin:0"><img src="' + b.img.src + '" alt="' + (b.img.alt || '') + '">' +
+            (b.img.cap ? '<figcaption class="scap">' + b.img.cap + '</figcaption>' : '') + '</figure>'
+          : (b.html ? '<div class="sside">' + b.html + (b.cap ? '<div class="scap">' + b.cap + '</div>' : '') + '</div>' : '');
+        return '<div class="srow' + (b.mine ? ' h' : '') + (side ? '' : ' solo') + '"><div>' +
+          '<div class="shd"><div class="num">' + b.n + '</div><h3>' + b.t + '</h3>' +
+          (b.who || []).map(function (w) { return '<span class="who ' + w[0] + '">' + w[1] + '</span>'; }).join('') + '</div>' +
+          '<dl class="sdl">' + b.dl.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>' +
+          (b.extra || '') + '</div>' + side + '</div>';
+      case 'ovw':
+        return '<div class="ovw"><figure class="fig" style="margin:0"><img src="' + b.img.src + '" alt="' + (b.img.alt || '') + '">' +
+          (b.img.cap ? '<figcaption>' + b.img.cap + '</figcaption>' : '') + '</figure><div class="parts">' +
+          b.parts.map(function (p) {
+            return '<div class="part"><div class="pt">' + p.t + (p.who || []).map(function (w) {
+              return '<span class="who ' + w[0] + '">' + w[1] + '</span>'; }).join('') + '</div><p>' + p.d + '</p></div>';
+          }).join('') + '</div></div>';
+      case 'nolist':
+        return '<ul class="nolist">' + b.items.map(function (x) { return '<li><span>' + x + '</span></li>'; }).join('') + '</ul>';
       case 'code':
         return '<pre class="cmd"><code>' + b.t.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</code></pre>';
       default:
