@@ -4,7 +4,7 @@ var W  = DB + '/blob/main/wiki/shared/';
 var WD = W + 'design-system/';
 
 var DATA = {
-  updated: '18 ส.ค. 2026',
+  updated: '28 ก.ย. 2026',
   roadmap: 'https://claude.ai/code/artifact/8cf346ea-80fb-4ade-a91d-2a459c66e097',
 
   nav: [
@@ -12,7 +12,7 @@ var DATA = {
     { sep: 'Playbook' },
     { id: 'ds', icon: 'palette', label: 'Design System' },
     { id: 'qa', icon: 'check',   label: 'Design QA' },
-    { id: 'dv', icon: 'send',    label: 'ส่งงานให้ Dev', dot: true },
+    { id: 'dv', icon: 'send',    label: 'ส่งงานให้ Dev' },
     { sep: 'เครื่องมือ' },
     { id: 'tools', icon: 'wrench', label: 'เครื่องมือ (Claude)' },
     { sep: 'ทีม' },
@@ -55,22 +55,17 @@ var DATA = {
       ]
     },
     dv: {
-      color: 'orange', icon: 'send', title: 'ส่งงานให้ Dev', tag: 'ทำไฟล์ให้สะอาด → เช็ค → ส่ง',
-      skill: 'handoff',
-      lede: 'ร่างเอกสารส่งมอบจากไฟล์ที่ยังไม่พร้อม = ส่งปัญหาต่อให้ dev แบบมีเอกสารห่อไว้ — จึงต้องผ่านการตรวจก่อนทุกครั้ง',
-      lock: {
-        t: 'ยังไม่เปิด — พักไว้ก่อน',
-        d: 'เครื่องมือพร้อมครบแล้ว แต่เคยทำจริงแค่ท่อนแรก (ตรวจและแก้ไฟล์) · อีก 2 ท่อนยังไม่เคยวิ่งจบ ถ้าเขียนคู่มือตอนนี้จะได้ของที่ 2 ใน 3 ท่อนยังไม่ยืนยัน',
-        todo: ['รัน handoff ให้จบ 1 รอบกับงานจริง', 'กรอก Deliver Kit ให้ครบจนพลิกเป็น Ready for Dev', 'แล้วค่อยถอดออกมาเป็น playbook']
-      },
+      color: 'orange', icon: 'send', title: 'ส่งงานให้ Dev', tag: 'ตรวจ → แก้ → ประกาศว่าพร้อม',
+      skill: 'deliver-kit',
+      lede: 'คำสั่งเดียวพาทำจนจบ ระบบตรวจไฟล์ แก้ให้ และสร้างหน้า Deliver ในไฟล์ Figma ส่วน Checklist ฟอร์ม และสถานะ designer เป็นคนทำ',
       docsHd: 'เอกสารอ้างอิง',
       docsLede: '',
       topics: [
-        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'Checklist 7 ข้อ + ฟอร์ม + สถานะ', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish แล้ว' },
+        { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'Checklist 7 ข้อ + ฟอร์ม + สถานะ', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish 28 ก.ย. 2026' },
         { icon: 'doc', color: 'green', t: 'โครง handoff doc', d: 'หัวข้อที่เอกสารต้องมี', ext: 'https://github.com/uxui-skl/design-brain/blob/main/templates/handoff-doc.md', up: 'design-brain' },
         { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'เหตุผลการออกแบบ ให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
       ],
-      tools: ['ds-audit', 'handoff']
+      tools: ['deliver-kit', 'ds-audit', 'handoff']
     },
     role: {
       color: '', icon: 'user', title: 'Role', tag: 'DesignOps ช่วยอะไรได้ · ขอยังไง',
@@ -138,6 +133,7 @@ var DATA = {
   },
 
   toolChain: [
+    { cmd: 'deliver-kit', mode: 'พาเดินทั้ง flow', n: 'เรียกตัวเดียว ครอบ 2 ตัวถัดไป' },
     { cmd: 'ds-audit', mode: 'หา hardcode', n: 'รู้ว่าไฟล์มีอะไรผิด' },
     { cmd: 'ds-audit', mode: 'แก้ให้', n: 'แก้ตามที่เลือก' },
     { cmd: 'handoff', mode: 'เช็คว่าพร้อมส่งไหม', n: 'Ready / Not Ready' },
@@ -146,6 +142,29 @@ var DATA = {
   ],
 
   tool: {
+    'deliver-kit': {
+      icon: 'send', color: 'orange', title: 'ส่งงานให้ Dev ทีละขั้น', cmd: 'deliver-kit',
+      tag: 'คำสั่งเดียวจนจบ flow', sec: 'dv',
+      lede: 'พาเดิน 7 ขั้น ตรวจไฟล์ แก้ให้ สร้างหน้า Deliver แล้วบอกทุกขั้นว่าต้องทำอะไรต่อ จนคุณเปลี่ยนสถานะเป็น Ready for Dev · เรียก ds-audit กับ handoff ให้เอง ไม่ต้องจำลำดับ',
+      when: 'ออกแบบเสร็จแล้ว ก่อนส่งให้ dev',
+      type: 'พิมพ์ /deliver-kit แล้วแนบลิงก์ page หรือ frame ของงานที่จะส่ง · ระหว่างทางพิมพ์ "ต่อ" เมื่อทำขั้นของคุณเสร็จ',
+      modes: [
+        { m: 'พาเดินทั้ง flow', dflt: true, d: 'ขั้น 1-3 ระบบทำ (ตรวจ · แก้ตามที่เลือก · สร้างหน้า Deliver) ขั้น 4-7 คุณทำ (ตอบคำถาม · ติ๊ก · กรอก · เปลี่ยนสถานะ) · อ่านสถานะจาก Figma จึงปิดแชทแล้วกลับมาทำต่อได้', w: 'เขียนไฟล์ Figma เฉพาะที่คุณเลือกแก้ + หน้า Deliver', wk: 'write' }
+      ],
+      prep: [
+        { t: 'ลิงก์ page หรือ frame ของงานรอบนี้', w: 'ไม่ต้องทั้งไฟล์ · ถ้าหน้าจอเป็น instance ระบบไล่ไปตรวจที่ master ให้เอง' },
+        { t: 'platform ที่ส่ง', w: 'ใช้เช็คข้อ breakpoint' },
+        { t: 'Jira ticket ถ้ามี', w: 'ดึง AC มาเทียบ' }
+      ],
+      rules: [
+        'ไม่ติ๊ก Checklist ไม่กรอกฟอร์ม ไม่เปลี่ยน Status แทนคุณ แม้สั่ง ฟอร์มนี้คือการประกาศของ designer',
+        'สร้างหน้า Deliver ต้องถามก่อน รวมถึงถามที่วาง',
+        'ติ๊กหรือเปลี่ยนสถานะขัดกับผลตรวจ เตือนครั้งเดียวแล้วเคารพการตัดสินใจ',
+        'ขั้น 2 แก้ให้ข้ามได้ · ขั้น 4-7 ข้ามไม่ได้ แต่หยุดไว้แล้วกลับมาทำต่อได้'
+      ],
+      proof: { ok: true, t: 'ทดสอบครบ 7 ขั้นแล้ว', d: 'B2C App หน้า My Course (28 ก.ย.) · เจอและแก้ 5 เรื่องก่อนเปิดใช้ เช่น ตรวจหน้าที่เป็น instance แล้วได้ผลสะอาดหลอก และ flow ติดตายเมื่อติ๊กไม่ครบ' }
+    },
+
     'ds-audit': {
       icon: 'palette', color: 'blue', title: 'ตรวจ · แก้ · ปล่อย DS', cmd: 'ds-audit',
       tag: 'สุขภาพไฟล์ Figma', sec: 'ds',
@@ -171,7 +190,7 @@ var DATA = {
         'swap แล้วหน้าตาเพี้ยน หยุดทันที ไม่ทำต่อให้ครบแล้วค่อยดู'
       ],
       notdo: 'ไม่สร้าง component ใหม่ใน DS · ไม่รวม/ลบ component ที่ซ้ำ · ไม่ตัดสินว่าอะไรควร exempt — สามอย่างนี้เป็นการตัดสินใจ ไม่ใช่งานกล',
-      proof: { ok: true, t: 'ใช้จริงแล้ว', d: 'OLS หน้า AllContent-Guest (6 ส.ค.) — hardcode 56 → 9 จุด · layer ชื่อ default 19 → 0 · เทียบภาพก่อน/หลังแล้วไม่เปลี่ยนเลย' }
+      proof: { ok: true, t: 'ใช้จริงแล้ว', d: 'OLS หน้า AllContent-Guest (6 ส.ค.) — hardcode 56 → 9 จุด · layer ชื่อ default 19 → 0 · เทียบภาพก่อน/หลังแล้วไม่เปลี่ยนเลย · B2C App My Course (28 ก.ย.) ตรวจผ่าน master 5 ตัว' }
     },
 
     'qa-check': {
@@ -225,7 +244,7 @@ var DATA = {
         'a11y requirement ต้องอยู่ในทุก handoff ไม่ใช่ optional',
         'ระบุ location ทุก issue — "มี hardcode 12 จุด" โดยไม่บอกที่ ใช้ไม่ได้'
       ],
-      proof: { ok: false, t: 'ยังไม่เคยรัน', d: 'เขียนไว้ครบแล้ว ปลายทางเป็นหน้า Deliver ใน Figma เรียบร้อย — แต่ยังไม่เคยวิ่งจบกับงานจริงสักรอบ · คนแรกที่ลองจะเจอสะดุด ทักได้เลยจะได้แก้' }
+      proof: { ok: true, t: 'โหมดเช็ครันจริงแล้ว', d: 'เช็คความพร้อม + ลงผลที่หน้า Deliver กับ B2C App My Course (28 ก.ย.) ผ่าน /deliver-kit · โหมดร่าง handoff doc ยังไม่เคยรัน' }
     }
   }
 };
