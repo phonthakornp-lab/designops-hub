@@ -5,7 +5,7 @@ DATA.sec.dv.topics = [
   { id: 'dvhow', icon: 'book',   color: 'orange', t: 'วิธีการใช้งาน', d: '7 ขั้น พร้อมภาพผลลัพธ์แต่ละขั้น', up: 'playbook เต็ม' },
   { id: 'dvcl',  icon: 'check',  color: 'green',  t: 'Checklist 7 ข้อ', d: 'แต่ละข้อหมายถึงอะไร มาจากเคสไหน', up: '7 ข้อ' },
   { id: 'dvkit', icon: 'frame',  color: 'blue',   t: 'Deliver Kit (Figma)', d: 'หน้า Deliver มีอะไร ใครเขียนส่วนไหน', up: 'publish 28 ก.ย. 2026' },
-  { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'เหตุผลการออกแบบ ให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
+  { id: 'dvrat', icon: 'target', color: 'purple', t: 'Design Rationale', d: 'เหตุผลการออกแบบพร้อมหลักฐาน ใช้ตอน review และส่ง dev', up: '/rationale · 3 ตัวอย่างจริง' }
 ];
 DATA.sec.dv.tools = ['deliver-kit', 'ds-audit', 'handoff'];
 
@@ -183,5 +183,79 @@ DATA.topic.dvkit = {
     ]},
     { k: 'warn', t: '<b>ไฟล์ที่เคยใช้ Deliver Kit มาก่อนจะไม่อัปเดตเอง</b> · Figma → Assets → Libraries → Update ถึงจะเห็นข้อความรุ่นล่าสุด' },
     { k: 'note', t: '<b>Status เป็น component ไม่ใช่ text</b> · สแกนไฟล์แล้วนับได้อัตโนมัติว่ามีงาน Ready for Dev กี่ชิ้น ไม่ต้องให้ใครกรอกรายงานเพิ่ม' }
+  ]
+};
+
+var DVRATCHAT = '<div class="cm"><div class="ct">ขั้น 3 · ร่างเหตุผล → ยืนยันทีละข้อ</div>' +
+  '<div class="cmeta">01 · Chip กรองสถานะ</div>' +
+  '<p style="margin:0 0 8px">ผู้เรียนที่มีคอร์สจำนวนมากหาคอร์สที่ต้องการไม่เจอ การกรองตามสถานะช่วยให้เห็นเฉพาะกลุ่มที่สนใจในแตะเดียว <b>(เดา)</b> เลือก Chip แทน Section เพราะหน้าไม่ยาวเกินเมื่อมีคอร์สเยอะ</p>' +
+  '<div class="cg y">❓ decision log เดิมเขียนว่าแบ่ง Section แต่แบบจริงเป็น Chip เปลี่ยนเพราะอะไร</div>' +
+  '<div class="tip">ตอบ "01 ok" หรือพิมพ์แก้</div></div>';
+
+DATA.topic.dvrat = {
+  parent: 'dv', color: 'purple', icon: 'target',
+  title: 'Design Rationale', tag: 'เหตุผลการออกแบบ · บอร์ดใน Figma',
+  lede: 'อธิบายว่าทำไมถึงออกแบบแบบนี้ พร้อมหลักฐาน วางเป็นบอร์ดข้างหน้าจอจริงในไฟล์ Figma ใช้ประกอบการ review และส่ง dev ต่อได้เลย',
+  blocks: [
+    { k: 'kv', items: [
+      { l: 'เรียกด้วย', v: '<code>/rationale &lt;ลิงก์ Figma ของหน้าจอ&gt;</code> ใน Claude Code (design-brain) · ถามก่อนออกแบบได้โดยไม่ต้องมีลิงก์' },
+      { l: 'ได้อะไร', v: 'บอร์ดในไฟล์: หน้าจอ + <b>หมุดเลข</b> + <b>การ์ดเหตุผล</b> แต่ละใบบอกเหตุผล หลักฐาน และสิ่งที่ยอมแลก' }
+    ]},
+
+    { k: 'h', t: 'ใช้เมื่อไหร่', d: 'ไม่ต้องทำทุกหน้า เลือกเฉพาะหน้าที่มี decision ที่คนน่าจะถามว่า "ทำไม" (ปกติ 1-3 หน้าต่อ feature · หน้าละ 3-6 ข้อ)' },
+    { k: 'table', head: ['ใช้เมื่อ', 'โหมด', 'ได้อะไร'], rows: [
+      ['<b>ก่อน UI review / ขอ approve</b><small>กรณีหลัก</small>', 'เขียนลงบอร์ด', 'หลักฐานของ decision ที่น่าจะถูกถาม ใช้ประกอบการนำเสนอ แล้วบอร์ดเดิมส่ง dev ต่อได้'],
+      ['<b>decision ที่ยังไม่มั่นใจ</b>', 'ปรึกษา → ค่อยลงบอร์ด', 'หลักฐาน<b>ทั้งที่สนับสนุนและที่ค้าน</b> รู้ก่อน review ว่าข้อไหนแข็ง ข้อไหนอ่อน'],
+      ['<b>ก่อนส่ง dev</b>', 'เขียนลงบอร์ด', '<code>/deliver-kit</code> ชวนให้ทำถ้ายังไม่มี'],
+      ['<b>ยังไม่ได้ออกแบบ</b>', 'ปรึกษา', 'ทางเลือกพร้อมหลักฐาน ก่อนลงมือ']
+    ]},
+    { k: 'warn', t: '<b>ไม่มั่นใจ ห้ามใช้หาเหตุผลมารองรับ</b> · ระบบหาเหตุผลที่ฟังดูดีได้ทุกครั้ง บอร์ดจะดูหนักแน่นทั้งที่ decision อาจผิด · ใช้โหมดปรึกษาก่อน ถ้าหลักฐานค้าน ให้กลับไปปรับแบบ หรือยกไปคุยตอน review ว่า "ข้อนี้ยังไม่แน่ใจ"' },
+    { k: 'p', t: '<b>ไม่ต้องใช้:</b> แก้เล็กน้อย (ข้อความ ระยะ bug) · ใช้ pattern มาตรฐานของ Design System ทั้งหน้า · ยังลองหลายแบบอยู่' },
+
+    { k: 'h', t: 'สิ่งที่ได้ตอนจบ', d: 'ตัวอย่างจริง: B2C App หน้า My Course · หมุดเลขบนหน้าจอตรงกับเลขการ์ด' },
+    { k: 'img', src: 'IMG_DVRATBOARD_SRC', alt: 'บอร์ด Design Rationale หน้า My Course: แถบซ้าย หน้าจอพร้อมหมุด 01-03 และการ์ดเหตุผล 3 ใบ', cap: 'บอร์ด <code>Design Review - My Course</code> ในไฟล์ B2C Application หน้า Design Rationale' },
+
+    { k: 'h', t: 'ขั้นตอน', d: 'ระบบทำ 4 ขั้น คุณทำ 2 ขั้น · ทำเสร็จแต่ละขั้นตอบในแชท' },
+    { k: 'srow', n: 1, t: 'อ่านบริบท', who: [['a', 'ระบบทำ']], dl: [
+        ['ระบบอ่าน', 'หน้าจอจาก Figma · PRD / AC จาก Jira · persona และ decision เดิมของ BU ใน design-brain'],
+        ['เก็บไว้', 'แต่ละข้อมูลมาจากไหน เพื่อใช้เป็นหลักฐานป้าย Project']
+      ] },
+    { k: 'srow', n: 2, t: 'เลือก decision', who: [['a', 'ระบบเสนอ'], ['h', 'คุณเลือก']], mine: true, dl: [
+        ['ระบบเสนอ', 'decision ที่คนน่าจะถาม 3-6 ข้อ พร้อมบอกว่าข้อไหนมีหลักฐานจริงรองรับ'],
+        ['คุณทำ', 'ตอบเป็นเลข เช่น "1, 3, 4" · เพิ่มข้อที่ระบบไม่เห็นได้']
+      ] },
+    { k: 'srow', n: 3, t: 'ยืนยันเหตุผล', who: [['h', 'คุณทำ']], mine: true, dl: [
+        ['ระบบร่าง', 'เหตุผลให้ก่อน ส่วนที่ไม่มีที่มาติดป้าย <b>(เดา)</b>'],
+        ['คุณทำ', '<b>ยืนยันหรือแก้ทีละข้อ</b> ข้อที่ไม่ยืนยันจะไม่ลงบอร์ด · ถ้าระบบถามข้อเท็จจริง เช่น ตัวเลขบนการ์ดคืออะไร ต้องตอบก่อน']
+      ], html: DVRATCHAT, cap: 'ตัวอย่างจากการทดสอบหน้า My Course' },
+    { k: 'srow', n: 4, t: 'หลักฐาน + วางบอร์ด', who: [['a', 'ระบบทำ']], dl: [
+        ['Sources', '2-4 ข้อต่อการ์ด ติดป้าย 7 แบบ · <b>Project / Data ต้องมีที่มาจริง ห้ามแต่ง</b>'],
+        ['วางลงไฟล์', 'ถามที่วางก่อน แล้ววางหน้าจอ + หมุดเลข + การ์ด'],
+        ['หลักฐานค้าน', 'บอกคุณก่อนเขียนบอร์ด ไม่เลือกเฉพาะหลักฐานที่สนับสนุน']
+      ], img: { src: 'IMG_DVRATCARD_SRC', alt: 'การ์ด Design Rationale 03 ความยาวคอร์สและ Progress bar พร้อม Sources 4 ข้อ และ Trade-offs', cap: 'การ์ด 1 ใบ = 1 decision · Rationale · Sources · Trade-offs ที่ยอมรับ' } },
+
+    { k: 'h', t: 'ป้าย Source 7 แบบ', d: 'บอกว่าเหตุผลนี้อ้างอิงจากอะไร' },
+    { k: 'table', head: ['ป้าย', 'ใช้เมื่ออ้างอิง', 'ตัวอย่าง'], rows: [
+      ['Heuristic', 'Nielsen 10 ข้อ', 'Nielsen #1 Visibility of System Status'],
+      ['Principle', 'หลักการออกแบบพื้นฐาน', 'Visual Hierarchy · Progressive Disclosure'],
+      ['Research', 'ทฤษฎีหรืองานวิจัยที่มีชื่อผู้คิด', 'BJ Fogg · Fitts\'s Law · Goal-Gradient'],
+      ['Expert', 'guideline ทางการ', 'Apple HIG · Material Design · WCAG'],
+      ['Benchmark', 'แอปอื่นทำแบบนี้', 'Duolingo · Coursera · Spotify'],
+      ['Project', 'เอกสารของโปรเจกต์<small>ต้องมีที่มาจริง</small>', 'PRD · AC ใน Jira · persona'],
+      ['Data', 'ตัวเลขจริงของเรา<small>ต้องมีที่มาจริง</small>', 'Analytics · Dashboard · ผล QA']
+    ]},
+
+    { k: 'h', t: 'สิ่งที่ระบบจะไม่ทำ' },
+    { k: 'nolist', items: [
+      '<b>ไม่แต่งเหตุผลแทนคุณ</b> ทุกข้อต้องผ่านการยืนยัน',
+      '<b>ไม่แต่งตัวเลขหรือชื่อเอกสาร</b> ในป้าย Project / Data',
+      '<b>ไม่แนะนำว่าควรปรับอะไร</b> ใช้ <code>/critique</code> แทน',
+      '<b>ไม่แตะเฟรมงานออกแบบ</b> เขียนได้เฉพาะบอร์ด rationale'
+    ]},
+
+    { k: 'link', items: [
+      { icon: 'frame', color: 'purple', t: 'Design Rationale Template · Figma', d: 'library การ์ด · ป้าย Source · หมุดเลข', to: 'https://www.figma.com/design/G7q7EuE251iSoap0YzNsm8/-Master--Design-Rationale-Template?node-id=2001-873', up: 'publish 28 ก.ย. 2026' },
+      { icon: 'target', color: 'orange', t: 'ตัวอย่างจริง · B2C App', d: 'Homepage · Curriculum · My Course', to: 'https://www.figma.com/design/e9cWDHGiXcZoCYzgTfPfQY/-B2C--B2C-Application?node-id=2859-4308', up: '3 บอร์ด' }
+    ]}
   ]
 };

@@ -17,7 +17,7 @@ head = head.replace('/*@FONTS@*/', fonts)
 
 for m in ['BOARD', 'DONE', 'ZONE', 'CARD', 'SKIP']:
     qa = qa.replace("'IMG_%s_SRC'" % m, 'IMG_%s' % m)
-for m in ['DVAUDIT', 'DVCHECK', 'DVFORM', 'DVSTATUS', 'DVPAGE']:
+for m in ['DVAUDIT', 'DVCHECK', 'DVFORM', 'DVSTATUS', 'DVPAGE', 'DVRATBOARD', 'DVRATCARD']:
     dv = dv.replace("'IMG_%s_SRC'" % m, 'IMG_%s' % m)
 import re as _re
 left = _re.findall(r"'IMG_\w+_SRC'", qa + dv)
