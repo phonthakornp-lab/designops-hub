@@ -12,7 +12,7 @@ var DATA = {
     { sep: 'Playbook' },
     { id: 'ds', icon: 'palette', label: 'Design System' },
     { id: 'qa', icon: 'check',   label: 'Design QA' },
-    { id: 'dv', icon: 'send',    label: 'ส่งงานให้ Dev' },
+    { id: 'dv', icon: 'send',    label: 'Deliver to Dev' },
     { sep: 'เครื่องมือ' },
     { id: 'tools', icon: 'wrench', label: 'เครื่องมือ (Claude)' },
     { sep: 'ทีม' },
@@ -55,7 +55,7 @@ var DATA = {
       ]
     },
     dv: {
-      color: 'orange', icon: 'send', title: 'ส่งงานให้ Dev', tag: 'ตรวจ → แก้ → ประกาศว่าพร้อม',
+      color: 'orange', icon: 'send', title: 'Deliver to Dev', tag: 'ตรวจ → แก้ → ประกาศว่าพร้อม',
       skill: 'deliver-kit',
       lede: 'คำสั่งเดียวพาทำจนจบ ระบบตรวจไฟล์ แก้ให้ และสร้างหน้า Deliver ในไฟล์ Figma ส่วน Checklist ฟอร์ม และสถานะ designer เป็นคนทำ',
       docsHd: 'เอกสารอ้างอิง',
