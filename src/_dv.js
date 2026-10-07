@@ -63,6 +63,7 @@ DATA.topic.dvhow = {
     ]},
 
     { k: 'h', t: '7 ขั้น แต่ละขั้นได้อะไร', d: '3 ขั้นแรกระบบทำ 4 ขั้นหลังคุณทำ · <b>ปิดแชทกลางทางแล้วกลับมาพิมพ์คำสั่งเดิม ระบบทำต่อจากที่ค้างได้</b>' },
+    { k: 'flow', svg: FLOW_DV, cap: 'ภาพรวม 7 ขั้น · รายละเอียดแต่ละขั้นอยู่ด้านล่าง' },
 
     { k: 'srow', n: 1, t: 'ตรวจไฟล์', who: [WA], dl: [
         ['ระบบหา', '<ul><li><b>Hardcode</b> สีหรือฟอนต์ที่ไม่ได้ใช้ token / style ของ Design System</li><li><b>Detach</b> component ที่ถูกแยกออกจาก Design System</li><li><b>ชื่อ layer ค่า default</b> เช่น Frame 1597884708</li></ul>'],
@@ -216,6 +217,7 @@ DATA.topic.dvrat = {
     { k: 'img', src: 'IMG_DVRATBOARD_SRC', alt: 'บอร์ด Design Rationale หน้า My Course: แถบซ้าย หน้าจอพร้อมหมุด 01-03 และการ์ดเหตุผล 3 ใบ', cap: 'บอร์ด <code>Design Review - My Course</code> ในไฟล์ B2C Application หน้า Design Rationale' },
 
     { k: 'h', t: 'ขั้นตอน', d: '4 ขั้น · คุณเลือก decision (ขั้น 2) และยืนยันเหตุผล (ขั้น 3) · ที่เหลือระบบทำ · ทำเสร็จแต่ละขั้นตอบในแชท' },
+    { k: 'flow', svg: FLOW_RAT, cap: 'ระบบร่าง คุณตัดสิน · ข้อที่ไม่ยืนยันจะไม่ลงบอร์ด' },
     { k: 'srow', n: 1, t: 'อ่านบริบท', who: [['a', 'ระบบทำ']], dl: [
         ['ระบบอ่าน', 'หน้าจอจาก Figma · PRD / AC จาก Jira · persona และ decision เดิมของ BU ใน design-brain'],
         ['เก็บไว้', 'แต่ละข้อมูลมาจากไหน เพื่อใช้เป็นหลักฐานป้าย Project']

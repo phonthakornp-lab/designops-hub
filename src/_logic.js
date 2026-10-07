@@ -87,6 +87,9 @@ function viewHome() {
   return '<div class="inner">' +
     head({ icon: 'home', title: 'DesignOps', tag: 'playbook · ของอ้างอิง · ทางเข้าต้นฉบับ', color: '',
            lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม' }) +
+    '<div class="block"><h2 class="sec">งานหนึ่งชิ้นผ่านอะไรบ้าง</h2>' +
+      '<p class="sec-lede">กดการ์ดเพื่อไปหน้านั้น · เส้นประม่วง = ทำเมื่อจำเป็น · เส้นประฟ้า = ย้อนกลับไปแก้ต้นทาง</p>' +
+      '<div class="flowbox">' + FLOW_HOME + '</div></div>' +
     '<div class="block"><h2 class="sec">Playbook</h2>' +
     '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
@@ -201,8 +204,8 @@ function viewTools() {
     head({ icon: 'wrench', title: 'เครื่องมือ', tag: 'คำสั่งที่พิมพ์ใน Claude', color: '',
            lede: 'คำสั่งที่พิมพ์แล้วมันทำงานกับไฟล์จริงให้ · ทุกตัวบอกว่าโหมดไหนเขียนของจริง' }) +
     '<div class="block first"><h2 class="sec">ใช้ตัวไหนตอนไหน</h2>' +
-      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น</p>' +
-      '<div class="chain">' + chain + '</div></div>' +
+      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น · กดการ์ดเพื่อดูรายละเอียดคำสั่ง</p>' +
+      '<div class="flowbox">' + FLOW_TOOLS + '</div></div>' +
     '<div class="block"><h2 class="sec">เครื่องมือทั้งหมด</h2>' +
       '<p class="sec-lede">กดดูว่าต้องเตรียมอะไร และมันแตะอะไร</p>' +
       '<div class="cardgrid">' + cards + '</div></div>' +

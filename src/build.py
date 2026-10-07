@@ -3,6 +3,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 head  = open('_head.html', encoding='utf-8').read()
 icons = open('_icons.js', encoding='utf-8').read()
 img   = open('_img.js',   encoding='utf-8').read()
+flows = open('_flows.js', encoding='utf-8').read()
 data  = open('_data.js',  encoding='utf-8').read()
 qa    = open('_qa.js',    encoding='utf-8').read()
 dv    = open('_dv.js',    encoding='utf-8').read()
@@ -23,11 +24,11 @@ import re as _re
 left = _re.findall(r"'IMG_\w+_SRC'", qa + dv)
 if left: raise SystemExit('ยังมี marker ภาพเหลือ: %s' % left)
 
-body = icons.replace('<script>', '') + '\n' + img + '\n' + data + '\n' + qa + '\n' + dvimg + '\n' + dv + '\n' + setup + '\n' + blk + '\n' + logic
+body = icons.replace('<script>', '') + '\n' + img + '\n' + flows + '\n' + data + '\n' + qa + '\n' + dvimg + '\n' + dv + '\n' + setup + '\n' + blk + '\n' + logic
 r = subprocess.run(['node', '--check', '/dev/stdin'], input=body, text=True, capture_output=True)
 if r.returncode: raise SystemExit('JS SYNTAX ERROR:\n' + r.stderr[:900])
 
-out = head + '\n' + icons + '\n' + img + '\n' + data + '\n' + qa + '\n' + dvimg + '\n' + dv + '\n' + setup + '\n' + blk + '\n' + logic + '\n</script>\n'
+out = head + '\n' + icons + '\n' + img + '\n' + flows + '\n' + data + '\n' + qa + '\n' + dvimg + '\n' + dv + '\n' + setup + '\n' + blk + '\n' + logic + '\n</script>\n'
 assert out.count('<script') == 1, 'script tags = %d' % out.count('<script')
 open('hub.html','w',encoding='utf-8').write(out)
 print('built hub.html', round(len(out)/1024), 'KB · js ok')

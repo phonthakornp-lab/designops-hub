@@ -3,8 +3,10 @@ function blocks(list) {
   return (list || []).map(function (b) {
     switch (b.k) {
       case 'h':
-        return '<h2 class="sec" style="margin-top:34px">' + b.t + '</h2>' +
+        return '<h2 class="sec" style="margin-top:56px">' + b.t + '</h2>' +
                (b.d ? '<p class="sec-lede">' + b.d + '</p>' : '');
+      case 'flow':
+        return '<div class="flowbox">' + b.svg + '</div>' + (b.cap ? '<p class="flowcap">' + b.cap + '</p>' : '');
       case 'p':
         return '<p class="body">' + b.t + '</p>';
       case 'note':
