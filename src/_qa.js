@@ -43,6 +43,8 @@ DATA.topic.how = {
     ]},
     { k: 'warn', t: '<b>แต่ละแบบยังไม่ครอบคลุมทั้งหมด</b> แบบ 1 ละเอียดด้าน visual แต่ไม่ตรวจ functionality แบบ 2 ครอบคลุมกว่าแต่ขึ้นกับผู้ตรวจ <b>หน้าสำคัญควรใช้แบบ 1 แล้วทดสอบใช้งานจริงซ้ำ</b>' },
 
+    { k: 'h', t: 'วิดีโอตัวอย่าง', d: 'การใช้งานจริงของแบบ 1 กับหน้าสร้างวีดีโอ (OLS) ตั้งแต่เตรียม board จนได้ผลใน board และ Sheet' },
+    { k: 'video', src: 'assets/qa-check-mode1.mp4', poster: 'assets/qa-check-mode1-poster.jpg', cap: 'ความยาว 1:32 นาที · ไม่มีเสียง · ช่วงที่ AI ทำงานย่อเวลาให้สั้นลง (เวลาจริงรวมประมาณ 17 นาที)' },
     { k: 'h', t: 'แบบ 1 · เทียบ design ↔ build', d: 'ระบบหยุดให้ Designer ตรวจทานก่อนบันทึกทุกครั้ง' },
     { k: 'steps', items: [
       { t: 'เตรียม board + Sheet และส่ง URL', d: '<b>เตรียมปลายทางก่อน</b> duplicate board และ copy Sheet จาก master <b>วาง frame design จริงใน column Design Spec</b> แล้วส่ง URL ของหน้าจริง', who: 'Designer' },

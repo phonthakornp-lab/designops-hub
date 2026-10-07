@@ -40,6 +40,9 @@ function blocks(list) {
           return '<div class="stat' + (i === 0 ? ' hero' : '') + '"><div class="lbl">' + x.l + '</div>' +
             '<div class="big">' + x.b + '</div><div class="sub">' + x.s + '</div></div>';
         }).join('') + '</div>';
+      case 'video':
+        return '<figure class="fig vid"><video controls preload="metadata" playsinline poster="' + b.poster + '" src="' + b.src + '"></video>' +
+          (b.cap ? '<figcaption>' + b.cap + '</figcaption>' : '') + '</figure>';
       case 'img':
         return '<figure class="fig' + (b.narrow ? ' narrow' : '') + '"><img src="' + b.src + '" alt="' + (b.alt || '') + '">' +
           (b.cap ? '<figcaption>' + b.cap + '</figcaption>' : '') + '</figure>';
