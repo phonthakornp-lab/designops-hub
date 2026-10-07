@@ -27,7 +27,7 @@ DATA.topic.how = {
       rows: [
         ['ใช้เมื่อ', 'หน้าที่เปิดด้วย URL ได้ เช่น LMS, OLS, NCBS, NDLP และเว็บทั้งหมด', 'หน้าที่ต้องใช้งานจริงจึงพบ เช่น แอป B2C, flow ที่มี login หลายชั้น'],
         ['ผู้ค้นหา issue', 'AI<small>Designer ตรวจทานผล</small>', 'Designer<small>AI ไม่ตัดสินแทน</small>'],
-        ['สิ่งที่ต้องส่ง', 'URL ของหน้า + board เปล่า', 'Board ที่วางหมุดครบแล้ว'],
+        ['สิ่งที่ต้องส่ง', 'URL ของหน้า + board ที่วาง Design Spec แล้ว', 'Board ที่วางหมุดครบแล้ว'],
         ['เวลาที่ Designer ใช้', 'ตรวจทานผลเท่านั้น<small>ไม่ต้องตรวจเอง</small>', 'ตรวจเองทั้งรอบ<small>AI กรอก Sheet ให้</small>'],
         ['ตรวจ Functionality ได้หรือไม่', 'ไม่ได้ และห้ามบันทึกลง Sheet<small>ภาพนิ่งไม่แสดงผลการทำงาน</small>', 'ได้ และต้องบันทึกให้ครบ<small>27% ของ issue จริง</small>'],
         ['ความแม่นยำของค่า', 'วัดค่าจริงจากหน้าเว็บ<small>spacing/size แทบไม่คลาดเคลื่อน</small>', 'สายตา + เทียบ token ใน Figma'],
@@ -45,7 +45,7 @@ DATA.topic.how = {
 
     { k: 'h', t: 'แบบ 1 · เทียบ design ↔ build', d: 'ระบบหยุดให้ Designer ตรวจทานก่อนบันทึกทุกครั้ง' },
     { k: 'steps', items: [
-      { t: 'เตรียม board + Sheet และส่ง URL', d: '<b>เตรียมปลายทางก่อน</b> duplicate board และ copy Sheet จาก master แล้วส่ง URL ของหน้าจริง', who: 'Designer' },
+      { t: 'เตรียม board + Sheet และส่ง URL', d: '<b>เตรียมปลายทางก่อน</b> duplicate board และ copy Sheet จาก master <b>วาง frame design จริงใน column Design Spec</b> แล้วส่ง URL ของหน้าจริง', who: 'Designer' },
       { t: 'AI capture และเปรียบเทียบ', d: 'Capture เต็มหน้า ดึง spec และชื่อ token จาก Figma แล้วเทียบทีละจุด', who: 'AI' },
       { t: 'Designer ตรวจทานก่อนบันทึก', d: 'AI แสดงตารางใน chat ก่อน ข้อที่เป็น design decision แจ้งตัดออกได้', who: 'Designer' },
       { t: 'AI บันทึกผล 2 ที่', d: 'วางกรอบและ card ใน board และเขียนลง Sheet โดยเลขตรงกัน', who: 'AI' }
@@ -61,7 +61,7 @@ DATA.topic.how = {
 
     { k: 'h', t: 'ตัวอย่าง board', d: 'จาก board B2C App ที่ตรวจเสร็จแล้ว' },
 
-    { k: 'p', t: '<b>1 · duplicate จาก master</b> จะได้ board เปล่าดังภาพ' },
+    { k: 'p', t: '<b>1 · duplicate จาก master แล้ววาง Design Spec</b> Designer วาง frame design จริงใน column Design Spec เอง ระบบไม่วางให้ ส่วน column Production ระบบวางภาพ build ให้ในขั้นลงผล' },
     { k: 'img', src: 'IMG_BOARD_SRC', alt: 'Board Design QA เปล่า: แถบซ้าย Design Review, column Design Spec, Production และ card ตัวอย่าง 3 ระดับ',
       cap: 'แถบซ้าย = ข้อมูลรอบตรวจ, <b>Design Spec</b> = งานออกแบบ, <b>Production</b> = ภาพจริง, ขวาสุด = รายการ issue' },
     { k: 'warn', t: '<b>ห้ามเปลี่ยนชื่อ column</b> ใช้ <code>Production</code> เสมอแม้ตรวจบน preprod หรือ staging และระบุ environment ที่แถบซ้าย มิฉะนั้น AI จะหา column ไม่พบ' },
@@ -160,7 +160,7 @@ DATA.topic.tpl = {
       cap: 'Board ที่ duplicate มาใหม่' },
     { k: 'table', head: ['ส่วน', 'เนื้อหา'], rows: [
       ['แถบซ้าย', 'product · ชื่อหน้า · environment · platform · ขนาดจอ · ตัวนับ severity'],
-      ['<code>Design Spec</code>', 'Frame งานออกแบบจาก Figma'],
+      ['<code>Design Spec</code>', 'Frame งานออกแบบจาก Figma · <b>Designer วางเองก่อนเริ่ม</b>'],
       ['<code>Production</code>', 'ภาพจริงที่ capture มา + กรอบ <code>zone</code> ในจุดที่ผิด'],
       ['<code>Issue List</code>', 'Card <code>Comment</code> เรียงต่อกัน 1 ใบ = 1 issue']
     ]},

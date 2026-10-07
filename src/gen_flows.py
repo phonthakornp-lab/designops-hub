@@ -107,7 +107,7 @@ b = ''.join([
     curve(mr(M1), ml(RV), 'b'), curve(mr(M2), ml(RV), 'o'),
     line(f'M{RV[0]+W//2} {RV[1]+H} V{OUT[1]-4}'),
     label(RV[0]+W//2+12, (RV[1]+H+OUT[1])//2+4, 'เขียนหลังได้รับการยืนยัน', '', 'start'),
-    node(A[0], A[1], 'frame', 'blue', 'URL + board เปล่า', 'หน้าที่เปิดด้วย URL ได้'),
+    node(A[0], A[1], 'frame', 'blue', 'URL + board', 'มี Design Spec แล้ว'),
     node(B[0], B[1], 'tag', 'orange', 'Board ที่มีหมุด', 'ทดสอบใช้งานจริง'),
     node(Q[0], Q[1], 'check', 'green', 'ระบบเลือกแบบ', 'ยืนยันก่อนเริ่มทุกครั้ง', '/qa-check'),
     node(M1[0], M1[1], 'frame', 'blue', 'แบบ 1 · AI เทียบ', 'Capture + ดึง spec', tag='AI หา issue'),

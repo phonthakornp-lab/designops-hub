@@ -199,7 +199,7 @@ var DATA = {
         { m: 'จัด bug list ที่มีอยู่', d: 'เติม severity + หมวด + รวมรายการซ้ำ + เรียงลำดับ', w: 'แสดงผลใน chat', wk: 'read' }
       ],
       prep: [
-        { t: 'Board QA ใน Figma', w: 'duplicate จากแม่แบบ · 1 frame = 1 หน้า = 1 platform' },
+        { t: 'Board QA ใน Figma', w: 'duplicate จากแม่แบบและวาง Design Spec · 1 frame = 1 หน้า = 1 platform' },
         { t: 'Sheet + tab ของ platform', w: '1 tab = 1 platform · ระบบแจ้งบัญชีที่ใช้' },
         { t: 'URL หน้าจริง หรือหมุดที่วางไว้', w: 'หากมีหมุดแล้ว ใช้ mode ย้ายหมุด' },
         { t: 'build / environment ที่ทดสอบ', w: 'จำเป็นสำหรับ re-test' }
