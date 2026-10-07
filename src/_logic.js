@@ -60,7 +60,7 @@ function toolCard(key) {
       return '<span class="tmode' + (m.wk === 'write' ? ' w' : '') + '">' + esc(m.m) + (m.wk === 'write' ? ' ✎' : '') + '</span>';
     }).join('') + '</div>' +
     '<div class="tsc">' + (t.modes.filter(function (m) { return m.wk === 'write'; }).length
-      ? '✎ = โหมดที่เขียนของจริง · กดดูรายละเอียดก่อนใช้' : 'ไม่มีโหมดไหนเขียนของจริง') + '</div>' +
+      ? '✎ = โหมดที่แก้ไขไฟล์จริง' : 'ไม่มีโหมดที่แก้ไขไฟล์จริง') + '</div>' +
     '</button>';
 }
 
@@ -85,19 +85,19 @@ function viewHome() {
   }).join('');
 
   return '<div class="inner">' +
-    head({ icon: 'home', title: 'DesignOps', tag: 'playbook · ของอ้างอิง · ทางเข้าต้นฉบับ', color: '',
-           lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม' }) +
-    '<div class="block"><h2 class="sec">งานหนึ่งชิ้นผ่านอะไรบ้าง</h2>' +
-      '<p class="sec-lede">กดการ์ดเพื่อไปหน้านั้น · เส้นประม่วง = ทำเมื่อจำเป็น · เส้นประฟ้า = ย้อนกลับไปแก้ต้นทาง</p>' +
+    head({ icon: 'home', title: 'DesignOps', tag: 'playbook · เอกสารอ้างอิง · ลิงก์ต้นฉบับ', color: '',
+           lede: 'ศูนย์รวมแนวทางและเอกสารของ DesignOps สำหรับทีม' }) +
+    '<div class="block"><h2 class="sec">ขั้นตอนของงาน</h2>' +
+      '<p class="sec-lede">เส้นประม่วง = ทำเมื่อจำเป็น · เส้นประฟ้า = ย้อนกลับไปแก้ต้นทาง</p>' +
       '<div class="flowbox">' + FLOW_HOME + '</div></div>' +
     '<div class="block"><h2 class="sec">Playbook</h2>' +
-    '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ</p>' +
+    '<p class="sec-lede">เลือกหัวข้อที่ต้องการ</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
     '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
-      '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
+      '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง</p>' +
       '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
-        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '5–30 นาที ตามงานที่ทำ' }, 'tools') + '</div></div>' +
-    '<div class="note">การ์ด <b>→</b> คือหน้าในเว็บนี้ · <b>↗</b> คือออกไปต้นฉบับข้างนอก</div>' +
+        t: 'ตั้งค่าครั้งแรก', d: 'สิ่งที่ต้องติดตั้ง · คำสั่ง · ทางเลือก', up: '5–30 นาที ตามบทบาท' }, 'tools') + '</div></div>' +
+    '<div class="note"><b>→</b> หน้าภายในเว็บไซต์ · <b>↗</b> ลิงก์ไปยังต้นฉบับภายนอก</div>' +
     foot() + '</div>';
 }
 
@@ -107,7 +107,7 @@ function viewSec(id) {
   if (!s) return viewHome();
   var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span><span>' + esc(s.title) + '</span></div>';
   var body = head(s, crumb) +
-    (s.skill ? '<p class="sec-lede" style="margin-top:10px">เรียกด้วย <code>/' + esc(s.skill) + '</code> ใน Claude</p>' : '');
+    (s.skill ? '<p class="sec-lede" style="margin-top:10px">ใช้คำสั่ง <code>/' + esc(s.skill) + '</code> ใน Claude</p>' : '');
   if (s.lock) body += lockBox(s.lock);
   if (s.summary) {
     body += '<div class="stats" style="margin-top:26px">' + s.summary.map(function (x, i) {
@@ -117,7 +117,7 @@ function viewSec(id) {
   }
 
   if (s.topics.length) {
-    body += '<div class="block"><h2 class="sec">' + esc(s.docsHd || 'เรื่องในหมวดนี้') + '</h2>' +
+    body += '<div class="block"><h2 class="sec">' + esc(s.docsHd || 'หัวข้อในหมวดนี้') + '</h2>' +
       '<p class="sec-lede">' + esc(s.docsLede || '') + '</p>' +
       '<div class="cardgrid">' + s.topics.map(function (t) { return topicCard(t, id); }).join('') + '</div></div>';
   }
@@ -140,11 +140,11 @@ function viewTopic(secId, topId) {
   var body = head(t, crumb);
 
   if (t.start && t.start.length) {
-    body += '<div class="block first"><h2 class="sec">คุณกำลังจะทำอะไร</h2>' +
-      '<p class="sec-lede">เลือกข้อที่ตรงกับสถานการณ์</p>' +
+    body += '<div class="block first"><h2 class="sec">เริ่มต้นใช้งาน</h2>' +
+      '<p class="sec-lede">เลือกกรณีที่ตรงกับงาน</p>' +
       '<div class="entries">' + t.start.map(function (e) {
         return '<a class="entry" href="' + e.to + '" target="_blank" rel="noopener">' +
-          '<div class="c">ถ้าคุณ</div><div class="q">' + esc(e.q) + '</div>' +
+          '<div class="c">กรณี</div><div class="q">' + esc(e.q) + '</div>' +
           '<div class="a">' + esc(e.a) + '</div><div class="go">' + esc(e.label) + ' ↗</div></a>';
       }).join('') + '</div></div>';
   }
@@ -158,7 +158,7 @@ function viewTopic(secId, topId) {
 
   if (t.records && t.records.length) {
     body += '<div class="block"><h2 class="sec">License Record รายฟอนต์</h2>' +
-      '<p class="sec-lede">1 ใบ = 1 license · สถานะในนี้ต้องตรงกับในทะเบียนกลาง</p>' +
+      '<p class="sec-lede">1 ใบ = 1 license · สถานะต้องตรงกับทะเบียนกลาง</p>' +
       '<div class="items">' + t.records.map(function (r) {
         return '<a class="item" href="' + r.to + '" target="_blank" rel="noopener"><span class="arw">↗</span>' +
           '<div class="t">' + esc(r.t) + ' <span style="font-weight:400;font-size:.85rem">' + esc(r.st) + '</span></div>' +
@@ -171,8 +171,8 @@ function viewTopic(secId, topId) {
   if (t.blocks) body += '<div class="prose">' + blocks(t.blocks) + '</div>';
 
   if (t.legend && t.legend.length) {
-    body += '<div class="block"><h2 class="sec">สถานะหมายความว่าอะไร</h2>' +
-      '<p class="sec-lede">คำชุดเดียวกันนี้ใช้ทั้งในทะเบียนกลางและในใบรายฟอนต์</p>' +
+    body += '<div class="block"><h2 class="sec">ความหมายของสถานะ</h2>' +
+      '<p class="sec-lede">ใช้ทั้งในทะเบียนกลางและ License Record</p>' +
       '<div class="legend">' + t.legend.map(function (l) {
         return '<div class="lg"><div class="s">' + esc(l.s) + '</div><div class="x">' + esc(l.x) + '</div></div>';
       }).join('') + '</div></div>';
@@ -195,24 +195,24 @@ function viewTools() {
     var writes = t.modes.filter(function (m) { return m.wk === 'write'; }).length;
     return topicCard({
       id: k, icon: t.icon, color: t.color, t: '/' + t.cmd, d: t.title + ' — ' + t.tag,
-      up: t.modes.length + ' โหมด' + (writes ? ' · ' + writes + ' โหมดเขียนของจริง' : ''),
-      wait: t.proof.ok ? null : 'ยังไม่เคยรัน'
+      up: t.modes.length + ' โหมด' + (writes ? ' · ' + writes + ' โหมดแก้ไขไฟล์จริง' : ''),
+      wait: t.proof.ok ? null : 'ยังไม่เคยใช้งาน'
     }, 'tools');
   }).join('');
 
   return '<div class="inner">' +
     head({ icon: 'wrench', title: 'เครื่องมือ', tag: 'คำสั่งที่พิมพ์ใน Claude', color: '',
-           lede: 'คำสั่งที่พิมพ์แล้วมันทำงานกับไฟล์จริงให้ · ทุกตัวบอกว่าโหมดไหนเขียนของจริง' }) +
-    '<div class="block first"><h2 class="sec">ใช้ตัวไหนตอนไหน</h2>' +
-      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น · กดการ์ดเพื่อดูรายละเอียดคำสั่ง</p>' +
+           lede: 'คำสั่งที่ทำงานกับไฟล์จริง แต่ละคำสั่งระบุโหมดที่แก้ไขไฟล์' }) +
+    '<div class="block first"><h2 class="sec">ลำดับการใช้งาน</h2>' +
+      '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น</p>' +
       '<div class="flowbox">' + FLOW_TOOLS + '</div></div>' +
     '<div class="block"><h2 class="sec">เครื่องมือทั้งหมด</h2>' +
-      '<p class="sec-lede">กดดูว่าต้องเตรียมอะไร และมันแตะอะไร</p>' +
+      '<p class="sec-lede">สิ่งที่ต้องเตรียมและขอบเขตการแก้ไขของแต่ละคำสั่ง</p>' +
       '<div class="cardgrid">' + cards + '</div></div>' +
     '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
-      '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
+      '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง</p>' +
       '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
-        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '5–30 นาที ตามงานที่ทำ' }, 'tools') + '</div></div>' +
+        t: 'ตั้งค่าครั้งแรก', d: 'สิ่งที่ต้องติดตั้ง · คำสั่ง · ทางเลือก', up: '5–30 นาที ตามบทบาท' }, 'tools') + '</div></div>' +
     foot() + '</div>';
 }
 
@@ -223,7 +223,7 @@ function viewTool(key) {
   var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
     '<button data-go="tools">เครื่องมือ</button><span class="sep">/</span><span>/' + esc(t.cmd) + '</span></div>';
 
-  var WK = { read: ['อ่านอย่างเดียว', 'read'], write: ['เขียนของจริง', 'write'], safe: ['ไม่แตะของจริง', 'safe'] };
+  var WK = { read: ['อ่านอย่างเดียว', 'read'], write: ['แก้ไขไฟล์จริง', 'write'], safe: ['ไม่แก้ไขไฟล์จริง', 'safe'] };
   var modes = t.modes.map(function (m) {
     var w = WK[m.wk] || WK.safe;
     return '<div class="mrow ' + w[1] + '">' +
@@ -247,26 +247,26 @@ function viewTool(key) {
     '<p class="lede">' + esc(t.lede) + '</p>' +
 
     '<div class="kv2">' +
-      '<div class="kv"><div class="kvl">ใช้เมื่อไหร่</div><div class="kvv">' + esc(t.when) + '</div></div>' +
-      '<div class="kv"><div class="kvl">เริ่มยังไง</div><div class="kvv">' + esc(t.type) + '</div></div>' +
+      '<div class="kv"><div class="kvl">ช่วงเวลาที่ใช้</div><div class="kvv">' + esc(t.when) + '</div></div>' +
+      '<div class="kv"><div class="kvl">วิธีเริ่มใช้งาน</div><div class="kvv">' + esc(t.type) + '</div></div>' +
     '</div>' +
 
     '<div class="proof ' + (t.proof.ok ? 'ok' : 'no') + '">' +
       '<div class="pl">' + (t.proof.ok ? '✅ ' : '⬜ ') + esc(t.proof.t) + '</div>' +
       '<div class="pd">' + esc(t.proof.d) + '</div></div>' +
 
-    '<div class="block"><h2 class="sec">โหมด และมันแตะอะไร</h2>' +
-      '<p class="sec-lede">ดูคอลัมน์ขวาก่อนใช้</p>' +
+    '<div class="block"><h2 class="sec">โหมดและขอบเขตการแก้ไข</h2>' +
+      '<p class="sec-lede">ตรวจสอบคอลัมน์ขวาก่อนใช้งาน</p>' +
       '<div class="modes">' + modes + '</div></div>' +
 
-    '<div class="block"><h2 class="sec">ต้องเตรียมอะไร</h2>' +
-      '<p class="sec-lede">ระบบเช็คเองก่อน แล้วขอเฉพาะที่ขาด</p>' +
+    '<div class="block"><h2 class="sec">สิ่งที่ต้องเตรียม</h2>' +
+      '<p class="sec-lede">ระบบตรวจสอบก่อน และขอเฉพาะข้อมูลที่ขาด</p>' +
       '<div class="preps">' + prep + '</div></div>' +
 
-    '<div class="block"><h2 class="sec">กฎกันพลาด</h2>' +
-      '<p class="sec-lede">ระบบบังคับตัวเองตามนี้</p>' +
+    '<div class="block"><h2 class="sec">ข้อกำหนด</h2>' +
+      '<p class="sec-lede">ระบบปฏิบัติตามข้อกำหนดนี้</p>' +
       '<ul class="rules">' + rules + '</ul>' +
-      (t.notdo ? '<div class="note" style="margin-top:16px"><b>สิ่งที่มันจะไม่ทำ</b> — ' + esc(t.notdo) + '</div>' : '') +
+      (t.notdo ? '<div class="note" style="margin-top:16px"><b>สิ่งที่ระบบไม่ทำ</b> — ' + esc(t.notdo) + '</div>' : '') +
     '</div>' +
     foot() + '</div>';
 }
@@ -274,7 +274,7 @@ function viewTool(key) {
 function foot() {
   return '<footer>DesignOps · SkillLane UX/UI — ปรับปรุง ' + esc(DATA.updated) +
     ' · <a href="' + DATA.roadmap + '" target="_blank" rel="noopener">Roadmap 2026 ↗</a>' +
-    ' · เจอลิงก์เสียหรือของที่เก่าไปแล้ว ทักได้เลย จะได้แก้ที่ต้นทาง</footer>';
+    ' · หากพบลิงก์เสียหรือข้อมูลไม่เป็นปัจจุบัน กรุณาแจ้ง DesignOps</footer>';
 }
 
 function render() {

@@ -79,17 +79,17 @@ b = ''.join([
     label((X[0]+W+X[1])//2, my-10, 'ออกแบบเสร็จ'), label((X[1]+W+X[2])//2, my-10, 'Ready for Dev'), label((X[2]+W+X[3])//2, my-10, 'ขึ้น preprod'),
     line(f'M{X[0]+W//2} {Y} C{X[0]+W//2} {R[1]+80} {R[0]-50} {R[1]+H//2} {R[0]-4} {R[1]+H//2}', 'p', True),
     line(f'M{R[0]+W} {R[1]+H//2} C{X[1]+W//2+50} {R[1]+H//2} {X[1]+W//2} {R[1]+80} {X[1]+W//2} {Y-4}', 'p', True),
-    label(R[0]+W+20, R[1]+26, 'ทำเมื่อมี decision ที่คนจะถาม', 'lbP', 'start'),
+    label(R[0]+W+20, R[1]+26, 'ทำเมื่อมี design decision ที่ต้องอธิบาย', 'lbP', 'start'),
     line(f'M{S[0]+W//2} {S[1]} V{Y+H+4}', 'b'),
     label(S[0]+W//2+12, (S[1]+Y+H)//2+4, 'ใช้ component + token', 'lbB', 'start'),
     line(f'M{O[0]} {O[1]+H//2} H{S[0]+W+4}', 'b', True),
-    pill(mid, O[1]+H//2, 'bug ที่มาจาก component → แก้ที่ DS ทีเดียว', w=320),
+    pill(mid, O[1]+H//2, 'issue ที่มาจาก component → แก้ที่ Design System', w=340),
     node(X[0], Y, 'user', 'ink', 'ออกแบบ', 'งานในไฟล์ Figma'),
     node(R[0], R[1], 'target', 'purple', 'Design Rationale', 'เหตุผล + หลักฐาน', '/rationale', '#/dv/dvrat'),
     node(X[1], Y, 'send', 'orange', 'Deliver to Dev', 'เช็ค 7 ข้อก่อนส่ง', '/deliver-kit', '#/dv'),
-    node(X[2], Y, 'code', 'gray', 'Dev ทำ', 'staging / preprod'),
-    node(X[3], Y, 'check', 'green', 'Design QA', 'เทียบของจริงกับแบบ', '/qa-check', '#/qa'),
-    node(O[0], O[1], 'table', 'green', 'บอร์ด + Sheet', 'issue ให้ dev แก้'),
+    node(X[2], Y, 'code', 'gray', 'Dev พัฒนา', 'staging / preprod'),
+    node(X[3], Y, 'check', 'green', 'Design QA', 'เทียบ build กับ design', '/qa-check', '#/qa'),
+    node(O[0], O[1], 'table', 'green', 'บอร์ด + Sheet', 'รายการ issue สำหรับ dev'),
     node(S[0], S[1], 'palette', 'blue', 'Design System', 'component · token', '/ds-audit', '#/ds'),
 ])
 F['HOME'] = svg('fh', 1084, 470, 'วงจรงาน: ออกแบบ ไป Deliver to Dev ไป dev ทำ ไป Design QA แล้วย้อนกลับไปแก้ที่ Design System', b)
@@ -106,22 +106,22 @@ b = ''.join([
     curve(mr(Q), ml(M1), 'b'), curve(mr(Q), ml(M2), 'o'),
     curve(mr(M1), ml(RV), 'b'), curve(mr(M2), ml(RV), 'o'),
     line(f'M{RV[0]+W//2} {RV[1]+H} V{OUT[1]-4}'),
-    label(RV[0]+W//2+12, (RV[1]+H+OUT[1])//2+4, 'ยืนยันแล้วค่อยเขียน', '', 'start'),
+    label(RV[0]+W//2+12, (RV[1]+H+OUT[1])//2+4, 'เขียนหลังได้รับการยืนยัน', '', 'start'),
     node(A[0], A[1], 'frame', 'blue', 'URL + บอร์ดเปล่า', 'หน้าที่เปิดด้วย URL ได้'),
-    node(B[0], B[1], 'tag', 'orange', 'บอร์ดที่วางหมุดแล้ว', 'ต้องกดใช้จริงถึงเจอ'),
-    node(Q[0], Q[1], 'check', 'green', 'เลือกแบบให้เอง', 'ถามยืนยันก่อนเสมอ', '/qa-check'),
+    node(B[0], B[1], 'tag', 'orange', 'บอร์ดที่วางหมุดแล้ว', 'ต้องทดสอบการใช้งานจริง'),
+    node(Q[0], Q[1], 'check', 'green', 'ระบบเลือกแบบ', 'ยืนยันก่อนเริ่มทุกครั้ง', '/qa-check'),
     node(M1[0], M1[1], 'frame', 'blue', 'แบบ 1 · AI เทียบ', 'แคปเต็มหน้า + ดึง spec', tag='AI หา issue'),
-    node(M2[0], M2[1], 'tag', 'orange', 'แบบ 2 · ย้ายหมุด', 'อ่านหมุดที่คุณวาง', tag='คุณหา issue'),
-    node(RV[0], RV[1], 'user', 'purple', 'คุณตรวจทาน', 'ตัดข้อที่ตั้งใจออก'),
+    node(M2[0], M2[1], 'tag', 'orange', 'แบบ 2 · ย้ายหมุด', 'อ่านหมุดจาก board', tag='Designer หา issue'),
+    node(RV[0], RV[1], 'user', 'purple', 'Designer ตรวจทาน', 'ตัดข้อที่เป็น design decision'),
     node(OUT[0], OUT[1], 'table', 'green', 'บอร์ด + Sheet', 'เลขตรงกันทุกแถว'),
 ])
-F['QA'] = svg('fq', 1084, 450, 'Design QA: ส่ง URL หรือบอร์ดที่มีหมุด แล้ว /qa-check เลือกแบบ 1 หรือแบบ 2 คุณตรวจทาน แล้วลงบอร์ดและ Sheet', b)
+F['QA'] = svg('fq', 1084, 450, 'Design QA: ส่ง URL หรือบอร์ดที่มีหมุด แล้ว /qa-check เลือกแบบ 1 หรือแบบ 2 Designer ตรวจทาน แล้วลงบอร์ดและ Sheet', b)
 
 # ---------- Deliver to Dev: 7 ขั้น ----------
 SW, SH, G = 140, 100, 22
 xs = [24 + i * (SW + G) for i in range(7)]; Y = 96
-steps = [('ตรวจไฟล์', 'ผลเป็นตารางในแชท'), ('แก้ให้', 'ตามข้อที่คุณเลือก'), ('สร้างหน้า Deliver', 'Audit Result'),
-         ('ตอบคำถาม', 'ในแชท สั้นๆ'), ('ติ๊ก Checklist', '7 ข้อ'), ('กรอก Form', 'dev คนไหนรับ'), ('เปลี่ยน Status', 'Ready for Dev')]
+steps = [('ตรวจไฟล์', 'ผลเป็นตารางในแชท'), ('แก้ไข', 'เฉพาะข้อที่เลือก'), ('สร้างหน้า Deliver', 'Audit Result'),
+         ('ตอบคำถาม', 'ตอบในแชท'), ('ติ๊ก Checklist', '7 ข้อ'), ('กรอก Form', 'ผู้ออกแบบ · ผู้รับงาน'), ('เปลี่ยน Status', 'Ready for Dev')]
 def snode(i, x, y, who):
     col = 'cta' if who == 'ระบบ' else 'orange'
     t, ink = C[col]
@@ -137,48 +137,48 @@ b = ''
 sys_w = xs[2] + SW - xs[0] + 24; usr_x = xs[3] - 12; usr_w = xs[6] + SW - xs[3] + 24
 b += f'<rect x="{xs[0]-12}" y="40" width="{sys_w}" height="{SH+80}" rx="20" fill="#F2FBFD" />'
 b += f'<rect x="{usr_x}" y="40" width="{usr_w}" height="{SH+80}" rx="20" fill="#FDF4EF" />'
-b += label(xs[0]+4, 70, 'ระบบทำ', 'lbC', 'start') + label(usr_x+16, 70, 'คุณทำ', 'lbO', 'start')
+b += label(xs[0]+4, 70, 'ระบบทำ', 'lbC', 'start') + label(usr_x+16, 70, 'Designer ทำ', 'lbO', 'start')
 for i in range(6):
     b += line(f'M{xs[i]+SW} {Y+SH//2} H{xs[i+1]-4}')
 b += line(f'M{xs[0]+SW//2} {Y+SH} C{xs[0]+SW//2} {Y+SH+60} {xs[2]+SW//2} {Y+SH+60} {xs[2]+SW//2} {Y+SH+4}', 'c', True)
 b += pill(xs[1]+SW//2, Y+SH+46, 'ข้ามขั้น 2 ได้', 'lbC', 120)
 for i in range(7):
-    b += snode(i, xs[i], Y, 'ระบบ' if i < 3 else 'คุณ')
-b += pill(xs[5]+SW+G//2, Y+SH+50, 'ปิดแชทกลางทาง แล้วกลับมาทำต่อได้', 'lbO', 270)
-F['DV'] = svg('fd', 24 + 7 * SW + 6 * G + 24, 300, 'Deliver Kit 7 ขั้น: ระบบทำขั้น 1 ถึง 3 คุณทำขั้น 4 ถึง 7 ข้ามขั้น 2 ได้', b, 900)
+    b += snode(i, xs[i], Y, 'ระบบ' if i < 3 else 'Designer')
+b += pill(xs[5]+SW+G//2, Y+SH+50, 'หยุดกลางทางและกลับมาทำต่อได้', 'lbO', 250)
+F['DV'] = svg('fd', 24 + 7 * SW + 6 * G + 24, 300, 'Deliver Kit 7 ขั้น: ระบบทำขั้น 1 ถึง 3 Designer ทำขั้น 4 ถึง 7 ข้ามขั้น 2 ได้', b, 900)
 
 # ---------- Design Rationale: 4 ขั้น ----------
 X = [24, 304, 584, 864]; Y = 40
 b = ''.join([line(f'M{X[i]+W} {Y+H//2} H{X[i+1]-4}') for i in range(3)])
 b += line(f'M{X[3]+W//2} {Y+H} V{Y+H+62}')
 b += line(f'M{X[2]+W//2} {Y+H} C{X[2]+W//2} {Y+H+52} {X[1]+W+70} {Y+H+66+H//2} {X[1]+W+4} {Y+H+66+H//2}', 'p', True)
-b += label(X[2]+W//2-14, Y+H+40, 'หลักฐานค้าน', 'lbP', 'end')
+b += label(X[2]+W//2-14, Y+H+40, 'มีหลักฐานโต้แย้ง', 'lbP', 'end')
 b += ''.join([
     node(X[0], Y, 'book', 'cta', 'อ่านบริบท', 'Figma · Jira · persona', tag='ระบบ'),
-    node(X[1], Y, 'target', 'orange', 'เลือก decision', '3–6 ข้อที่คนจะถาม', tag='คุณ'),
-    node(X[2], Y, 'user', 'orange', 'ยืนยันเหตุผล', 'ไม่ยืนยัน = ไม่ลงบอร์ด', tag='คุณ'),
+    node(X[1], Y, 'target', 'orange', 'เลือก decision', '3–6 ข้อต่อหน้าจอ', tag='Designer'),
+    node(X[2], Y, 'user', 'orange', 'ยืนยันเหตุผล', 'ลงบอร์ดเฉพาะข้อที่ยืนยัน', tag='Designer'),
     node(X[3], Y, 'tag', 'cta', 'หลักฐาน + วางบอร์ด', 'ป้าย Source 7 แบบ', tag='ระบบ'),
     node(X[3], Y+H+66, 'frame', 'purple', 'บอร์ดในไฟล์ Figma', 'หน้าจอ + หมุด + การ์ด'),
-    node(X[1], Y+H+66, 'palette', 'purple', 'กลับไปปรับแบบ', 'หรือยกไปคุยตอน review', dashed=True),
+    node(X[1], Y+H+66, 'palette', 'purple', 'ปรับ design', 'หรือนำไปหารือใน review', dashed=True),
 ])
 b = b.replace('tag="', 'tag="')
-F['RAT'] = svg('fr', 1084, 340, 'Design Rationale 4 ขั้น: ระบบอ่านบริบท คุณเลือก decision คุณยืนยันเหตุผล ระบบใส่หลักฐานและวางบอร์ด', b)
+F['RAT'] = svg('fr', 1084, 340, 'Design Rationale 4 ขั้น: ระบบอ่านบริบท Designer เลือก decision และยืนยันเหตุผล ระบบใส่หลักฐานและวางบอร์ด', b)
 
 # ---------- เครื่องมือ: ลำดับคำสั่ง ----------
 GX, GY, GW, GH = 24, 50, 456, 170
 N1 = (48, 90); N2 = (260, 90); D = (584, 90); QA2 = (864, 90)
 b = f'<rect x="{GX}" y="{GY}" width="{GW}" height="{GH}" rx="20" fill="#FDF4EF" stroke="#DF6B3C" stroke-dasharray="6 6"/>'
 b += f'<rect x="{GX+20}" y="{GY-14}" width="300" height="28" rx="14" fill="#DF6B3C"/>'
-b += f'<text x="{GX+170}" y="{GY+5}" class="tg" text-anchor="middle">/deliver-kit เรียก 2 ตัวนี้ให้เอง</text>'
+b += f'<text x="{GX+170}" y="{GY+5}" class="tg" text-anchor="middle">/deliver-kit เรียกใช้ทั้งสองคำสั่ง</text>'
 b += line(f'M{N1[0]+W-24} {N1[1]+H//2} H{N2[0]-4}')
 b += line(f'M{GX+GW} {N2[1]+H//2} H{D[0]-4}')
 b += line(f'M{D[0]+W} {D[1]+H//2} H{QA2[0]-4}')
 b += label((GX+GW+D[0])//2, N2[1]+H//2-10, 'Ready for Dev')
 b += ''.join([
     node(N1[0], N1[1], 'wrench', 'blue', '/ds-audit', 'ตรวจ + แก้ไฟล์', w=172, href='#/tools/ds-audit'),
-    node(N2[0], N2[1], 'check', 'orange', '/handoff', 'พร้อมส่งไหม', w=196, href='#/tools/handoff'),
-    node(D[0], D[1], 'code', 'gray', 'Dev ทำ', 'staging / preprod'),
-    node(QA2[0], QA2[1], 'check', 'green', '/qa-check', 'เทียบของจริง', href='#/tools/qa-check'),
+    node(N2[0], N2[1], 'check', 'orange', '/handoff', 'ตรวจความพร้อมส่ง', w=196, href='#/tools/handoff'),
+    node(D[0], D[1], 'code', 'gray', 'Dev พัฒนา', 'staging / preprod'),
+    node(QA2[0], QA2[1], 'check', 'green', '/qa-check', 'เทียบ build กับ design', href='#/tools/qa-check'),
 ])
 F['TOOLS'] = svg('ft', 1084, 250, 'ลำดับคำสั่ง: /deliver-kit เรียก /ds-audit และ /handoff ให้เอง จากนั้น dev ทำ แล้วใช้ /qa-check', b)
 

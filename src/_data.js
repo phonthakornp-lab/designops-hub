@@ -21,53 +21,53 @@ var DATA = {
 
   sec: {
     ds: {
-      color: 'blue', icon: 'palette', title: 'Design System', tag: 'token · naming · ลิขสิทธิ์',
-      lede: 'เอกสารตัวจริงอยู่ใน design-brain ทั้งหมด — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
+      color: 'blue', icon: 'palette', title: 'Design System', tag: 'token · naming · license',
+      lede: 'เอกสารฉบับปัจจุบันอยู่ใน design-brain แหล่งอื่นเป็นฉบับเก่า',
       docsHd: 'เอกสารอ้างอิง',
-      docsLede: 'การ์ดที่ ↗ ไป design-brain ต้องเป็นสมาชิก GitHub org ถึงจะเปิดได้ — เปิดไม่ได้ก็ยังเห็นได้ว่ามีอะไรบ้างและทวนล่าสุดเมื่อไหร่',
+      docsLede: 'ลิงก์ design-brain เปิดได้เฉพาะสมาชิก GitHub org',
       topics: [
-        { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน · 5 ไฟล์', ext: W + 'design-system.md', up: '3 ส.ค. 2026' },
-        { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรเป็น', ext: WD + 'foundation.md', up: '3 ส.ค. 2026' },
-        { id: 'golden', icon: 'badge', color: 'green', t: 'Golden Set', d: 'ค่าที่เชื่อได้ แยกตาม product', up: '4 product' },
-        { id: 'token', icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'ตั้งชื่อ token ยังไง', up: '3 เอกสาร' },
-        { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียนลิขสิทธิ์ฟอนต์', up: '8 รายการ' },
-        { icon: 'clip', color: 'orange', t: 'Governance', d: 'ใครแก้ DS ได้ · ขั้นตอน publish', ext: W + 'ds-governance.md', up: '15 ก.ค. 2026' },
-        { icon: 'target', color: 'purple', t: 'กติกา AI', d: 'AI ทำอะไรได้แค่ไหน', ext: WD + 'ai-rules.md', up: '20 ก.ค. 2026' }
+        { icon: 'frame', color: 'blue', t: 'ตำแหน่งไฟล์ Design System', d: 'Design System ที่แต่ละ product ใช้ · 5 ไฟล์', ext: W + 'design-system.md', up: '3 ส.ค. 2026' },
+        { icon: 'palette', color: 'green', t: 'Foundation ราย product', d: 'ค่าจริงที่ดึงจากไฟล์', ext: WD + 'foundation.md', up: '3 ส.ค. 2026' },
+        { id: 'golden', icon: 'badge', color: 'green', t: 'Golden Set', d: 'ค่าอ้างอิงที่ยืนยันแล้ว แยกตาม product', up: '4 product' },
+        { id: 'token', icon: 'ruler', color: 'blue', t: 'Token & Naming', d: 'หลักการตั้งชื่อ token', up: '3 เอกสาร' },
+        { id: 'font', icon: 'type', color: 'purple', t: 'Font License', d: 'ทะเบียน license ฟอนต์', up: '8 รายการ' },
+        { icon: 'clip', color: 'orange', t: 'Governance', d: 'สิทธิ์การแก้ไข Design System · ขั้นตอน publish', ext: W + 'ds-governance.md', up: '15 ก.ค. 2026' },
+        { icon: 'target', color: 'purple', t: 'แนวทางการใช้ AI', d: 'ขอบเขตงานที่ AI ทำได้', ext: WD + 'ai-rules.md', up: '20 ก.ค. 2026' }
       ],
       tools: ['ds-audit']
     },
     qa: {
-      color: 'green', icon: 'check', title: 'Design QA', tag: 'ตรวจของจริง · บันทึกจุดที่ไม่ตรง',
+      color: 'green', icon: 'check', title: 'Design QA', tag: 'ตรวจงานจริง · บันทึกจุดที่ไม่ตรง',
       skill: 'qa-check',
-      lede: 'ตรวจว่าของที่ Dev ทำออกมาตรงกับที่ออกแบบไว้ไหม แล้วบันทึกจุดที่ไม่ตรงไว้ที่เดียว',
+      lede: 'ตรวจงานที่ Dev พัฒนาเทียบกับ design และบันทึกจุดที่ไม่ตรงไว้ในที่เดียว',
       topics: [
-        { icon: 'book', color: 'green', t: 'Playbook', d: 'อ่านก่อนเริ่ม — 2 แบบ เลือกจากคำถามเดียว', ext: 'https://claude.ai/code/artifact/099d7d0d-4141-4f20-a59b-5df40f7b6c28', up: 'พร้อมใช้' },
-        { icon: 'frame', color: 'blue', t: 'บอร์ด QA (Figma)', d: 'แม่แบบบอร์ด — duplicate ไปใช้ 1 เฟรม = 1 หน้า', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma master' },
-        { icon: 'table', color: 'amber', t: 'Sheet รายงาน', d: 'แม่แบบตาราง issue 9 คอลัมน์ + แท็บ Onboarding ให้ Dev', ext: 'https://docs.google.com/spreadsheets/d/1Mj9MWa0rAjgmgeUjfh7E78C5T_h8MYWNzWVFw-H7zsk/edit', up: 'Google Sheet' },
-        { icon: 'tag', color: 'purple', t: 'ประเภท issue 9 หมวด', d: 'enum มาตรฐาน + ระดับความรุนแรง 3 ระดับ', ext: DB + '/blob/main/templates/qa-issue-types.md', up: 'design-brain' },
-        { icon: 'chart', color: 'orange', t: 'บทเรียนจาก B2C App', d: 'ผลจริง 139 รายการ — pattern ที่ควรกลับไปแก้ที่ต้นทาง', ext: 'https://skilllane.atlassian.net/browse/UXUI-1521', up: 'ปิด cycle 95.7%' }
+        { icon: 'book', color: 'green', t: 'Playbook', d: 'อ่านก่อนเริ่ม · มี 2 แนวทาง', ext: 'https://claude.ai/code/artifact/099d7d0d-4141-4f20-a59b-5df40f7b6c28', up: 'พร้อมใช้' },
+        { icon: 'frame', color: 'blue', t: 'บอร์ด QA (Figma)', d: 'แม่แบบบอร์ด · 1 เฟรม = 1 หน้า', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma master' },
+        { icon: 'table', color: 'amber', t: 'Sheet รายงาน', d: 'ตาราง issue 9 คอลัมน์ + แท็บ Onboarding', ext: 'https://docs.google.com/spreadsheets/d/1Mj9MWa0rAjgmgeUjfh7E78C5T_h8MYWNzWVFw-H7zsk/edit', up: 'Google Sheet' },
+        { icon: 'tag', color: 'purple', t: 'ประเภท issue 9 หมวด', d: 'หมวดมาตรฐาน + ความรุนแรง 3 ระดับ', ext: DB + '/blob/main/templates/qa-issue-types.md', up: 'design-brain' },
+        { icon: 'chart', color: 'orange', t: 'บทเรียนจาก B2C App', d: 'ผลจริง 139 รายการ · pattern ที่ควรแก้ที่ต้นทาง', ext: 'https://skilllane.atlassian.net/browse/UXUI-1521', up: 'ปิด cycle 95.7%' }
       ]
     },
     dv: {
-      color: 'orange', icon: 'send', title: 'Deliver to Dev', tag: 'ตรวจ → แก้ → ประกาศว่าพร้อม',
+      color: 'orange', icon: 'send', title: 'Deliver to Dev', tag: 'ตรวจ → แก้ไข → ยืนยันความพร้อม',
       skill: 'deliver-kit',
-      lede: 'คำสั่งเดียวพาทำจนจบ ระบบตรวจไฟล์ แก้ให้ และสร้างหน้า Deliver ในไฟล์ Figma ส่วน Checklist ฟอร์ม และสถานะ designer เป็นคนทำ',
+      lede: 'ระบบตรวจ แก้ไข และสร้างหน้า Deliver ใน Figma ส่วน Checklist ฟอร์ม และสถานะ Designer เป็นผู้ทำ',
       docsHd: 'เอกสารอ้างอิง',
       docsLede: '',
       topics: [
         { icon: 'folder', color: 'blue', t: 'Deliver Kit (Figma)', d: 'Checklist 7 ข้อ + ฟอร์ม + สถานะ', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish 28 ก.ย. 2026' },
-        { icon: 'doc', color: 'green', t: 'โครง handoff doc', d: 'หัวข้อที่เอกสารต้องมี', ext: 'https://github.com/uxui-skl/design-brain/blob/main/templates/handoff-doc.md', up: 'design-brain' },
-        { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'เหตุผลการออกแบบ ให้ dev ไม่ต้องเดา', wait: 'ยังไม่มีชิ้นตัวอย่าง' }
+        { icon: 'doc', color: 'green', t: 'โครงสร้าง handoff doc', d: 'หัวข้อที่เอกสารต้องมี', ext: 'https://github.com/uxui-skl/design-brain/blob/main/templates/handoff-doc.md', up: 'design-brain' },
+        { icon: 'target', color: 'purple', t: 'Design Rationale', d: 'เหตุผลการออกแบบสำหรับ Dev', wait: 'ยังไม่มีตัวอย่าง' }
       ],
       tools: ['deliver-kit', 'ds-audit', 'handoff']
     },
     role: {
-      color: '', icon: 'user', title: 'Role', tag: 'DesignOps ช่วยอะไรได้ · ขอยังไง',
-      lede: 'DesignOps เป็น pool กลาง support ทุกทีม ไม่ผูกกับ product ใดเป็นพิเศษ',
+      color: '', icon: 'user', title: 'Role', tag: 'ขอบเขตงาน DesignOps · ช่องทางการขอ',
+      lede: 'DesignOps เป็น pool กลางที่ support ทุกทีม ไม่ผูกกับ product ใดเป็นพิเศษ',
       lock: {
-        t: 'ยังไม่เปิด — กำลังตกลง',
-        d: 'ท่อน "ขอความช่วยเหลือยังไง" ยังไม่ได้ตัดสิน ถ้าเปิดตอนนี้คนอ่านจบแล้วก็ยังไม่รู้จะเริ่มยังไง',
-        todo: ['ตัดสินว่าทีมขอผ่านช่องทางไหน — เปิดการ์ด Jira, ทักตรง, หรือมีคิว', 'แล้วค่อยเขียนขอบเขตงาน 5 stage ประกอบ']
+        t: 'ยังไม่เปิดใช้ อยู่ระหว่างตกลง',
+        d: 'ยังไม่ได้กำหนดช่องทางการขอความช่วยเหลือ',
+        todo: ['กำหนดช่องทางการขอ: การ์ด Jira, ติดต่อโดยตรง หรือระบบคิว', 'เขียนขอบเขตงาน 5 stage ประกอบ']
       },
       topics: []
     }
@@ -76,39 +76,39 @@ var DATA = {
   topic: {
     golden: {
       parent: 'ds', color: 'green', icon: 'badge',
-      title: 'Golden Set', tag: 'ค่าที่เชื่อได้ · แยกตาม product',
-      lede: 'ชุดค่าที่ตรวจจากไฟล์จริงแล้วยืนยันว่าใช้อ้างอิงได้ — ถ้าค่าในงานไม่ตรงกับที่นี่ ให้เชื่อที่นี่',
+      title: 'Golden Set', tag: 'ค่าอ้างอิง · แยกตาม product',
+      lede: 'ค่าที่ตรวจจากไฟล์จริงแล้ว หากค่าในงานไม่ตรง ให้ยึดค่านี้',
       cards: [
         { icon: 'doc', color: 'green', t: 'LMS', d: 'ANT Design 5 · Seed → Map → Alias', ext: WD + 'golden-set-lms.md', up: '14 ก.ค. 2026' },
         { icon: 'doc', color: 'blue', t: 'B2C Web', d: 'MUI', ext: WD + 'golden-set-b2c.md', up: '13 ก.ค. 2026' },
-        { icon: 'doc', color: 'amber', t: 'Mica · NDLP + CBMS', d: 'MUI v5 — 2 product ใช้ไฟล์เดียวกัน', ext: WD + 'golden-set-mica.md', up: '13 ก.ค. 2026' },
-        { icon: 'doc', color: 'purple', t: 'NCBS + OLS', d: 'shadcn / Tailwind — OLS duplicate โครงจาก NCBS', ext: WD + 'golden-set-ncbs-ols.md', up: '14 ก.ค. 2026' }
+        { icon: 'doc', color: 'amber', t: 'Mica · NDLP + CBMS', d: 'MUI v5 · 2 product ใช้ไฟล์เดียวกัน', ext: WD + 'golden-set-mica.md', up: '13 ก.ค. 2026' },
+        { icon: 'doc', color: 'purple', t: 'NCBS + OLS', d: 'shadcn / Tailwind · OLS duplicate โครงสร้างจาก NCBS', ext: WD + 'golden-set-ncbs-ols.md', up: '14 ก.ค. 2026' }
       ]
     },
     token: {
       parent: 'ds', color: 'blue', icon: 'ruler',
-      title: 'Token & Naming', tag: 'โครงสร้าง · การตั้งชื่อ · 3 ค่าย',
-      lede: 'อ่านก่อนเพิ่ม token ใหม่ — ตั้งชื่อผิด convention แล้วแก้ทีหลังกระทบทุกไฟล์ที่ผูกไว้',
+      title: 'Token & Naming', tag: 'โครงสร้าง · naming · 3 แนวทาง',
+      lede: 'อ่านก่อนเพิ่ม token ใหม่ การแก้ naming ภายหลังกระทบทุกไฟล์ที่ผูกไว้',
       cards: [
-        { icon: 'ruler', color: 'blue', t: 'Naming Convention', d: 'ตั้งชื่อ token ยังไง แยกตาม 2 ค่าย (styles vs variables)', ext: WD + 'naming.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
-        { icon: 'layers', color: 'green', t: 'Token Baseline Standard', d: 'มาตรฐานกลางสำหรับ DS ที่ไม่ได้ base บน third-party — 3 ชั้น Foundation → Semantic → Component', ext: WD + 'token-baseline-standard.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
-        { icon: 'tag', color: 'amber', t: 'Third-party Token Reference', d: 'ANT / MUI / shadcn ตั้งชื่อกันยังไง — เปิดตอนจะเพิ่ม token ใหม่', ext: WD + 'third-party-token-reference.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' }
+        { icon: 'ruler', color: 'blue', t: 'Naming Convention', d: 'หลักการตั้งชื่อ token: styles และ variables', ext: WD + 'naming.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { icon: 'layers', color: 'green', t: 'Token Baseline Standard', d: 'มาตรฐาน 3 ชั้น สำหรับ Design System ที่ไม่ใช้ third-party', ext: WD + 'token-baseline-standard.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' },
+        { icon: 'tag', color: 'amber', t: 'Third-party Token Reference', d: 'naming ของ ANT / MUI / shadcn', ext: WD + 'third-party-token-reference.md', up: 'ทวนล่าสุด 3 ส.ค. 2026' }
       ]
     },
     font: {
       parent: 'ds', color: 'purple', icon: 'type',
-      title: 'Font License', tag: 'ทะเบียน · การรายงาน · ใบอนุญาต',
-      lede: 'บริษัทซื้อ font license มาแบบจำกัด — แต่ละใบระบุชัดว่าใช้กับ domain หรือ project ไหนได้บ้าง ใช้ผิดใบคือความเสี่ยงทางกฎหมายของบริษัท',
+      title: 'Font License', tag: 'ทะเบียน · การรายงาน · license',
+      lede: 'license แต่ละใบระบุ domain หรือ project ที่ใช้ได้ การใช้ผิดขอบเขตเป็นความเสี่ยงทางกฎหมาย',
       start: [
-        { q: 'จะใช้ฟอนต์ในโปรเจกต์ใหม่', a: 'เปิดทะเบียนดูก่อนว่าฟอนต์นั้น license ครอบคลุมงานของคุณไหม', to: CF + 'UT/database/3536453653', label: 'เปิดทะเบียน' },
-        { q: 'ใช้อยู่แล้วแต่ยังไม่ได้รายงาน', a: 'กรอกช่อง Used In ใน record ของฟอนต์นั้น — ทีม ชื่อโปรเจกต์ ประเภทงาน เจ้าของ', to: CF + 'UT/pages/3539763224/Font+Usage', label: 'อ่านคู่มือ 4 ขั้น' },
-        { q: 'จะเพิ่มฟอนต์ใหม่เข้าทะเบียน', a: 'ก๊อปแม่แบบไปกรอก อย่าสร้างหน้าเปล่าเอง โครงจะไม่ตรงกับใบอื่น', to: CF + 'UT/pages/3538059266/Master+Template+License+Record', label: 'เปิดแม่แบบ' }
+        { q: 'ใช้ฟอนต์ในโปรเจกต์ใหม่', a: 'ตรวจในทะเบียนว่า license ครอบคลุมงานหรือไม่', to: CF + 'UT/database/3536453653', label: 'เปิดทะเบียน' },
+        { q: 'ใช้ฟอนต์อยู่แล้วแต่ยังไม่ได้รายงาน', a: 'กรอกช่อง Used In: ทีม ชื่อโปรเจกต์ ประเภทงาน เจ้าของ', to: CF + 'UT/pages/3539763224/Font+Usage', label: 'อ่านคู่มือ 4 ขั้น' },
+        { q: 'เพิ่มฟอนต์ใหม่เข้าทะเบียน', a: 'คัดลอกแม่แบบเพื่อให้โครงสร้างตรงกับรายการอื่น', to: CF + 'UT/pages/3538059266/Master+Template+License+Record', label: 'เปิดแม่แบบ' }
       ],
       cards: [
-        { icon: 'table', color: 'purple', t: 'Inventory', d: 'ทะเบียนกลาง — มีฟอนต์อะไร สถานะไหน ใครใช้อยู่', ext: CF + 'UT/database/3536453653', up: '13 ก.ค. 2026' },
-        { icon: 'book', color: 'green', t: 'Font Usage', d: 'คู่มือรายงานการใช้ฟอนต์ 4 ขั้น สำหรับทุกคนในทีม', ext: CF + 'UT/pages/3539763224/Font+Usage', up: '30 เม.ย. 2026' },
-        { icon: 'clip', color: 'blue', t: 'Master Template', d: 'แม่แบบขึ้นทะเบียนฟอนต์ใหม่ — 1 ใบ = 1 license', ext: CF + 'UT/pages/3538059266/Master+Template+License+Record', up: '30 เม.ย. 2026' },
-        { icon: 'target', color: 'amber', t: 'Solutions Plan', d: 'ที่มาของงาน — กันความเสี่ยง + วางมาตรฐาน + ประเมินความคุ้มค่า', ext: CF + 'UT/pages/3536486409/Solutions+Plan+-+Font+License', up: '7 พ.ค. 2026' }
+        { icon: 'table', color: 'purple', t: 'Inventory', d: 'ทะเบียนกลาง: ฟอนต์ สถานะ และผู้ใช้งาน', ext: CF + 'UT/database/3536453653', up: '13 ก.ค. 2026' },
+        { icon: 'book', color: 'green', t: 'Font Usage', d: 'คู่มือรายงานการใช้ฟอนต์ 4 ขั้น', ext: CF + 'UT/pages/3539763224/Font+Usage', up: '30 เม.ย. 2026' },
+        { icon: 'clip', color: 'blue', t: 'Master Template', d: 'แม่แบบขึ้นทะเบียน · 1 ใบ = 1 license', ext: CF + 'UT/pages/3538059266/Master+Template+License+Record', up: '30 เม.ย. 2026' },
+        { icon: 'target', color: 'amber', t: 'Solutions Plan', d: 'ที่มา: ลดความเสี่ยง วางมาตรฐาน ประเมินความคุ้มค่า', ext: CF + 'UT/pages/3536486409/Solutions+Plan+-+Font+License', up: '7 พ.ค. 2026' }
       ],
       records: [
         { t: 'DB Heavent', w: '14 styles · Desktop Font · DB Designs', st: '🟡 Pending Review', up: '29 พ.ค. 2026', to: CF + 'UT/pages/3538288641/DB+Heavent+-+License+Record' },
@@ -117,128 +117,128 @@ var DATA = {
         { t: 'TF Lanna', w: '4 styles · FTPI (สหพันธ์อุตสาหกรรมการพิมพ์ไทย)', st: '🟡 Pending Review', up: '30 เม.ย. 2026', to: CF + 'UT/pages/3538288653/TF+Lanna+-+License+Record' }
       ],
       legend: [
-        { s: '🟢 Active', x: 'License มีผลอยู่ ครอบคลุม domain ที่ใช้งานครบ' },
-        { s: '🟡 Pending Review', x: 'รอตรวจรายละเอียด license ให้ครบ' },
-        { s: '🔴 Non-Compliant', x: 'ใช้เกินขอบเขต license — ต้องแก้ทันที' },
-        { s: '⚫ Expired', x: 'หมดอายุ — ต้องต่อหรือเปลี่ยนฟอนต์' }
+        { s: '🟢 Active', x: 'License มีผล ครอบคลุม domain ที่ใช้งาน' },
+        { s: '🟡 Pending Review', x: 'รอตรวจสอบรายละเอียด license' },
+        { s: '🔴 Non-Compliant', x: 'ใช้เกินขอบเขต license ต้องแก้ไขทันที' },
+        { s: '⚫ Expired', x: 'หมดอายุ ต้องต่ออายุหรือเปลี่ยนฟอนต์' }
       ],
-      note: 'คู่มือรายงาน (30 เม.ย.) ยังลิสต์ฟอนต์ไว้ 3 ตัว แต่ทะเบียนมี 4 แล้ว — <b>ThaiSans Neue ยังไม่ถูกเพิ่มในคู่มือ</b> ใครอ่านคู่มืออย่างเดียวจะไม่รู้ว่ามีตัวนี้'
+      note: 'คู่มือรายงาน (30 เม.ย.) ระบุฟอนต์ 3 รายการ ขณะที่ทะเบียนมี 4 รายการ <b>ThaiSans Neue ยังไม่อยู่ในคู่มือ</b>'
     }
   },
 
   toolChain: [
-    { cmd: 'deliver-kit', mode: 'พาเดินทั้ง flow', n: 'เรียกตัวเดียว ครอบ 2 ตัวถัดไป' },
-    { cmd: 'ds-audit', mode: 'หา hardcode', n: 'รู้ว่าไฟล์มีอะไรผิด' },
-    { cmd: 'ds-audit', mode: 'แก้ให้', n: 'แก้ตามที่เลือก' },
-    { cmd: 'handoff', mode: 'เช็คว่าพร้อมส่งไหม', n: 'Ready / Not Ready' },
-    { cmd: 'handoff', mode: 'ร่าง handoff doc', n: 'ส่งให้ dev' },
-    { cmd: 'qa-check', mode: 'เทียบ design ↔ build', n: 'หลัง dev ทำเสร็จ' }
+    { cmd: 'deliver-kit', mode: 'พาเดินทั้ง flow', n: 'ครอบคลุม 2 คำสั่งถัดไป' },
+    { cmd: 'ds-audit', mode: 'หา hardcode', n: 'ระบุจุดที่ผิดในไฟล์' },
+    { cmd: 'ds-audit', mode: 'แก้ไข', n: 'แก้ตามรายการที่เลือก' },
+    { cmd: 'handoff', mode: 'ตรวจความพร้อมส่ง', n: 'Ready / Not Ready' },
+    { cmd: 'handoff', mode: 'ร่าง handoff doc', n: 'ส่งให้ Dev' },
+    { cmd: 'qa-check', mode: 'เทียบ design ↔ build', n: 'หลัง Dev พัฒนาเสร็จ' }
   ],
 
   tool: {
     'deliver-kit': {
       icon: 'send', color: 'orange', title: 'ส่งงานให้ Dev ทีละขั้น', cmd: 'deliver-kit',
-      tag: 'คำสั่งเดียวจนจบ flow', sec: 'dv',
-      lede: 'พาเดิน 7 ขั้น ตรวจไฟล์ แก้ให้ สร้างหน้า Deliver แล้วบอกทุกขั้นว่าต้องทำอะไรต่อ จนคุณเปลี่ยนสถานะเป็น Ready for Dev · เรียก ds-audit กับ handoff ให้เอง ไม่ต้องจำลำดับ',
-      when: 'ออกแบบเสร็จแล้ว ก่อนส่งให้ dev',
-      type: 'พิมพ์ /deliver-kit แล้วแนบลิงก์ page หรือ frame ของงานที่จะส่ง · ระหว่างทางพิมพ์ "ต่อ" เมื่อทำขั้นของคุณเสร็จ',
+      tag: 'คำสั่งเดียวครบ flow', sec: 'dv',
+      lede: '7 ขั้น ตั้งแต่ตรวจไฟล์ แก้ไข สร้างหน้า Deliver จนถึง Ready for Dev โดยเรียก ds-audit และ handoff อัตโนมัติ',
+      when: 'หลังออกแบบเสร็จ ก่อนส่งให้ Dev',
+      type: 'พิมพ์ /deliver-kit พร้อมลิงก์ page หรือ frame · พิมพ์ "ต่อ" เมื่อทำขั้นของตนเสร็จ',
       modes: [
-        { m: 'พาเดินทั้ง flow', dflt: true, d: 'ขั้น 1-3 ระบบทำ (ตรวจ · แก้ตามที่เลือก · สร้างหน้า Deliver) ขั้น 4-7 คุณทำ (ตอบคำถาม · ติ๊ก · กรอก · เปลี่ยนสถานะ) · อ่านสถานะจาก Figma จึงปิดแชทแล้วกลับมาทำต่อได้', w: 'เขียนไฟล์ Figma เฉพาะที่คุณเลือกแก้ + หน้า Deliver', wk: 'write' }
+        { m: 'พาเดินทั้ง flow', dflt: true, d: 'ขั้น 1-3 ระบบทำ (ตรวจ · แก้ไข · สร้างหน้า Deliver) · ขั้น 4-7 Designer ทำ (ตอบคำถาม · ติ๊ก · กรอก · เปลี่ยนสถานะ) · สถานะเก็บใน Figma จึงทำต่อภายหลังได้', w: 'เขียนไฟล์ Figma เฉพาะรายการที่เลือกแก้ + หน้า Deliver', wk: 'write' }
       ],
       prep: [
-        { t: 'ลิงก์ page หรือ frame ของงานรอบนี้', w: 'ไม่ต้องทั้งไฟล์ · ถ้าหน้าจอเป็น instance ระบบไล่ไปตรวจที่ master ให้เอง' },
-        { t: 'platform ที่ส่ง', w: 'ใช้เช็คข้อ breakpoint' },
-        { t: 'Jira ticket ถ้ามี', w: 'ดึง AC มาเทียบ' }
+        { t: 'ลิงก์ page หรือ frame ของงานรอบนี้', w: 'ไม่ต้องทั้งไฟล์ · หากเป็น instance ระบบตรวจที่ master ให้' },
+        { t: 'platform ที่ส่ง', w: 'ใช้ตรวจข้อ breakpoint' },
+        { t: 'Jira ticket (ถ้ามี)', w: 'ใช้เทียบกับ AC' }
       ],
       rules: [
-        'ไม่ติ๊ก Checklist ไม่กรอกฟอร์ม ไม่เปลี่ยน Status แทนคุณ แม้สั่ง ฟอร์มนี้คือการประกาศของ designer',
-        'สร้างหน้า Deliver ต้องถามก่อน รวมถึงถามที่วาง',
-        'ติ๊กหรือเปลี่ยนสถานะขัดกับผลตรวจ เตือนครั้งเดียวแล้วเคารพการตัดสินใจ',
-        'ขั้น 2 แก้ให้ข้ามได้ · ขั้น 4-7 ข้ามไม่ได้ แต่หยุดไว้แล้วกลับมาทำต่อได้'
+        'ไม่ติ๊ก Checklist ไม่กรอกฟอร์ม ไม่เปลี่ยน Status แทน Designer แม้ได้รับคำสั่ง',
+        'ต้องขอยืนยันก่อนสร้างหน้า Deliver และตำแหน่งที่วาง',
+        'หากขัดกับผลตรวจ แจ้งเตือนครั้งเดียวและเคารพการตัดสินใจ',
+        'ขั้น 2 ข้ามได้ · ขั้น 4-7 ข้ามไม่ได้ แต่หยุดและกลับมาทำต่อได้'
       ],
-      proof: { ok: true, t: 'ทดสอบเดินครบ 7 ขั้นแล้ว', d: 'B2C App หน้า My Course (28 ก.ย.) · ขั้น 2 แก้ให้ ข้ามในรอบทดสอบ (ใช้ /ds-audit โหมดแก้ ซึ่งใช้จริงแล้ว) · เจอและแก้ 5 เรื่องก่อนเปิดใช้ เช่น ตรวจหน้าที่เป็น instance แล้วได้ผลสะอาดหลอก และ flow ติดตายเมื่อติ๊กไม่ครบ' }
+      proof: { ok: true, t: 'ทดสอบครบ 7 ขั้นแล้ว', d: 'B2C App หน้า My Course (28 ก.ย.) · ขั้น 2 ข้ามในรอบทดสอบ (ใช้ /ds-audit โหมดแก้ ซึ่งใช้งานจริงแล้ว) · แก้ 5 ปัญหาก่อนเปิดใช้ เช่น ผลตรวจ instance ผิด และ flow หยุดเมื่อติ๊กไม่ครบ' }
     },
 
     'ds-audit': {
-      icon: 'palette', color: 'blue', title: 'ตรวจ · แก้ · ปล่อย DS', cmd: 'ds-audit',
-      tag: 'สุขภาพไฟล์ Figma', sec: 'ds',
-      lede: 'สแกนไฟล์ Figma หา hardcode สี/typography, token ผิดที่, detach และ layer naming — แล้วแก้ให้ตามที่คุณเลือก หรือช่วยตอนจะปล่อย library',
-      when: 'ก่อนส่ง review · ก่อนส่ง dev · หรือตอนจะ publish library',
-      type: 'พิมพ์ /ds-audit แล้วบอกว่าไฟล์ไหน + ตรวจมิติอะไร (สี / typography / effects / radius / spacing / ทั้งหมด)',
+      icon: 'palette', color: 'blue', title: 'ตรวจ · แก้ · ปล่อย Design System', cmd: 'ds-audit',
+      tag: 'ความถูกต้องของไฟล์ Figma', sec: 'ds',
+      lede: 'ตรวจ hardcode สี/typography, token ผิดตำแหน่ง, detach และ layer naming แก้ตามที่เลือก และเตรียม publish library',
+      when: 'ก่อนส่ง review · ก่อนส่ง Dev · ก่อน publish library',
+      type: 'พิมพ์ /ds-audit พร้อมระบุไฟล์และมิติที่ตรวจ (สี / typography / effects / radius / spacing / ทั้งหมด)',
       modes: [
-        { m: 'หา hardcode', dflt: true, d: 'scan → วินิจฉัย → รายงานว่าค่าที่เจอคืออะไร ควรเป็น token ตัวไหน', w: 'อ่านอย่างเดียว', wk: 'read' },
-        { m: 'แก้ให้', d: 'ผูก token / swap เป็น DS / rename layer ตามที่คุณเลือกทีละข้อ', w: 'เขียนไฟล์ Figma จริง', wk: 'write' },
-        { m: 'เตรียม publish', d: 'pre-publish check → changelog → ร่างประกาศแจ้งทีม', w: 'ไม่กด publish แทน — ร่างให้แล้วคุณกดเอง', wk: 'safe' }
+        { m: 'หา hardcode', dflt: true, d: 'scan → วินิจฉัย → รายงานค่าที่พบและ token ที่ควรใช้', w: 'อ่านอย่างเดียว', wk: 'read' },
+        { m: 'แก้ไข', d: 'ผูก token / swap เป็น DS component / rename layer ทีละข้อ', w: 'เขียนไฟล์ Figma จริง', wk: 'write' },
+        { m: 'เตรียม publish', d: 'pre-publish check → changelog → ร่างประกาศแจ้งทีม', w: 'ไม่ publish แทน Designer', wk: 'safe' }
       ],
       prep: [
-        { t: 'ลิงก์ไฟล์ Figma + ขอบเขต', w: 'ทั้งไฟล์ใหญ่มากอาจ timeout — ซอยเป็น page ก่อนถ้าไม่แน่ใจ' },
-        { t: 'บอกว่าเป็นไฟล์ DS หรือไฟล์งาน', w: 'ไฟล์งานต้องตรวจ detach + layer naming เพิ่ม' },
-        { t: 'ผลตรวจรอบก่อน (เฉพาะโหมดแก้ให้)', w: 'ไม่มี = ทำไม่ได้ ต้องหาให้จบก่อน' },
-        { t: 'exempt list ใน golden-set ของ BU นั้น', w: 'ไม่มี = ตัวเลข % ที่ออกมาจะหลอกทีม' }
+        { t: 'ลิงก์ไฟล์ Figma + ขอบเขต', w: 'ไฟล์ขนาดใหญ่อาจ timeout ควรแบ่งตาม page' },
+        { t: 'ระบุว่าเป็นไฟล์ Design System หรือไฟล์งาน', w: 'ไฟล์งานต้องตรวจ detach และ layer naming เพิ่ม' },
+        { t: 'ผลตรวจรอบก่อน (เฉพาะโหมดแก้ไข)', w: 'จำเป็นต้องมีก่อนแก้ไข' },
+        { t: 'exempt list ใน golden-set ของ BU', w: 'หากไม่มี ค่า % จะคลาดเคลื่อน' }
       ],
       rules: [
-        'ไม่มีผลตรวจ ห้ามแก้ — จะไม่รู้ว่าแก้ครบไหมและตรวจซ้ำยังไง',
-        'เซฟ version ก่อนแก้ทุกครั้ง + เช็คชื่อไฟล์ก่อนเขียน (เขียนผิดไฟล์ย้อนยาก)',
-        'แก้ที่ main component ไม่ใช่ที่ instance — แก้ผิดชั้นจะกลายเป็น override เพิ่มปัญหา',
-        'ห้ามแตะของใน exempt list เช่นสีแบรนด์ภายนอกหรือ artwork',
-        'swap แล้วหน้าตาเพี้ยน หยุดทันที ไม่ทำต่อให้ครบแล้วค่อยดู'
+        'ต้องมีผลตรวจก่อนแก้ไข',
+        'save version และตรวจชื่อไฟล์ก่อนแก้ไขทุกครั้ง',
+        'แก้ที่ main component ไม่แก้ที่ instance',
+        'ไม่แก้รายการใน exempt list เช่น สีแบรนด์ภายนอกหรือ artwork',
+        'หาก swap แล้วหน้าตาเปลี่ยน ให้หยุดทันที'
       ],
-      notdo: 'ไม่สร้าง component ใหม่ใน DS · ไม่รวม/ลบ component ที่ซ้ำ · ไม่ตัดสินว่าอะไรควร exempt — สามอย่างนี้เป็นการตัดสินใจ ไม่ใช่งานกล',
-      proof: { ok: true, t: 'ใช้จริงแล้ว', d: 'OLS หน้า AllContent-Guest (6 ส.ค.) — hardcode 56 → 9 จุด · layer ชื่อ default 19 → 0 · เทียบภาพก่อน/หลังแล้วไม่เปลี่ยนเลย · B2C App My Course (28 ก.ย.) ตรวจผ่าน master 5 ตัว' }
+      notdo: 'ไม่สร้าง component ใหม่ · ไม่รวมหรือลบ component ซ้ำ · ไม่ตัดสินรายการ exempt',
+      proof: { ok: true, t: 'ใช้งานจริงแล้ว', d: 'OLS หน้า AllContent-Guest (6 ส.ค.): hardcode 56 → 9 จุด · layer ชื่อ default 19 → 0 · ภาพก่อน/หลังไม่เปลี่ยน · B2C App My Course (28 ก.ย.) ตรวจผ่าน master 5 ตัว' }
     },
 
     'qa-check': {
       icon: 'check', color: 'green', title: 'Design QA', cmd: 'qa-check',
-      tag: 'เทียบของจริงกับที่ออกแบบ', sec: 'qa',
-      lede: 'ตรวจว่าของที่ dev ทำออกมาตรงกับที่ออกแบบไว้ไหม — หรือถ้าคุณตรวจเองมาแล้ว ให้มันย้ายหมุดจากบอร์ด Figma ลง Sheet ให้',
-      when: 'หลัง dev ขึ้น staging หรือ preprod แล้ว ก่อนปล่อยจริง',
-      type: 'พิมพ์ /qa-check — มันจะเดาโหมดจากสิ่งที่คุณให้มา ไม่ต้องจำชื่อโหมด',
+      tag: 'เทียบงานจริงกับ design', sec: 'qa',
+      lede: 'เทียบงานที่ Dev พัฒนากับ design หรือย้ายหมุดจากบอร์ด Figma ลง Sheet',
+      when: 'หลังขึ้น staging หรือ preprod ก่อนปล่อยจริง',
+      type: 'พิมพ์ /qa-check ระบบเลือกโหมดจากข้อมูลที่ได้รับ',
       modes: [
-        { m: 'เทียบ design ↔ build', d: 'AI เก็บหลักฐาน 2 ฝั่ง → ไล่ diff 7 หมวด + a11y → ออกรายงาน', w: 'ค่าเริ่มต้นบอกในแชท · ลงผลให้เมื่อคุณสั่ง', wk: 'safe' },
-        { m: 'ย้ายหมุดลง Sheet', d: 'คุณตรวจเองแล้ววางหมุดในบอร์ด → AI อ่านทั้งบอร์ดลง Sheet + สรุปให้', w: 'เขียน Google Sheet เมื่อคุณยืนยัน', wk: 'write' },
-        { m: 'จัด bug list ที่มีอยู่', d: 'เติม severity + หมวด + รวมรายการซ้ำ + เรียงลำดับ', w: 'บอกในแชท', wk: 'read' }
+        { m: 'เทียบ design ↔ build', d: 'เก็บหลักฐาน 2 ฝั่ง → ตรวจ diff 7 หมวด + a11y → ออกรายงาน', w: 'แสดงผลในแชท · บันทึกเมื่อได้รับคำสั่ง', wk: 'safe' },
+        { m: 'ย้ายหมุดลง Sheet', d: 'อ่านหมุดที่ Designer วางในบอร์ด → ลง Sheet + สรุป', w: 'เขียน Google Sheet เมื่อยืนยัน', wk: 'write' },
+        { m: 'จัด bug list ที่มีอยู่', d: 'เติม severity + หมวด + รวมรายการซ้ำ + เรียงลำดับ', w: 'แสดงผลในแชท', wk: 'read' }
       ],
       prep: [
         { t: 'บอร์ด QA ใน Figma', w: 'duplicate จากแม่แบบ · 1 เฟรม = 1 หน้า = 1 platform' },
-        { t: 'Sheet + แท็บของ platform นั้น', w: '1 แท็บ = 1 platform ไม่รวมกัน · ระบบจะบอกว่าเครื่องคุณใช้บัญชีไหน' },
-        { t: 'URL ของหน้าจริง หรือหมุดที่วางไว้แล้ว', w: 'มีหมุดอยู่แล้ว = โหมดย้ายหมุด ไม่แคปใหม่ทับ' },
-        { t: 'build / environment ที่เทส', w: 'ไม่ระบุแล้ว re-test เทียบไม่ได้ว่าแก้แล้วจริง' }
+        { t: 'Sheet + แท็บของ platform', w: '1 แท็บ = 1 platform · ระบบแจ้งบัญชีที่ใช้' },
+        { t: 'URL หน้าจริง หรือหมุดที่วางไว้', w: 'หากมีหมุดแล้ว ใช้โหมดย้ายหมุด' },
+        { t: 'build / environment ที่ทดสอบ', w: 'จำเป็นสำหรับ re-test' }
       ],
       rules: [
-        'ค่าเริ่มต้นคือบอกในแชทเฉย ๆ — จะไปเขียนบอร์ด/Sheet/Jira ต้องประกาศก่อนแล้วรอยืนยัน',
-        'บอร์ด Figma คือต้นฉบับ ไม่ใช่ Sheet — แก้ที่บอร์ดแล้วสั่งเขียนใหม่ อย่าพิมพ์แก้ใน Sheet เอง',
-        'ไม่มีการ์ดไหนถูกข้ามเงียบ ๆ — อ่านไม่ออกต้องรายงานว่ามีกี่ใบและอยู่ตรงไหน',
-        'AI ห้ามตัดสินเรื่อง content/data เอง เพราะ mockup ใช้ข้อมูลสมมติเสมอ'
+        'ค่าเริ่มต้นแสดงผลในแชท การเขียนบอร์ด/Sheet/Jira ต้องรอยืนยัน',
+        'บอร์ด Figma เป็นต้นฉบับ แก้ที่บอร์ดแล้วสั่งเขียนใหม่ ไม่แก้ใน Sheet',
+        'รายงานจำนวนและตำแหน่งของการ์ดที่อ่านไม่ได้',
+        'ไม่ตัดสินเรื่อง content/data เนื่องจาก mockup ใช้ข้อมูลสมมติ'
       ],
-      proof: { ok: true, t: 'ใช้จริงแล้ว ทั้ง 2 โหมด', d: 'ย้ายหมุดลง Sheet — B2C App 120 รายการ ปิด cycle 139 รายการที่ 95.7% (11 ส.ค.) · เทียบ design ↔ build — OLS Preprod รันจบทั้งรอบ ลงผลครบทั้งบอร์ด Figma และ Sheet (18 ส.ค.)' }
+      proof: { ok: true, t: 'ใช้งานจริงแล้วทั้ง 2 โหมด', d: 'ย้ายหมุดลง Sheet: B2C App 120 รายการ ปิด cycle 139 รายการที่ 95.7% (11 ส.ค.) · เทียบ design ↔ build: OLS Preprod ครบรอบ บันทึกผลทั้งบอร์ด Figma และ Sheet (18 ส.ค.)' }
     },
 
     'handoff': {
       icon: 'send', color: 'orange', title: 'ส่งงานให้ Dev', cmd: 'handoff',
-      tag: 'เช็คความพร้อม + ร่างเอกสาร', sec: 'dv',
-      lede: 'ไล่ checklist ว่าไฟล์พร้อมส่งจริงไหม แล้วค่อยร่างเอกสารส่งมอบมาตรฐานทีม',
-      when: 'หลังทำไฟล์สะอาดแล้ว ก่อนส่งให้ dev',
-      type: 'พิมพ์ /handoff แล้วแนบลิงก์ Figma frame + Jira ticket ถ้ามี',
+      tag: 'ตรวจความพร้อม + ร่างเอกสาร', sec: 'dv',
+      lede: 'ตรวจ checklist ความพร้อมของไฟล์ แล้วร่างเอกสารส่งมอบตามมาตรฐานทีม',
+      when: 'หลังไฟล์ผ่านการตรวจ ก่อนส่งให้ Dev',
+      type: 'พิมพ์ /handoff พร้อมลิงก์ Figma frame + Jira ticket (ถ้ามี)',
       modes: [
-        { m: 'เช็คว่าพร้อมส่งไหม', d: 'ไล่ 3 หมวด — คุณภาพไฟล์ · ความครบถ้วน · ความพร้อมส่ง → ตัดสิน Ready / Not Ready', w: 'บอกในแชท', wk: 'read' },
-        { m: 'ร่าง handoff doc', dflt: true, d: 'เช็คก่อนเสมอ แล้วร่างเอกสารจาก spec + AC ที่มี · ยังไม่เคยรันจริง', w: 'เขียนลงหน้า Deliver ใน Figma + สำเนา .md', wk: 'write' }
+        { m: 'ตรวจความพร้อมส่ง', d: 'ตรวจ 3 หมวด: คุณภาพไฟล์ · ความครบถ้วน · ความพร้อมส่ง → Ready / Not Ready', w: 'แสดงผลในแชท', wk: 'read' },
+        { m: 'ร่าง handoff doc', dflt: true, d: 'ตรวจความพร้อมก่อน แล้วร่างเอกสารจาก spec + AC · ยังไม่เคยใช้งานจริง', w: 'เขียนลงหน้า Deliver ใน Figma + สำเนา .md', wk: 'write' }
       ],
       prep: [
-        { t: 'ลิงก์ Figma frame + ขอบเขต', w: 'หน้าไหนบ้างที่จะส่ง' },
-        { t: 'platform ที่ต้องส่ง', w: 'ใช้เช็คว่าออกแบบครบตาม scope ไหม' },
-        { t: 'จอเล็กสุดที่ support', w: 'ใช้ตรวจ edge case' },
-        { t: 'Jira ticket / PRD ถ้ามี', w: 'ดึง spec กับ AC มาใส่ในเอกสาร' },
-        { t: 'design decision ที่ dev น่าจะสงสัย', w: 'ใส่เหตุผลไว้ล่วงหน้า ดีกว่าให้ถามกลับทีหลัง' }
+        { t: 'ลิงก์ Figma frame + ขอบเขต', w: 'หน้าที่จะส่ง' },
+        { t: 'platform ที่ต้องส่ง', w: 'ตรวจความครบตาม scope' },
+        { t: 'ขนาดจอเล็กสุดที่ support', w: 'ตรวจ edge case' },
+        { t: 'Jira ticket / PRD (ถ้ามี)', w: 'ดึง spec และ AC ใส่ในเอกสาร' },
+        { t: 'design decision ที่ควรอธิบาย', w: 'ระบุเหตุผลไว้ล่วงหน้า' }
       ],
       rules: [
-        'ร่างเอกสารจากไฟล์ที่ยังไม่พร้อม = ส่งปัญหาต่อให้ dev แบบมีเอกสารห่อไว้ — จึงต้องเช็คก่อนทุกครั้ง',
-        'ผลออกมา Not Ready ให้บอกว่าต้องแก้อะไรก่อน แล้วหยุด ยังไม่ร่างเอกสาร',
-        'ไม่แก้งานออกแบบ — เขียนได้เฉพาะหน้า Deliver · จะให้แก้ไฟล์ใช้ ds-audit โหมดแก้',
-        'ห้ามพลิก Status เป็น Ready for Dev แทนคน — ฟอร์มนี้คือการประกาศของ designer ถ้าเครื่องมือพลิกให้ ความรับผิดชอบก็หายไปด้วย',
-        'a11y requirement ต้องอยู่ในทุก handoff ไม่ใช่ optional',
-        'ระบุ location ทุก issue — "มี hardcode 12 จุด" โดยไม่บอกที่ ใช้ไม่ได้'
+        'ต้องตรวจความพร้อมก่อนร่างเอกสารทุกครั้ง',
+        'ผล Not Ready: แจ้งรายการที่ต้องแก้และหยุด',
+        'เขียนได้เฉพาะหน้า Deliver · การแก้ไฟล์ใช้ ds-audit โหมดแก้',
+        'ไม่เปลี่ยน Status เป็น Ready for Dev แทน Designer',
+        'ทุก handoff ต้องมี a11y requirement',
+        'ทุก issue ต้องระบุ location'
       ],
-      proof: { ok: true, t: 'โหมดเช็ครันจริงแล้ว', d: 'เช็คความพร้อม + ลงผลที่หน้า Deliver กับ B2C App My Course (28 ก.ย.) ผ่าน /deliver-kit · โหมดร่าง handoff doc ยังไม่เคยรัน' }
+      proof: { ok: true, t: 'โหมดเช็คใช้งานจริงแล้ว', d: 'ตรวจความพร้อม + บันทึกผลที่หน้า Deliver กับ B2C App My Course (28 ก.ย.) ผ่าน /deliver-kit · โหมดร่าง handoff doc ยังไม่เคยใช้งาน' }
     }
   }
 };

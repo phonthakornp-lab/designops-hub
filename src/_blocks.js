@@ -99,3 +99,9 @@ function blocks(list) {
     }
   }).join('');
 }
+
+/* ภาพไม่ขยายเกินขนาดจริง · ภาพ ≥1500px ถือเป็นภาพ 2x แสดงที่ครึ่งหนึ่ง เพื่อให้คมบนจอ retina */
+document.addEventListener('load', function (e) {
+  var t = e.target;
+  if (t && t.tagName === 'IMG' && t.naturalWidth) t.style.maxWidth = (t.naturalWidth >= 1500 ? t.naturalWidth / 2 : t.naturalWidth) + 'px';
+}, true);
