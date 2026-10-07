@@ -443,7 +443,7 @@ var W  = DB + '/blob/main/wiki/shared/';
 var WD = W + 'design-system/';
 
 var DATA = {
-  updated: '28 ก.ย. 2026',
+  updated: '7 ต.ค. 2026',
   roadmap: 'https://claude.ai/code/artifact/8cf346ea-80fb-4ade-a91d-2a459c66e097',
 
   nav: [
@@ -464,12 +464,6 @@ var DATA = {
       lede: 'เอกสารตัวจริงอยู่ใน design-brain ทั้งหมด — ที่อื่นเป็นชั้นเก่า อย่าใช้อ้างอิง',
       docsHd: 'เอกสารอ้างอิง',
       docsLede: 'การ์ดที่ ↗ ไป design-brain ต้องเป็นสมาชิก GitHub org ถึงจะเปิดได้ — เปิดไม่ได้ก็ยังเห็นได้ว่ามีอะไรบ้างและทวนล่าสุดเมื่อไหร่',
-      summary: [
-        { l: 'product ที่มี Golden Set', b: '4', s: 'LMS · B2C · Mica · NCBS+OLS' },
-        { l: 'ไฟล์ DS ที่ขึ้นทะเบียน', b: '6', s: 'ตรวจค่าจริงจากไฟล์ ไม่ใช่ค่าที่ควรเป็น' },
-        { l: 'ฟอนต์ในทะเบียนลิขสิทธิ์', b: '4', s: '1 Active · 3 รอตรวจ' },
-        { l: 'ทวนล่าสุด', b: '3 ส.ค.', s: 'เอกสารหลัก 4 ใน 7 ใบ' }
-      ],
       topics: [
         { icon: 'frame', color: 'blue', t: 'ไฟล์ DS อยู่ที่ไหน', d: 'product ไหนใช้ DS ตัวไหน · 5 ไฟล์', ext: W + 'design-system.md', up: '3 ส.ค. 2026' },
         { icon: 'palette', color: 'green', t: 'Foundation ต่อ product', d: 'ค่าจริงที่ดึงจากไฟล์ ไม่ใช่ค่าที่ควรเป็น', ext: WD + 'foundation.md', up: '3 ส.ค. 2026' },
@@ -601,7 +595,7 @@ var DATA = {
         'ติ๊กหรือเปลี่ยนสถานะขัดกับผลตรวจ เตือนครั้งเดียวแล้วเคารพการตัดสินใจ',
         'ขั้น 2 แก้ให้ข้ามได้ · ขั้น 4-7 ข้ามไม่ได้ แต่หยุดไว้แล้วกลับมาทำต่อได้'
       ],
-      proof: { ok: true, t: 'ทดสอบครบ 7 ขั้นแล้ว', d: 'B2C App หน้า My Course (28 ก.ย.) · เจอและแก้ 5 เรื่องก่อนเปิดใช้ เช่น ตรวจหน้าที่เป็น instance แล้วได้ผลสะอาดหลอก และ flow ติดตายเมื่อติ๊กไม่ครบ' }
+      proof: { ok: true, t: 'ทดสอบเดินครบ 7 ขั้นแล้ว', d: 'B2C App หน้า My Course (28 ก.ย.) · ขั้น 2 แก้ให้ ข้ามในรอบทดสอบ (ใช้ /ds-audit โหมดแก้ ซึ่งใช้จริงแล้ว) · เจอและแก้ 5 เรื่องก่อนเปิดใช้ เช่น ตรวจหน้าที่เป็น instance แล้วได้ผลสะอาดหลอก และ flow ติดตายเมื่อติ๊กไม่ครบ' }
     },
 
     'ds-audit': {
@@ -666,7 +660,7 @@ var DATA = {
       type: 'พิมพ์ /handoff แล้วแนบลิงก์ Figma frame + Jira ticket ถ้ามี',
       modes: [
         { m: 'เช็คว่าพร้อมส่งไหม', d: 'ไล่ 3 หมวด — คุณภาพไฟล์ · ความครบถ้วน · ความพร้อมส่ง → ตัดสิน Ready / Not Ready', w: 'บอกในแชท', wk: 'read' },
-        { m: 'ร่าง handoff doc', dflt: true, d: 'เช็คก่อนเสมอ แล้วร่างเอกสารจาก spec + AC ที่มี', w: 'เขียนลงหน้า Deliver ใน Figma + สำเนา .md', wk: 'write' }
+        { m: 'ร่าง handoff doc', dflt: true, d: 'เช็คก่อนเสมอ แล้วร่างเอกสารจาก spec + AC ที่มี · ยังไม่เคยรันจริง', w: 'เขียนลงหน้า Deliver ใน Figma + สำเนา .md', wk: 'write' }
       ],
       prep: [
         { t: 'ลิงก์ Figma frame + ขอบเขต', w: 'หน้าไหนบ้างที่จะส่ง' },
@@ -1167,7 +1161,7 @@ DATA.topic.dvrat = {
     { k: 'h', t: 'สิ่งที่ได้ตอนจบ', d: 'ตัวอย่างจริง: B2C App หน้า My Course · หมุดเลขบนหน้าจอตรงกับเลขการ์ด' },
     { k: 'img', src: IMG_DVRATBOARD, alt: 'บอร์ด Design Rationale หน้า My Course: แถบซ้าย หน้าจอพร้อมหมุด 01-03 และการ์ดเหตุผล 3 ใบ', cap: 'บอร์ด <code>Design Review - My Course</code> ในไฟล์ B2C Application หน้า Design Rationale' },
 
-    { k: 'h', t: 'ขั้นตอน', d: 'ระบบทำ 4 ขั้น คุณทำ 2 ขั้น · ทำเสร็จแต่ละขั้นตอบในแชท' },
+    { k: 'h', t: 'ขั้นตอน', d: '4 ขั้น · คุณเลือก decision (ขั้น 2) และยืนยันเหตุผล (ขั้น 3) · ที่เหลือระบบทำ · ทำเสร็จแต่ละขั้นตอบในแชท' },
     { k: 'srow', n: 1, t: 'อ่านบริบท', who: [['a', 'ระบบทำ']], dl: [
         ['ระบบอ่าน', 'หน้าจอจาก Figma · PRD / AC จาก Jira · persona และ decision เดิมของ BU ใน design-brain'],
         ['เก็บไว้', 'แต่ละข้อมูลมาจากไหน เพื่อใช้เป็นหลักฐานป้าย Project']
@@ -1216,7 +1210,7 @@ DATA.topic.dvrat = {
 DATA.topic.setup = {
   parent: 'tools', color: 'amber', icon: 'wrench',
   title: 'ตั้งค่าครั้งแรก', tag: 'ทำครั้งเดียวต่อเครื่อง',
-  lede: 'หน้านี้ไว้อ่านตอนอยากรู้ว่ามีอะไรบ้าง — เวลาใช้จริงไม่ต้องเปิด เพราะ <code>/qa-check</code> จะถามให้เองถ้าเครื่องยังไม่ครบ · ทำตอนว่างดีกว่าตอนมีงานด่วน',
+  lede: 'หน้านี้ไว้อ่านตอนอยากรู้ว่ามีอะไรบ้าง — เวลาใช้จริงไม่ต้องเปิด เพราะ /qa-check จะถามให้เองถ้าเครื่องยังไม่ครบ · ทำตอนว่างดีกว่าตอนมีงานด่วน',
   blocks: [
     { k: 'h', t: 'ใครต้องลงอะไร', d: 'ไม่ใช่ทุกคนต้องลงครบ' },
     { k: 'table', head: ['คุณคือ', 'ต้องมี', 'เวลาที่ใช้'], rows: [
@@ -1444,26 +1438,19 @@ function viewHome() {
     var ready = s.topics.filter(function (t) { return !t.wait; }).length;
     return topicCard({
       id: k, icon: s.icon, color: s.color, t: s.title, d: s.tag,
-      up: ready + ' / ' + s.topics.length + ' พร้อมใช้'
     }, '');
   }).join('');
 
   return '<div class="inner">' +
     head({ icon: 'home', title: 'DesignOps', tag: 'playbook · ของอ้างอิง · ทางเข้าต้นฉบับ', color: '',
            lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม' }) +
-    '<div class="stats">' +
-      '<div class="stat hero"><div class="lbl">รายการพร้อมใช้</div><div class="big">' + open + ' / ' + total + '</div><div class="sub">ที่เหลือกำลังเตรียม</div></div>' +
-      '<div class="stat"><div class="lbl">หมวดใน Playbook</div><div class="big">' + secs.length + '</div><div class="sub">คู่กับ skill ที่ทีมใช้อยู่</div></div>' +
-      '<div class="stat"><div class="lbl">สำเนาที่เว็บนี้เก็บเอง</div><div class="big">0</div><div class="sub">ลิงก์ออกทั้งหมด ไม่มีของเก่าค้าง</div></div>' +
-      '<div class="stat"><div class="lbl">ปลายทาง</div><div class="big">4</div><div class="sub">Confluence · Figma · design-brain · Jira</div></div>' +
-    '</div>' +
     '<div class="block"><h2 class="sec">Playbook</h2>' +
     '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
     '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
       '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
       '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
-        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '~30 นาที' }, 'tools') + '</div></div>' +
+        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '5–30 นาที ตามงานที่ทำ' }, 'tools') + '</div></div>' +
     '<div class="note">การ์ด <b>→</b> คือหน้าในเว็บนี้ · <b>↗</b> คือออกไปต้นฉบับข้างนอก</div>' +
     foot() + '</div>';
 }
@@ -1502,7 +1489,7 @@ function viewTopic(secId, topId) {
   if (!t) return viewSec(secId);
   var parent = DATA.sec[t.parent];
   var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
-    '<button data-go="' + t.parent + '">' + esc(parent.title) + '</button><span class="sep">/</span>' +
+    '<button data-go="' + t.parent + '">' + esc((parent && parent.title) || (t.parent === 'tools' ? 'เครื่องมือ' : t.parent)) + '</button><span class="sep">/</span>' +
     '<span>' + esc(t.title) + '</span></div>';
   var body = head(t, crumb);
 
@@ -1579,7 +1566,7 @@ function viewTools() {
     '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
       '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
       '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
-        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '~30 นาที' }, 'tools') + '</div></div>' +
+        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '5–30 นาที ตามงานที่ทำ' }, 'tools') + '</div></div>' +
     foot() + '</div>';
 }
 

@@ -81,26 +81,19 @@ function viewHome() {
     var ready = s.topics.filter(function (t) { return !t.wait; }).length;
     return topicCard({
       id: k, icon: s.icon, color: s.color, t: s.title, d: s.tag,
-      up: ready + ' / ' + s.topics.length + ' พร้อมใช้'
     }, '');
   }).join('');
 
   return '<div class="inner">' +
     head({ icon: 'home', title: 'DesignOps', tag: 'playbook · ของอ้างอิง · ทางเข้าต้นฉบับ', color: '',
            lede: 'ที่รวมทุกอย่างที่ DesignOps ต้องส่งต่อให้ทีม' }) +
-    '<div class="stats">' +
-      '<div class="stat hero"><div class="lbl">รายการพร้อมใช้</div><div class="big">' + open + ' / ' + total + '</div><div class="sub">ที่เหลือกำลังเตรียม</div></div>' +
-      '<div class="stat"><div class="lbl">หมวดใน Playbook</div><div class="big">' + secs.length + '</div><div class="sub">คู่กับ skill ที่ทีมใช้อยู่</div></div>' +
-      '<div class="stat"><div class="lbl">สำเนาที่เว็บนี้เก็บเอง</div><div class="big">0</div><div class="sub">ลิงก์ออกทั้งหมด ไม่มีของเก่าค้าง</div></div>' +
-      '<div class="stat"><div class="lbl">ปลายทาง</div><div class="big">4</div><div class="sub">Confluence · Figma · design-brain · Jira</div></div>' +
-    '</div>' +
     '<div class="block"><h2 class="sec">Playbook</h2>' +
     '<p class="sec-lede">เลือกเรื่องที่กำลังจะทำ</p>' +
     '<div class="cardgrid">' + cards + '</div></div>' +
     '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
       '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
       '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
-        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '~30 นาที' }, 'tools') + '</div></div>' +
+        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '5–30 นาที ตามงานที่ทำ' }, 'tools') + '</div></div>' +
     '<div class="note">การ์ด <b>→</b> คือหน้าในเว็บนี้ · <b>↗</b> คือออกไปต้นฉบับข้างนอก</div>' +
     foot() + '</div>';
 }
@@ -139,7 +132,7 @@ function viewTopic(secId, topId) {
   if (!t) return viewSec(secId);
   var parent = DATA.sec[t.parent];
   var crumb = '<div class="crumb"><button data-go="">DesignOps</button><span class="sep">/</span>' +
-    '<button data-go="' + t.parent + '">' + esc(parent.title) + '</button><span class="sep">/</span>' +
+    '<button data-go="' + t.parent + '">' + esc((parent && parent.title) || (t.parent === 'tools' ? 'เครื่องมือ' : t.parent)) + '</button><span class="sep">/</span>' +
     '<span>' + esc(t.title) + '</span></div>';
   var body = head(t, crumb);
 
@@ -216,7 +209,7 @@ function viewTools() {
     '<div class="block"><h2 class="sec">ก่อนใช้ครั้งแรก</h2>' +
       '<p class="sec-lede">ทำครั้งเดียวต่อเครื่อง · ไม่ใช่ทุกคนต้องลงครบ</p>' +
       '<div class="cardgrid">' + topicCard({ id: 'setup', icon: 'wrench', color: 'amber',
-        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '~30 นาที' }, 'tools') + '</div></div>' +
+        t: 'ตั้งค่าครั้งแรก', d: 'ใครต้องลงอะไร · คำสั่งติดตั้ง · ไม่ลงทำอะไรแทนได้', up: '5–30 นาที ตามงานที่ทำ' }, 'tools') + '</div></div>' +
     foot() + '</div>';
 }
 
