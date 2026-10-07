@@ -64,6 +64,7 @@ DATA.topic.dvhow = {
 
     { k: 'h', t: '7 ขั้นตอน', d: 'ระบบทำ 3 ขั้นแรก Designer ทำ 4 ขั้นหลัง · <b>ปิด chat แล้วทำต่อได้ด้วยคำสั่งเดิม</b>' },
     { k: 'flow', svg: FLOW_DV, cap: 'ภาพรวม 7 ขั้นตอน' },
+    { k: 'video', src: 'assets/deliver-kit.mp4', poster: 'assets/deliver-kit-poster.jpg', cap: 'วิดีโอตัวอย่าง B2C App หน้า Home · 1:27 นาที · ไม่มีเสียง · บันทึกจาก VS Code ใช้ใน Claude app ได้เช่นเดียวกัน · ขั้น 5–7 แสดงเป็นคำอธิบาย' },
 
     { k: 'srow', n: 1, t: 'ตรวจไฟล์', who: [WA], dl: [
         ['สิ่งที่ตรวจ', '<ul><li><b>Hardcode</b> สีหรือฟอนต์ที่ไม่ใช้ token / style</li><li><b>Detach</b> component ที่แยกจาก Design System</li><li><b>ชื่อ layer ค่า default</b> เช่น Frame 1597884708</li></ul>'],
@@ -76,7 +77,7 @@ DATA.topic.dvhow = {
         ['ก่อนแก้ไข', 'บันทึก version ใน Figma (File → Save to version history)'],
         ['หลังแก้ไข', 'ระบบตรวจซ้ำ หากหน้าตาเปลี่ยน ระบบจะหยุดและแจ้ง'],
         ['ข้ามได้', 'หากต้องการแก้ไขเองภายหลัง']
-      ], html: DVCHAT2, cap: 'ตัวอย่างรายการให้เลือก (ยังไม่ได้ทดสอบจริง)' },
+      ], html: DVCHAT2, cap: 'ตัวอย่างรายการให้เลือก' },
 
     { k: 'srow', n: 3, t: 'สร้างหน้า Deliver', who: [WA], dl: [
         ['ระบบถาม', 'ตำแหน่งวางหน้า Deliver'],
