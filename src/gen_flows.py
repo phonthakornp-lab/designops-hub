@@ -89,7 +89,7 @@ b = ''.join([
     node(X[1], Y, 'send', 'orange', 'Deliver to Dev', 'เช็ค 7 ข้อก่อนส่ง', '/deliver-kit', '#/dv'),
     node(X[2], Y, 'code', 'gray', 'Dev พัฒนา', 'staging / preprod'),
     node(X[3], Y, 'check', 'green', 'Design QA', 'เทียบ build กับ design', '/qa-check', '#/qa'),
-    node(O[0], O[1], 'table', 'green', 'บอร์ด + Sheet', 'รายการ issue สำหรับ dev'),
+    node(O[0], O[1], 'table', 'green', 'Board + Sheet', 'issue สำหรับ dev'),
     node(S[0], S[1], 'palette', 'blue', 'Design System', 'component · token', '/ds-audit', '#/ds'),
 ])
 F['HOME'] = svg('fh', 1084, 470, 'วงจรงาน: ออกแบบ ไป Deliver to Dev ไป dev ทำ ไป Design QA แล้วย้อนกลับไปแก้ที่ Design System', b)
@@ -107,21 +107,21 @@ b = ''.join([
     curve(mr(M1), ml(RV), 'b'), curve(mr(M2), ml(RV), 'o'),
     line(f'M{RV[0]+W//2} {RV[1]+H} V{OUT[1]-4}'),
     label(RV[0]+W//2+12, (RV[1]+H+OUT[1])//2+4, 'เขียนหลังได้รับการยืนยัน', '', 'start'),
-    node(A[0], A[1], 'frame', 'blue', 'URL + บอร์ดเปล่า', 'หน้าที่เปิดด้วย URL ได้'),
-    node(B[0], B[1], 'tag', 'orange', 'บอร์ดที่วางหมุดแล้ว', 'ต้องทดสอบการใช้งานจริง'),
+    node(A[0], A[1], 'frame', 'blue', 'URL + board เปล่า', 'หน้าที่เปิดด้วย URL ได้'),
+    node(B[0], B[1], 'tag', 'orange', 'Board ที่มีหมุด', 'ทดสอบใช้งานจริง'),
     node(Q[0], Q[1], 'check', 'green', 'ระบบเลือกแบบ', 'ยืนยันก่อนเริ่มทุกครั้ง', '/qa-check'),
-    node(M1[0], M1[1], 'frame', 'blue', 'แบบ 1 · AI เทียบ', 'แคปเต็มหน้า + ดึง spec', tag='AI หา issue'),
+    node(M1[0], M1[1], 'frame', 'blue', 'แบบ 1 · AI เทียบ', 'Capture + ดึง spec', tag='AI หา issue'),
     node(M2[0], M2[1], 'tag', 'orange', 'แบบ 2 · ย้ายหมุด', 'อ่านหมุดจาก board', tag='Designer หา issue'),
-    node(RV[0], RV[1], 'user', 'purple', 'Designer ตรวจทาน', 'ตัดข้อที่เป็น design decision'),
-    node(OUT[0], OUT[1], 'table', 'green', 'บอร์ด + Sheet', 'เลขตรงกันทุกแถว'),
+    node(RV[0], RV[1], 'user', 'purple', 'Designer ตรวจ', 'คัดข้อที่ตั้งใจออก'),
+    node(OUT[0], OUT[1], 'table', 'green', 'Board + Sheet', 'เลขตรงกันทุกแถว'),
 ])
-F['QA'] = svg('fq', 1084, 450, 'Design QA: ส่ง URL หรือบอร์ดที่มีหมุด แล้ว /qa-check เลือกแบบ 1 หรือแบบ 2 Designer ตรวจทาน แล้วลงบอร์ดและ Sheet', b)
+F['QA'] = svg('fq', 1084, 450, 'Design QA: ส่ง URL หรือ board ที่มีหมุด แล้ว /qa-check เลือกแบบ 1 หรือแบบ 2 Designer ตรวจทาน แล้วลง board และ Sheet', b)
 
 # ---------- Deliver to Dev: 7 ขั้น ----------
 SW, SH, G = 140, 100, 22
 xs = [24 + i * (SW + G) for i in range(7)]; Y = 96
-steps = [('ตรวจไฟล์', 'ผลเป็นตารางในแชท'), ('แก้ไข', 'เฉพาะข้อที่เลือก'), ('สร้างหน้า Deliver', 'Audit Result'),
-         ('ตอบคำถาม', 'ตอบในแชท'), ('ติ๊ก Checklist', '7 ข้อ'), ('กรอก Form', 'ผู้ออกแบบ · ผู้รับงาน'), ('เปลี่ยน Status', 'Ready for Dev')]
+steps = [('ตรวจไฟล์', 'ผลเป็นตารางใน chat'), ('แก้ไข', 'เฉพาะข้อที่เลือก'), ('สร้างหน้า Deliver', 'Audit Result'),
+         ('ตอบคำถาม', 'ตอบใน chat'), ('ติ๊ก Checklist', '7 ข้อ'), ('กรอก Form', 'ผู้ออกแบบ · ผู้รับงาน'), ('เปลี่ยน Status', 'Ready for Dev')]
 def snode(i, x, y, who):
     col = 'cta' if who == 'ระบบ' else 'orange'
     t, ink = C[col]
@@ -156,13 +156,13 @@ b += label(X[2]+W//2-14, Y+H+40, 'มีหลักฐานโต้แย้�
 b += ''.join([
     node(X[0], Y, 'book', 'cta', 'อ่านบริบท', 'Figma · Jira · persona', tag='ระบบ'),
     node(X[1], Y, 'target', 'orange', 'เลือก decision', '3–6 ข้อต่อหน้าจอ', tag='Designer'),
-    node(X[2], Y, 'user', 'orange', 'ยืนยันเหตุผล', 'ลงบอร์ดเฉพาะข้อที่ยืนยัน', tag='Designer'),
-    node(X[3], Y, 'tag', 'cta', 'หลักฐาน + วางบอร์ด', 'ป้าย Source 7 แบบ', tag='ระบบ'),
-    node(X[3], Y+H+66, 'frame', 'purple', 'บอร์ดในไฟล์ Figma', 'หน้าจอ + หมุด + การ์ด'),
-    node(X[1], Y+H+66, 'palette', 'purple', 'ปรับ design', 'หรือนำไปหารือใน review', dashed=True),
+    node(X[2], Y, 'user', 'orange', 'ยืนยันเหตุผล', 'เฉพาะข้อที่ยืนยัน', tag='Designer'),
+    node(X[3], Y, 'tag', 'cta', 'หลักฐาน + board', 'ป้าย Source 7 แบบ', tag='ระบบ'),
+    node(X[3], Y+H+66, 'frame', 'purple', 'Board ใน Figma', 'หน้าจอ + หมุด + card'),
+    node(X[1], Y+H+66, 'palette', 'purple', 'ปรับ design', 'หรือหารือใน review', dashed=True),
 ])
 b = b.replace('tag="', 'tag="')
-F['RAT'] = svg('fr', 1084, 340, 'Design Rationale 4 ขั้น: ระบบอ่านบริบท Designer เลือก decision และยืนยันเหตุผล ระบบใส่หลักฐานและวางบอร์ด', b)
+F['RAT'] = svg('fr', 1084, 340, 'Design Rationale 4 ขั้น: ระบบอ่านบริบท Designer เลือก decision และยืนยันเหตุผล ระบบใส่หลักฐานและวาง board', b)
 
 # ---------- เครื่องมือ: ลำดับคำสั่ง ----------
 GX, GY, GW, GH = 24, 50, 456, 170

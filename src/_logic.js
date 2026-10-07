@@ -46,7 +46,7 @@ function topicCard(t, secId) {
 }
 
 
-/* ---------- การ์ดเครื่องมือ (ย่อ) — กดเข้าหน้าเต็ม ---------- */
+/* ---------- card เครื่องมือ (ย่อ) — กดเข้าหน้าเต็ม ---------- */
 function toolCard(key) {
   var t = DATA.tool[key];
   if (!t) return '';
@@ -60,7 +60,7 @@ function toolCard(key) {
       return '<span class="tmode' + (m.wk === 'write' ? ' w' : '') + '">' + esc(m.m) + (m.wk === 'write' ? ' ✎' : '') + '</span>';
     }).join('') + '</div>' +
     '<div class="tsc">' + (t.modes.filter(function (m) { return m.wk === 'write'; }).length
-      ? '✎ = โหมดที่แก้ไขไฟล์จริง' : 'ไม่มีโหมดที่แก้ไขไฟล์จริง') + '</div>' +
+      ? '✎ = mode ที่แก้ไขไฟล์จริง' : 'ไม่มี mode ที่แก้ไขไฟล์จริง') + '</div>' +
     '</button>';
 }
 
@@ -195,14 +195,14 @@ function viewTools() {
     var writes = t.modes.filter(function (m) { return m.wk === 'write'; }).length;
     return topicCard({
       id: k, icon: t.icon, color: t.color, t: '/' + t.cmd, d: t.title + ' — ' + t.tag,
-      up: t.modes.length + ' โหมด' + (writes ? ' · ' + writes + ' โหมดแก้ไขไฟล์จริง' : ''),
+      up: t.modes.length + ' mode' + (writes ? ' · ' + writes + ' mode แก้ไขไฟล์จริง' : ''),
       wait: t.proof.ok ? null : 'ยังไม่เคยใช้งาน'
     }, 'tools');
   }).join('');
 
   return '<div class="inner">' +
     head({ icon: 'wrench', title: 'เครื่องมือ', tag: 'คำสั่งที่พิมพ์ใน Claude', color: '',
-           lede: 'คำสั่งที่ทำงานกับไฟล์จริง แต่ละคำสั่งระบุโหมดที่แก้ไขไฟล์' }) +
+           lede: 'คำสั่งที่ทำงานกับไฟล์จริง แต่ละคำสั่งระบุ mode ที่แก้ไขไฟล์' }) +
     '<div class="block first"><h2 class="sec">ลำดับการใช้งาน</h2>' +
       '<p class="sec-lede">ลำดับปกติของงาน 1 ชิ้น</p>' +
       '<div class="flowbox">' + FLOW_TOOLS + '</div></div>' +
@@ -255,8 +255,8 @@ function viewTool(key) {
       '<div class="pl">' + (t.proof.ok ? '✅ ' : '⬜ ') + esc(t.proof.t) + '</div>' +
       '<div class="pd">' + esc(t.proof.d) + '</div></div>' +
 
-    '<div class="block"><h2 class="sec">โหมดและขอบเขตการแก้ไข</h2>' +
-      '<p class="sec-lede">ตรวจสอบคอลัมน์ขวาก่อนใช้งาน</p>' +
+    '<div class="block"><h2 class="sec">mode และขอบเขตการแก้ไข</h2>' +
+      '<p class="sec-lede">ตรวจสอบ column ขวาก่อนใช้งาน</p>' +
       '<div class="modes">' + modes + '</div></div>' +
 
     '<div class="block"><h2 class="sec">สิ่งที่ต้องเตรียม</h2>' +

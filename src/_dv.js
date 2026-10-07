@@ -18,7 +18,7 @@ var DVCHAT1 = '<div class="cm"><div class="ct">ขั้น 1/7 · ตรวจ�
   '<tr><td>Frame 1597884708 +7</td><td>ชื่อ default</td><td>ตั้งชื่อตามหน้าที่</td></tr>' +
   '</tbody></table>' +
   '<div class="cg y">ต้องยืนยัน 2 รายการ → ตอบในขั้น 4</div>' +
-  '<div class="cg g">ไม่นับรวม: Navbar ขาว 80% (ค่าเดียวกับ Design System) · ลายการ์ด · status bar</div>' +
+  '<div class="cg g">ไม่นับรวม: Navbar ขาว 80% (ค่าเดียวกับ Design System) · ลาย card · status bar</div>' +
   '<div class="tip">แนะนำให้แก้ก่อน: สีข้อความ (1 จุด)</div></div>';
 
 var DVCHAT2 = '<div class="cm"><div class="ct">ขั้น 2/7 · เลือกรายการที่ต้องการแก้ไข<span class="ex">ตัวอย่าง</span></div>' +
@@ -47,7 +47,7 @@ DATA.topic.dvhow = {
     { k: 'warn', t: '<b>กรณี B2C App</b> · QA พบ 10 ปัญหาจาก design ไม่ครบ เช่น ปุ่มถูกแถบล่าง Android บัง และจุดที่ dev ตอบว่า <b>"ตามดีไซน์ ไม่มีการแสดง"</b> · Checklist 7 ข้อพัฒนาจากกรณีเหล่านี้' },
 
     { k: 'h', t: 'ผลลัพธ์: หน้า Deliver', d: 'ระบบสร้างหน้า <code>📄 Deliver - ชื่อ feature</code> ในไฟล์งาน ประกอบด้วย 4 ส่วน' },
-    { k: 'ovw', img: { src: 'IMG_DVPAGE_SRC', alt: 'หน้า Deliver ใน Figma มีลำดับขั้นตอน ป้าย Status การ์ด Audit Result, Deliver Form และ Handoff Checklist', cap: 'หน้า Deliver ก่อนกรอกข้อมูล' },
+    { k: 'ovw', img: { src: 'IMG_DVPAGE_SRC', alt: 'หน้า Deliver ใน Figma มีลำดับขั้นตอน ป้าย Status card Audit Result, Deliver Form และ Handoff Checklist', cap: 'หน้า Deliver ก่อนกรอกข้อมูล' },
       parts: [
         { t: 'Audit Result', who: [['a', 'ระบบเขียน']], d: 'ผลตรวจ ความพร้อมส่ง และรายการที่ต้องแก้ไข' },
         { t: 'Handoff Checklist', who: [['h', 'Designer ติ๊ก']], d: '7 ข้อที่ต้องตรวจก่อนส่ง' },
@@ -62,7 +62,7 @@ DATA.topic.dvhow = {
       { l: 'เพิ่มเติม', v: '<b>Jira ticket</b> เพื่อเทียบกับ AC' }
     ]},
 
-    { k: 'h', t: '7 ขั้นตอน', d: 'ระบบทำ 3 ขั้นแรก Designer ทำ 4 ขั้นหลัง · <b>ปิดแชทแล้วทำต่อได้ด้วยคำสั่งเดิม</b>' },
+    { k: 'h', t: '7 ขั้นตอน', d: 'ระบบทำ 3 ขั้นแรก Designer ทำ 4 ขั้นหลัง · <b>ปิด chat แล้วทำต่อได้ด้วยคำสั่งเดิม</b>' },
     { k: 'flow', svg: FLOW_DV, cap: 'ภาพรวม 7 ขั้นตอน' },
 
     { k: 'srow', n: 1, t: 'ตรวจไฟล์', who: [WA], dl: [
@@ -82,10 +82,10 @@ DATA.topic.dvhow = {
         ['ระบบถาม', 'ตำแหน่งวางหน้า Deliver'],
         ['ระบบทำ', 'สร้างหน้าและบันทึกผลลง <b>Audit Result</b>'],
         ['การอ่านผล', '<ul><li><b>Overall</b> Ready หรือ Not Ready</li><li><b>ต้องแก้</b> รายการที่ผิดจริง</li><li><b>ต้องถาม</b> ประเด็นที่ Designer ต้องตอบในขั้น 4</li></ul>']
-      ], img: { src: 'IMG_DVAUDIT_SRC', alt: 'การ์ด Audit Result แสดง Overall Not Ready รายการที่ผ่าน ต้องแก้ 3 ข้อ และต้องถาม 2 ข้อ', cap: 'ผลตรวจจริงของหน้า My Course' } },
+      ], img: { src: 'IMG_DVAUDIT_SRC', alt: 'Card Audit Result แสดง Overall Not Ready รายการที่ผ่าน ต้องแก้ 3 ข้อ และต้องถาม 2 ข้อ', cap: 'ผลตรวจจริงของหน้า My Course' } },
 
     { k: 'srow', n: 4, t: 'ตอบคำถาม', who: [WH], mine: true, dl: [
-        ['ดำเนินการที่', 'แชท'],
+        ['ดำเนินการที่', 'Chat'],
         ['ตัวอย่าง', '"ไม่มีหน้า error ตั้งใจหรือไม่" → "ใช้หน้า error กลางของแอป" · ระบบอัปเดต Audit Result']
       ] },
 
@@ -126,7 +126,7 @@ DATA.topic.dvhow = {
     { k: 'h', t: 'คำถามที่พบบ่อย' },
     { k: 'faq', items: [
       { q: 'ต้องใช้กับทุก feature หรือไม่', a: 'ยังไม่บังคับในช่วงทดลองใช้ แนะนำให้ทดลองกับงาน 1 ชิ้นในรอบนี้และแจ้งปัญหาที่พบ' },
-      { q: 'กลับมาทำต่อหลังปิดแชทได้หรือไม่', a: 'ได้ พิมพ์ <code>/deliver-kit</code> พร้อมลิงก์เดิม ระบบจะทำต่อจากขั้นที่ค้างตามหน้า Deliver' },
+      { q: 'กลับมาทำต่อหลังปิด chat ได้หรือไม่', a: 'ได้ พิมพ์ <code>/deliver-kit</code> พร้อมลิงก์เดิม ระบบจะทำต่อจากขั้นที่ค้างตามหน้า Deliver' },
       { q: 'ควรแนบลิงก์ทั้งไฟล์หรือไม่', a: 'ไม่ควร ให้แนบเฉพาะ page หรือ frame ของงานรอบนี้ การแนบทั้งไฟล์ทำให้ระบบตรวจหน้าเก่าและหน้าทดลองด้วย ผลจึงคลาดเคลื่อนและใช้เวลานาน' },
       { q: 'หน้างานเป็น instance ของ component จากหน้าอื่น', a: 'ระบบตรวจที่ master component และระบุหน้าที่ตรวจ · แก้ไขที่ master' },
       { q: 'ต้องแก้ไขทุกข้อก่อนส่งหรือไม่', a: 'ไม่จำเป็น ให้ตั้ง Status เป็น Changes Requested หรือระบุในหมายเหตุ · ส่งรอบใหม่ให้เพิ่มเลขในช่อง "รอบที่"' },
@@ -175,7 +175,7 @@ DATA.topic.dvkit = {
     { k: 'link', items: [
       { icon: 'frame', color: 'blue', t: 'Deliver Kit · Figma', d: 'ต้นฉบับ Checklist, ฟอร์ม และ Status · ไฟล์ Design QA master', to: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2027-2', up: 'publish 28 ก.ย. 2026' }
     ]},
-    { k: 'img', src: 'IMG_DVPAGE_SRC', alt: 'หน้า Deliver ใน Figma มีลำดับขั้นตอน ป้าย Status การ์ด Audit Result, Deliver Form และ Handoff Checklist', cap: 'หน้า Deliver ก่อนกรอกข้อมูล' },
+    { k: 'img', src: 'IMG_DVPAGE_SRC', alt: 'หน้า Deliver ใน Figma มีลำดับขั้นตอน ป้าย Status card Audit Result, Deliver Form และ Handoff Checklist', cap: 'หน้า Deliver ก่อนกรอกข้อมูล' },
     { k: 'table', head: ['ส่วน', 'รายละเอียด', 'ผู้รับผิดชอบ'], rows: [
       ['Audit Result', 'ผลตรวจ ความพร้อมส่ง และรายการที่ต้องแก้ไข<small>เป็น frame ไม่ใช่ component เพื่อให้ระบบเขียนได้</small>', 'ระบบ'],
       ['Handoff Checklist', '7 ข้อที่ต้องตรวจก่อนส่ง', 'Designer'],
@@ -195,29 +195,29 @@ var DVRATCHAT = '<div class="cm"><div class="ct">ขั้น 3 · ร่าง�
 
 DATA.topic.dvrat = {
   parent: 'dv', color: 'purple', icon: 'target',
-  title: 'Design Rationale', tag: 'เหตุผลการออกแบบ · บอร์ดใน Figma',
+  title: 'Design Rationale', tag: 'เหตุผลการออกแบบ · board ใน Figma',
   lede: 'เหตุผลการออกแบบพร้อมหลักฐาน วางเป็น board ข้างหน้าจอในไฟล์ Figma ใช้ประกอบ review และส่ง dev',
   blocks: [
     { k: 'kv', items: [
       { l: 'คำสั่ง', v: '<code>/rationale &lt;ลิงก์ Figma ของหน้าจอ&gt;</code> ใน Claude Code (design-brain) · ปรึกษาก่อนออกแบบได้โดยไม่ต้องแนบลิงก์' },
-      { l: 'ผลลัพธ์', v: 'board ประกอบด้วยหน้าจอ <b>หมุดเลข</b> และ<b>การ์ดเหตุผล</b> พร้อมหลักฐานและ Trade-offs' }
+      { l: 'ผลลัพธ์', v: 'Board ประกอบด้วยหน้าจอ <b>หมุดเลข</b> และ<b>Card เหตุผล</b> พร้อมหลักฐานและ Trade-offs' }
     ]},
 
     { k: 'h', t: 'ใช้เมื่อ', d: 'เฉพาะหน้าที่มี decision ที่อาจถูกถามว่า "ทำไม" (ปกติ 1-3 หน้าต่อ feature · หน้าละ 3-6 ข้อ)' },
-    { k: 'table', head: ['ใช้เมื่อ', 'โหมด', 'ผลลัพธ์'], rows: [
-      ['<b>ก่อน UI review / ขอ approve</b><small>กรณีหลัก</small>', 'เขียนลงบอร์ด', 'หลักฐานประกอบการนำเสนอ และส่ง dev ต่อได้'],
-      ['<b>decision ที่ยังไม่มั่นใจ</b>', 'ปรึกษา → ค่อยลงบอร์ด', 'หลักฐาน<b>ทั้งสนับสนุนและคัดค้าน</b> เพื่อประเมินก่อน review'],
-      ['<b>ก่อนส่ง dev</b>', 'เขียนลงบอร์ด', '<code>/deliver-kit</code> จะแนะนำหากยังไม่มี'],
+    { k: 'table', head: ['ใช้เมื่อ', 'Mode', 'ผลลัพธ์'], rows: [
+      ['<b>ก่อน UI review / ขอ approve</b><small>กรณีหลัก</small>', 'เขียนลง board', 'หลักฐานประกอบการนำเสนอ และส่ง dev ต่อได้'],
+      ['<b>decision ที่ยังไม่มั่นใจ</b>', 'ปรึกษา → ค่อยลง board', 'หลักฐาน<b>ทั้งสนับสนุนและคัดค้าน</b> เพื่อประเมินก่อน review'],
+      ['<b>ก่อนส่ง dev</b>', 'เขียนลง board', '<code>/deliver-kit</code> จะแนะนำหากยังไม่มี'],
       ['<b>ยังไม่ได้ออกแบบ</b>', 'ปรึกษา', 'ทางเลือกพร้อมหลักฐาน']
     ]},
-    { k: 'warn', t: '<b>ห้ามใช้หาเหตุผลรองรับ decision ที่ไม่มั่นใจ</b> · ระบบสร้างเหตุผลที่น่าเชื่อถือได้เสมอแม้ decision ผิด ให้ใช้โหมดปรึกษา หากหลักฐานคัดค้านให้ปรับแบบหรือหารือใน review' },
+    { k: 'warn', t: '<b>ห้ามใช้หาเหตุผลรองรับ decision ที่ไม่มั่นใจ</b> · ระบบสร้างเหตุผลที่น่าเชื่อถือได้เสมอแม้ decision ผิด ให้ใช้ mode ปรึกษา หากหลักฐานคัดค้านให้ปรับแบบหรือหารือใน review' },
     { k: 'p', t: '<b>ไม่จำเป็นต้องใช้:</b> แก้ไขเล็กน้อย (ข้อความ ระยะ bug) · ใช้ pattern มาตรฐานของ Design System ทั้งหน้า · ยังทดลองหลายแบบ' },
 
-    { k: 'h', t: 'ผลลัพธ์', d: 'ตัวอย่าง B2C App หน้า My Course · หมุดเลขตรงกับเลขการ์ด' },
-    { k: 'img', src: 'IMG_DVRATBOARD_SRC', alt: 'บอร์ด Design Rationale หน้า My Course: แถบซ้าย หน้าจอพร้อมหมุด 01-03 และการ์ดเหตุผล 3 ใบ', cap: 'บอร์ด <code>Design Review - My Course</code> ในไฟล์ B2C Application หน้า Design Rationale' },
+    { k: 'h', t: 'ผลลัพธ์', d: 'ตัวอย่าง B2C App หน้า My Course · หมุดเลขตรงกับเลข card' },
+    { k: 'img', src: 'IMG_DVRATBOARD_SRC', alt: 'Board Design Rationale หน้า My Course: แถบซ้าย หน้าจอพร้อมหมุด 01-03 และ card เหตุผล 3 ใบ', cap: 'Board <code>Design Review - My Course</code> ในไฟล์ B2C Application หน้า Design Rationale' },
 
     { k: 'h', t: 'ขั้นตอน', d: '4 ขั้น · Designer เลือก decision (ขั้น 2) และยืนยันเหตุผล (ขั้น 3) ที่เหลือระบบทำ' },
-    { k: 'flow', svg: FLOW_RAT, cap: 'ระบบร่าง Designer ตัดสิน · ข้อที่ไม่ยืนยันจะไม่ลงบอร์ด' },
+    { k: 'flow', svg: FLOW_RAT, cap: 'ระบบร่าง Designer ตัดสิน · ข้อที่ไม่ยืนยันจะไม่ลง board' },
     { k: 'srow', n: 1, t: 'อ่านบริบท', who: [['a', 'ระบบทำ']], dl: [
         ['ระบบอ่าน', 'หน้าจอจาก Figma · PRD / AC จาก Jira · persona และ decision เดิมของ BU ใน design-brain'],
         ['บันทึก', 'ที่มาของข้อมูล ใช้เป็นหลักฐานป้าย Project']
@@ -228,13 +228,13 @@ DATA.topic.dvrat = {
       ] },
     { k: 'srow', n: 3, t: 'ยืนยันเหตุผล', who: [['h', 'Designer ทำ']], mine: true, dl: [
         ['ระบบร่าง', 'เหตุผลเบื้องต้น ส่วนที่ไม่มีที่มาติดป้าย <b>(เดา)</b>'],
-        ['Designer ทำ', '<b>ยืนยันหรือแก้ไขทีละข้อ</b> ข้อที่ไม่ยืนยันจะไม่ลงบอร์ด · คำถามข้อเท็จจริงจากระบบต้องตอบก่อน']
+        ['Designer ทำ', '<b>ยืนยันหรือแก้ไขทีละข้อ</b> ข้อที่ไม่ยืนยันจะไม่ลง board · คำถามข้อเท็จจริงจากระบบต้องตอบก่อน']
       ], html: DVRATCHAT, cap: 'ตัวอย่างจากการทดสอบหน้า My Course' },
-    { k: 'srow', n: 4, t: 'หลักฐาน + วางบอร์ด', who: [['a', 'ระบบทำ']], dl: [
-        ['Sources', '2-4 ข้อต่อการ์ด ป้าย 7 แบบ · <b>Project / Data ต้องมีที่มาจริง</b>'],
-        ['วางลงไฟล์', 'ถามตำแหน่ง แล้ววางหน้าจอ หมุดเลข และการ์ด'],
-        ['หลักฐานคัดค้าน', 'แจ้ง Designer ก่อนเขียนบอร์ด ไม่คัดเฉพาะหลักฐานสนับสนุน']
-      ], img: { src: 'IMG_DVRATCARD_SRC', alt: 'การ์ด Design Rationale 03 ความยาวคอร์สและ Progress bar พร้อม Sources 4 ข้อ และ Trade-offs', cap: 'การ์ด 1 ใบ = 1 decision · Rationale · Sources · Trade-offs' } },
+    { k: 'srow', n: 4, t: 'หลักฐาน + วาง board', who: [['a', 'ระบบทำ']], dl: [
+        ['Sources', '2-4 ข้อต่อ card ป้าย 7 แบบ · <b>Project / Data ต้องมีที่มาจริง</b>'],
+        ['วางลงไฟล์', 'ถามตำแหน่ง แล้ววางหน้าจอ หมุดเลข และ card'],
+        ['หลักฐานคัดค้าน', 'แจ้ง Designer ก่อนเขียน board ไม่คัดเฉพาะหลักฐานสนับสนุน']
+      ], img: { src: 'IMG_DVRATCARD_SRC', alt: 'Card Design Rationale 03 ความยาวคอร์สและ Progress bar พร้อม Sources 4 ข้อ และ Trade-offs', cap: 'Card 1 ใบ = 1 decision · Rationale · Sources · Trade-offs' } },
 
     { k: 'h', t: 'ป้าย Source 7 แบบ', d: 'ระบุแหล่งอ้างอิงของเหตุผล' },
     { k: 'table', head: ['ป้าย', 'ใช้เมื่ออ้างอิง', 'ตัวอย่าง'], rows: [
@@ -252,12 +252,12 @@ DATA.topic.dvrat = {
       '<b>ไม่แต่งเหตุผลแทน Designer</b> ทุกข้อต้องยืนยัน',
       '<b>ไม่แต่งตัวเลขหรือชื่อเอกสาร</b> ในป้าย Project / Data',
       '<b>ไม่แนะนำการปรับแบบ</b> ใช้ <code>/critique</code>',
-      '<b>ไม่แก้ไข frame งานออกแบบ</b> เขียนเฉพาะบอร์ด rationale'
+      '<b>ไม่แก้ไข frame งานออกแบบ</b> เขียนเฉพาะ board rationale'
     ]},
 
     { k: 'link', items: [
-      { icon: 'frame', color: 'purple', t: 'Design Rationale Template · Figma', d: 'library การ์ด · ป้าย Source · หมุดเลข', to: 'https://www.figma.com/design/G7q7EuE251iSoap0YzNsm8/-Master--Design-Rationale-Template?node-id=2001-873', up: 'publish 28 ก.ย. 2026' },
-      { icon: 'target', color: 'orange', t: 'ตัวอย่างจริง · B2C App', d: 'Homepage · Curriculum · My Course', to: 'https://www.figma.com/design/e9cWDHGiXcZoCYzgTfPfQY/-B2C--B2C-Application?node-id=2859-4308', up: '3 บอร์ด' }
+      { icon: 'frame', color: 'purple', t: 'Design Rationale Template · Figma', d: 'library card · ป้าย Source · หมุดเลข', to: 'https://www.figma.com/design/G7q7EuE251iSoap0YzNsm8/-Master--Design-Rationale-Template?node-id=2001-873', up: 'publish 28 ก.ย. 2026' },
+      { icon: 'target', color: 'orange', t: 'ตัวอย่างจริง · B2C App', d: 'Homepage · Curriculum · My Course', to: 'https://www.figma.com/design/e9cWDHGiXcZoCYzgTfPfQY/-B2C--B2C-Application?node-id=2859-4308', up: '3 board' }
     ]}
   ]
 };

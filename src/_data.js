@@ -42,8 +42,8 @@ var DATA = {
       lede: 'ตรวจงานที่ Dev พัฒนาเทียบกับ design และบันทึกจุดที่ไม่ตรงไว้ในที่เดียว',
       topics: [
         { icon: 'book', color: 'green', t: 'Playbook', d: 'อ่านก่อนเริ่ม · มี 2 แนวทาง', ext: 'https://claude.ai/code/artifact/099d7d0d-4141-4f20-a59b-5df40f7b6c28', up: 'พร้อมใช้' },
-        { icon: 'frame', color: 'blue', t: 'บอร์ด QA (Figma)', d: 'แม่แบบบอร์ด · 1 เฟรม = 1 หน้า', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma master' },
-        { icon: 'table', color: 'amber', t: 'Sheet รายงาน', d: 'ตาราง issue 9 คอลัมน์ + แท็บ Onboarding', ext: 'https://docs.google.com/spreadsheets/d/1Mj9MWa0rAjgmgeUjfh7E78C5T_h8MYWNzWVFw-H7zsk/edit', up: 'Google Sheet' },
+        { icon: 'frame', color: 'blue', t: 'Board QA (Figma)', d: 'แม่แบบ board · 1 frame = 1 หน้า', ext: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma master' },
+        { icon: 'table', color: 'amber', t: 'Sheet รายงาน', d: 'ตาราง issue 9 column + tab Onboarding', ext: 'https://docs.google.com/spreadsheets/d/1Mj9MWa0rAjgmgeUjfh7E78C5T_h8MYWNzWVFw-H7zsk/edit', up: 'Google Sheet' },
         { icon: 'tag', color: 'purple', t: 'ประเภท issue 9 หมวด', d: 'หมวดมาตรฐาน + ความรุนแรง 3 ระดับ', ext: DB + '/blob/main/templates/qa-issue-types.md', up: 'design-brain' },
         { icon: 'chart', color: 'orange', t: 'บทเรียนจาก B2C App', d: 'ผลจริง 139 รายการ · pattern ที่ควรแก้ที่ต้นทาง', ext: 'https://skilllane.atlassian.net/browse/UXUI-1521', up: 'ปิด cycle 95.7%' }
       ]
@@ -67,7 +67,7 @@ var DATA = {
       lock: {
         t: 'ยังไม่เปิดใช้ อยู่ระหว่างตกลง',
         d: 'ยังไม่ได้กำหนดช่องทางการขอความช่วยเหลือ',
-        todo: ['กำหนดช่องทางการขอ: การ์ด Jira, ติดต่อโดยตรง หรือระบบคิว', 'เขียนขอบเขตงาน 5 stage ประกอบ']
+        todo: ['กำหนดช่องทางการขอ: card Jira, ติดต่อโดยตรง หรือระบบคิว', 'เขียนขอบเขตงาน 5 stage ประกอบ']
       },
       topics: []
     }
@@ -156,7 +156,7 @@ var DATA = {
         'หากขัดกับผลตรวจ แจ้งเตือนครั้งเดียวและเคารพการตัดสินใจ',
         'ขั้น 2 ข้ามได้ · ขั้น 4-7 ข้ามไม่ได้ แต่หยุดและกลับมาทำต่อได้'
       ],
-      proof: { ok: true, t: 'ทดสอบครบ 7 ขั้นแล้ว', d: 'B2C App หน้า My Course (28 ก.ย.) · ขั้น 2 ข้ามในรอบทดสอบ (ใช้ /ds-audit โหมดแก้ ซึ่งใช้งานจริงแล้ว) · แก้ 5 ปัญหาก่อนเปิดใช้ เช่น ผลตรวจ instance ผิด และ flow หยุดเมื่อติ๊กไม่ครบ' }
+      proof: { ok: true, t: 'ทดสอบครบ 7 ขั้นแล้ว', d: 'B2C App หน้า My Course (28 ก.ย.) · ขั้น 2 ข้ามในรอบทดสอบ (ใช้ /ds-audit mode แก้ ซึ่งใช้งานจริงแล้ว) · แก้ 5 ปัญหาก่อนเปิดใช้ เช่น ผลตรวจ instance ผิด และ flow หยุดเมื่อติ๊กไม่ครบ' }
     },
 
     'ds-audit': {
@@ -173,7 +173,7 @@ var DATA = {
       prep: [
         { t: 'ลิงก์ไฟล์ Figma + ขอบเขต', w: 'ไฟล์ขนาดใหญ่อาจ timeout ควรแบ่งตาม page' },
         { t: 'ระบุว่าเป็นไฟล์ Design System หรือไฟล์งาน', w: 'ไฟล์งานต้องตรวจ detach และ layer naming เพิ่ม' },
-        { t: 'ผลตรวจรอบก่อน (เฉพาะโหมดแก้ไข)', w: 'จำเป็นต้องมีก่อนแก้ไข' },
+        { t: 'ผลตรวจรอบก่อน (เฉพาะ mode แก้ไข)', w: 'จำเป็นต้องมีก่อนแก้ไข' },
         { t: 'exempt list ใน golden-set ของ BU', w: 'หากไม่มี ค่า % จะคลาดเคลื่อน' }
       ],
       rules: [
@@ -190,27 +190,27 @@ var DATA = {
     'qa-check': {
       icon: 'check', color: 'green', title: 'Design QA', cmd: 'qa-check',
       tag: 'เทียบงานจริงกับ design', sec: 'qa',
-      lede: 'เทียบงานที่ Dev พัฒนากับ design หรือย้ายหมุดจากบอร์ด Figma ลง Sheet',
+      lede: 'เทียบงานที่ Dev พัฒนากับ design หรือย้ายหมุดจาก board Figma ลง Sheet',
       when: 'หลังขึ้น staging หรือ preprod ก่อนปล่อยจริง',
-      type: 'พิมพ์ /qa-check ระบบเลือกโหมดจากข้อมูลที่ได้รับ',
+      type: 'พิมพ์ /qa-check ระบบเลือก mode จากข้อมูลที่ได้รับ',
       modes: [
-        { m: 'เทียบ design ↔ build', d: 'เก็บหลักฐาน 2 ฝั่ง → ตรวจ diff 7 หมวด + a11y → ออกรายงาน', w: 'แสดงผลในแชท · บันทึกเมื่อได้รับคำสั่ง', wk: 'safe' },
-        { m: 'ย้ายหมุดลง Sheet', d: 'อ่านหมุดที่ Designer วางในบอร์ด → ลง Sheet + สรุป', w: 'เขียน Google Sheet เมื่อยืนยัน', wk: 'write' },
-        { m: 'จัด bug list ที่มีอยู่', d: 'เติม severity + หมวด + รวมรายการซ้ำ + เรียงลำดับ', w: 'แสดงผลในแชท', wk: 'read' }
+        { m: 'เทียบ design ↔ build', d: 'เก็บหลักฐาน 2 ฝั่ง → ตรวจ diff 7 หมวด + a11y → ออกรายงาน', w: 'แสดงผลใน chat · บันทึกเมื่อได้รับคำสั่ง', wk: 'safe' },
+        { m: 'ย้ายหมุดลง Sheet', d: 'อ่านหมุดที่ Designer วางใน board → ลง Sheet + สรุป', w: 'เขียน Google Sheet เมื่อยืนยัน', wk: 'write' },
+        { m: 'จัด bug list ที่มีอยู่', d: 'เติม severity + หมวด + รวมรายการซ้ำ + เรียงลำดับ', w: 'แสดงผลใน chat', wk: 'read' }
       ],
       prep: [
-        { t: 'บอร์ด QA ใน Figma', w: 'duplicate จากแม่แบบ · 1 เฟรม = 1 หน้า = 1 platform' },
-        { t: 'Sheet + แท็บของ platform', w: '1 แท็บ = 1 platform · ระบบแจ้งบัญชีที่ใช้' },
-        { t: 'URL หน้าจริง หรือหมุดที่วางไว้', w: 'หากมีหมุดแล้ว ใช้โหมดย้ายหมุด' },
+        { t: 'Board QA ใน Figma', w: 'duplicate จากแม่แบบ · 1 frame = 1 หน้า = 1 platform' },
+        { t: 'Sheet + tab ของ platform', w: '1 tab = 1 platform · ระบบแจ้งบัญชีที่ใช้' },
+        { t: 'URL หน้าจริง หรือหมุดที่วางไว้', w: 'หากมีหมุดแล้ว ใช้ mode ย้ายหมุด' },
         { t: 'build / environment ที่ทดสอบ', w: 'จำเป็นสำหรับ re-test' }
       ],
       rules: [
-        'ค่าเริ่มต้นแสดงผลในแชท การเขียนบอร์ด/Sheet/Jira ต้องรอยืนยัน',
-        'บอร์ด Figma เป็นต้นฉบับ แก้ที่บอร์ดแล้วสั่งเขียนใหม่ ไม่แก้ใน Sheet',
-        'รายงานจำนวนและตำแหน่งของการ์ดที่อ่านไม่ได้',
+        'ค่าเริ่มต้นแสดงผลใน chat การเขียน board/Sheet/Jira ต้องรอยืนยัน',
+        'Board Figma เป็นต้นฉบับ แก้ที่ board แล้วสั่งเขียนใหม่ ไม่แก้ใน Sheet',
+        'รายงานจำนวนและตำแหน่งของ card ที่อ่านไม่ได้',
         'ไม่ตัดสินเรื่อง content/data เนื่องจาก mockup ใช้ข้อมูลสมมติ'
       ],
-      proof: { ok: true, t: 'ใช้งานจริงแล้วทั้ง 2 โหมด', d: 'ย้ายหมุดลง Sheet: B2C App 120 รายการ ปิด cycle 139 รายการที่ 95.7% (11 ส.ค.) · เทียบ design ↔ build: OLS Preprod ครบรอบ บันทึกผลทั้งบอร์ด Figma และ Sheet (18 ส.ค.)' }
+      proof: { ok: true, t: 'ใช้งานจริงแล้วทั้ง 2 mode', d: 'ย้ายหมุดลง Sheet: B2C App 120 รายการ ปิด cycle 139 รายการที่ 95.7% (11 ส.ค.) · เทียบ design ↔ build: OLS Preprod ครบรอบ บันทึกผลทั้ง board Figma และ Sheet (18 ส.ค.)' }
     },
 
     'handoff': {
@@ -220,7 +220,7 @@ var DATA = {
       when: 'หลังไฟล์ผ่านการตรวจ ก่อนส่งให้ Dev',
       type: 'พิมพ์ /handoff พร้อมลิงก์ Figma frame + Jira ticket (ถ้ามี)',
       modes: [
-        { m: 'ตรวจความพร้อมส่ง', d: 'ตรวจ 3 หมวด: คุณภาพไฟล์ · ความครบถ้วน · ความพร้อมส่ง → Ready / Not Ready', w: 'แสดงผลในแชท', wk: 'read' },
+        { m: 'ตรวจความพร้อมส่ง', d: 'ตรวจ 3 หมวด: คุณภาพไฟล์ · ความครบถ้วน · ความพร้อมส่ง → Ready / Not Ready', w: 'แสดงผลใน chat', wk: 'read' },
         { m: 'ร่าง handoff doc', dflt: true, d: 'ตรวจความพร้อมก่อน แล้วร่างเอกสารจาก spec + AC · ยังไม่เคยใช้งานจริง', w: 'เขียนลงหน้า Deliver ใน Figma + สำเนา .md', wk: 'write' }
       ],
       prep: [
@@ -233,12 +233,12 @@ var DATA = {
       rules: [
         'ต้องตรวจความพร้อมก่อนร่างเอกสารทุกครั้ง',
         'ผล Not Ready: แจ้งรายการที่ต้องแก้และหยุด',
-        'เขียนได้เฉพาะหน้า Deliver · การแก้ไฟล์ใช้ ds-audit โหมดแก้',
+        'เขียนได้เฉพาะหน้า Deliver · การแก้ไฟล์ใช้ ds-audit mode แก้',
         'ไม่เปลี่ยน Status เป็น Ready for Dev แทน Designer',
         'ทุก handoff ต้องมี a11y requirement',
         'ทุก issue ต้องระบุ location'
       ],
-      proof: { ok: true, t: 'โหมดเช็คใช้งานจริงแล้ว', d: 'ตรวจความพร้อม + บันทึกผลที่หน้า Deliver กับ B2C App My Course (28 ก.ย.) ผ่าน /deliver-kit · โหมดร่าง handoff doc ยังไม่เคยใช้งาน' }
+      proof: { ok: true, t: 'Mode เช็คใช้งานจริงแล้ว', d: 'ตรวจความพร้อม + บันทึกผลที่หน้า Deliver กับ B2C App My Course (28 ก.ย.) ผ่าน /deliver-kit · mode ร่าง handoff doc ยังไม่เคยใช้งาน' }
     }
   }
 };

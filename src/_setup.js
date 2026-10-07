@@ -19,7 +19,7 @@ DATA.topic.setup = {
       'ทดสอบการเชื่อมต่อโดยให้ Claude อ่าน frame ใดก็ได้ 1 frame'
     ]},
 
-    { k: 'h', t: '2 · Playwright', d: 'แคปหน้าเว็บเต็มหน้าหลาย breakpoint อัตโนมัติ' },
+    { k: 'h', t: '2 · Playwright', d: 'Capture หน้าเว็บเต็มหน้าหลาย breakpoint อัตโนมัติ' },
     { k: 'code', t: 'npm i -g playwright\nnpx playwright install chromium' },
     { k: 'note', t: 'คำสั่งที่สองดาวน์โหลด Chromium ~150MB ใช้เวลานานที่สุด <b>สามารถรันทิ้งไว้ได้</b>' },
 
@@ -33,11 +33,11 @@ DATA.topic.setup = {
 
     { k: 'h', t: 'ทางเลือกเมื่อไม่ได้ติดตั้ง', d: 'ได้ผลเหมือนกัน แต่ต้องทำด้วยมือ' },
     { k: 'table', head: ['ไม่มี', 'ทางเลือก', 'ข้อจำกัด'], rows: [
-      ['Playwright', 'ใช้ Chrome DevTools คำสั่ง <b>Capture full size screenshot</b> เพื่อแคปเต็มหน้า', 'ทำทีละ breakpoint · ผลแต่ละรอบอาจไม่ตรงกัน'],
-      ['gcloud', 'ระบบสร้างตารางในแชท แล้วคัดลอกไปวางใน Sheet', 'ใช้เวลากรอก · เสี่ยงวางผิดคอลัมน์'],
+      ['Playwright', 'ใช้ Chrome DevTools คำสั่ง <b>Capture full size screenshot</b> เพื่อ capture เต็มหน้า', 'ทำทีละ breakpoint · ผลแต่ละรอบอาจไม่ตรงกัน'],
+      ['gcloud', 'ระบบสร้างตารางใน chat แล้วคัดลอกไปวางใน Sheet', 'ใช้เวลากรอก · เสี่ยงวางผิด column'],
       ['Pillow', 'ใช้เฉพาะ native app ที่ต้องต่อภาพ scroll ไม่จำเป็นสำหรับเว็บ', '—']
     ]},
-    { k: 'warn', t: '<b>ต้องแคปเต็มหน้าเสมอ</b> เนื่องจาก Design Spec เป็นหน้าเต็ม ภาพหน้าจอเดียวเทียบตำแหน่งข้ามคอลัมน์ไม่ได้' },
+    { k: 'warn', t: '<b>ต้อง capture เต็มหน้าเสมอ</b> เนื่องจาก Design Spec เป็นหน้าเต็ม ภาพหน้าจอเดียวเทียบตำแหน่งข้าม column ไม่ได้' },
 
     { k: 'h', t: 'ตรวจสอบก่อนเริ่มงาน' },
     { k: 'code', t: 'playwright --version\ngcloud auth list --format="value(account)"' },

@@ -4,7 +4,7 @@ DATA.sec.qa.docsLede = 'สำหรับผู้เริ่มต้น ค�
 DATA.sec.qa.topics = [
   { id: 'how',  icon: 'book',  color: 'green',  t: 'วิธีการใช้งาน', d: 'มี 2 แบบ เลือกได้จากคำถามเดียว', up: 'playbook เต็ม' },
   { id: 'b2c',  icon: 'chart', color: 'orange', t: 'ตัวอย่างจริง: B2C App', d: 'ผลการตรวจและแนวทางแก้ไข', up: '139 รายการ · ปิด 95.7%' },
-  { id: 'tpl',  icon: 'frame', color: 'blue',   t: 'Template', d: 'บอร์ด Figma + Sheet', up: '2 แม่แบบ' },
+  { id: 'tpl',  icon: 'frame', color: 'blue',   t: 'Template', d: 'Board Figma + Sheet', up: '2 แม่แบบ' },
   { id: 'iss',  icon: 'tag',   color: 'purple', t: 'ประเภท issue', d: '', up: '9 หมวด · severity 3 · status 4' },
 ];
 DATA.sec.qa.tools = ['qa-check'];
@@ -27,12 +27,12 @@ DATA.topic.how = {
       rows: [
         ['ใช้เมื่อ', 'หน้าที่เปิดด้วย URL ได้ เช่น LMS, OLS, NCBS, NDLP และเว็บทั้งหมด', 'หน้าที่ต้องใช้งานจริงจึงพบ เช่น แอป B2C, flow ที่มี login หลายชั้น'],
         ['ผู้ค้นหา issue', 'AI<small>Designer ตรวจทานผล</small>', 'Designer<small>AI ไม่ตัดสินแทน</small>'],
-        ['สิ่งที่ต้องส่ง', 'URL ของหน้า + บอร์ดเปล่า', 'บอร์ดที่วางหมุดครบแล้ว'],
+        ['สิ่งที่ต้องส่ง', 'URL ของหน้า + board เปล่า', 'Board ที่วางหมุดครบแล้ว'],
         ['เวลาที่ Designer ใช้', 'ตรวจทานผลเท่านั้น<small>ไม่ต้องตรวจเอง</small>', 'ตรวจเองทั้งรอบ<small>AI กรอก Sheet ให้</small>'],
         ['ตรวจ Functionality ได้หรือไม่', 'ไม่ได้ และห้ามบันทึกลง Sheet<small>ภาพนิ่งไม่แสดงผลการทำงาน</small>', 'ได้ และต้องบันทึกให้ครบ<small>27% ของ issue จริง</small>'],
         ['ความแม่นยำของค่า', 'วัดค่าจริงจากหน้าเว็บ<small>spacing/size แทบไม่คลาดเคลื่อน</small>', 'สายตา + เทียบ token ใน Figma'],
         ['ตรวจ a11y', 'ได้ (contrast, touch target, heading, alt text)', 'เฉพาะที่ผู้ตรวจสังเกตพบ'],
-        ['ผลลัพธ์', 'บอร์ด Figma + Sheet', 'Sheet + สรุปในแชท'],
+        ['ผลลัพธ์', 'Board Figma + Sheet', 'Sheet + สรุปใน chat'],
         ['สถานะปัจจุบัน', '✅ <b>ใช้งานครบรอบแล้ว</b> กับ OLS Preprod (18 ส.ค.)', '✅ ใช้งานจริงครบรอบแล้ว กับ B2C 120 issue']
       ]},
 
@@ -45,53 +45,53 @@ DATA.topic.how = {
 
     { k: 'h', t: 'แบบ 1 · เทียบ design ↔ build', d: 'ระบบหยุดให้ Designer ตรวจทานก่อนบันทึกทุกครั้ง' },
     { k: 'steps', items: [
-      { t: 'เตรียมบอร์ด + Sheet และส่ง URL', d: '<b>เตรียมปลายทางก่อน</b> duplicate บอร์ดและ copy Sheet จาก master แล้วส่ง URL ของหน้าจริง', who: 'Designer' },
-      { t: 'AI แคปและเปรียบเทียบ', d: 'แคปเต็มหน้า ดึง spec และชื่อ token จาก Figma แล้วเทียบทีละจุด', who: 'AI' },
-      { t: 'Designer ตรวจทานก่อนบันทึก', d: 'AI แสดงตารางในแชทก่อน ข้อที่เป็น design decision แจ้งตัดออกได้', who: 'Designer' },
-      { t: 'AI บันทึกผล 2 ที่', d: 'วางกรอบและการ์ดในบอร์ด และเขียนลง Sheet โดยเลขตรงกัน', who: 'AI' }
+      { t: 'เตรียม board + Sheet และส่ง URL', d: '<b>เตรียมปลายทางก่อน</b> duplicate board และ copy Sheet จาก master แล้วส่ง URL ของหน้าจริง', who: 'Designer' },
+      { t: 'AI capture และเปรียบเทียบ', d: 'Capture เต็มหน้า ดึง spec และชื่อ token จาก Figma แล้วเทียบทีละจุด', who: 'AI' },
+      { t: 'Designer ตรวจทานก่อนบันทึก', d: 'AI แสดงตารางใน chat ก่อน ข้อที่เป็น design decision แจ้งตัดออกได้', who: 'Designer' },
+      { t: 'AI บันทึกผล 2 ที่', d: 'วางกรอบและ card ใน board และเขียนลง Sheet โดยเลขตรงกัน', who: 'AI' }
     ]},
 
     { k: 'h', t: 'แบบ 2 · ย้ายหมุดลง Sheet', d: 'ตรวจตามวิธีเดิม โดยให้ AI กรอก Sheet แทน' },
     { k: 'steps', items: [
-      { t: 'ตรวจและวางหมุด', d: 'ใช้งานจริง วางกรอบและเขียนการ์ดในจุดที่พบปัญหา <b>เตรียม Sheet สำหรับขั้นที่ 4</b>', who: 'Designer' },
-      { t: 'AI อ่านบอร์ดทีละหน้า', d: 'เก็บเลขหมุด ข้อความ severity และระบุหมวดให้', who: 'AI' },
+      { t: 'ตรวจและวางหมุด', d: 'ใช้งานจริง วางกรอบและเขียน card ในจุดที่พบปัญหา <b>เตรียม Sheet สำหรับขั้นที่ 4</b>', who: 'Designer' },
+      { t: 'AI อ่าน board ทีละหน้า', d: 'เก็บเลขหมุด ข้อความ severity และระบุหมวดให้', who: 'AI' },
       { t: 'Designer ตรวจทานทีละ 1–2 หน้า', d: 'ตรวจว่าอ่านครบและหมวดถูกต้องก่อนบันทึก', who: 'Designer' },
       { t: 'AI เขียน Sheet + สรุป', d: 'ได้ตารางสำหรับ Dev และสรุปหน้าที่มีปัญหามากที่สุดกับ pattern ที่ซ้ำ', who: 'AI' }
     ]},
 
-    { k: 'h', t: 'ตัวอย่างบอร์ด', d: 'จากบอร์ด B2C App ที่ตรวจเสร็จแล้ว' },
+    { k: 'h', t: 'ตัวอย่าง board', d: 'จาก board B2C App ที่ตรวจเสร็จแล้ว' },
 
-    { k: 'p', t: '<b>1 · duplicate จาก master</b> จะได้บอร์ดเปล่าดังภาพ' },
-    { k: 'img', src: 'IMG_BOARD_SRC', alt: 'บอร์ด Design QA เปล่า: แถบซ้าย Design Review, คอลัมน์ Design Spec, Production และการ์ดตัวอย่าง 3 ระดับ',
+    { k: 'p', t: '<b>1 · duplicate จาก master</b> จะได้ board เปล่าดังภาพ' },
+    { k: 'img', src: 'IMG_BOARD_SRC', alt: 'Board Design QA เปล่า: แถบซ้าย Design Review, column Design Spec, Production และ card ตัวอย่าง 3 ระดับ',
       cap: 'แถบซ้าย = ข้อมูลรอบตรวจ, <b>Design Spec</b> = งานออกแบบ, <b>Production</b> = ภาพจริง, ขวาสุด = รายการ issue' },
-    { k: 'warn', t: '<b>ห้ามเปลี่ยนชื่อคอลัมน์</b> ใช้ <code>Production</code> เสมอแม้ตรวจบน preprod หรือ staging และระบุ environment ที่แถบซ้าย มิฉะนั้น AI จะหาคอลัมน์ไม่พบ' },
+    { k: 'warn', t: '<b>ห้ามเปลี่ยนชื่อ column</b> ใช้ <code>Production</code> เสมอแม้ตรวจบน preprod หรือ staging และระบุ environment ที่แถบซ้าย มิฉะนั้น AI จะหา column ไม่พบ' },
 
     { k: 'p', t: '<b>2 · วางกรอบในจุดที่มีปัญหา</b> ใช้ <code>zone</code> ครอบพื้นที่และเลือก variant ตาม severity <b>สีกรอบและหมุดเปลี่ยนตาม variant</b>' },
-    { k: 'pair', a: { src: 'IMG_ZONE_SRC', alt: 'คอลัมน์ Production มีกรอบเส้นประ 2 จุด พร้อมหมุดเลข 1 และ 2', cap: 'กรอบเส้นประและหมุดเลข วางซ้อนกันได้' },
-              b: { src: 'IMG_CARD_SRC', alt: 'การ์ด Comment 3 ใบในรายการ issue', cap: 'หัวข้อ 1 บรรทัด ตามด้วย bullet สิ่งที่พบและค่าที่ควรเป็น' } },
+    { k: 'pair', a: { src: 'IMG_ZONE_SRC', alt: 'Column Production มีกรอบเส้นประ 2 จุด พร้อมหมุดเลข 1 และ 2', cap: 'กรอบเส้นประและหมุดเลข วางซ้อนกันได้' },
+              b: { src: 'IMG_CARD_SRC', alt: 'Card Comment 3 ใบในรายการ issue', cap: 'หัวข้อ 1 บรรทัด ตามด้วย bullet สิ่งที่พบและค่าที่ควรเป็น' } },
 
-    { k: 'p', t: '<b>3 · เขียนการ์ดให้ Dev แก้ได้ทันที</b> ระบุ <b>ตำแหน่ง ค่าที่พบ และค่าที่ควรเป็น</b> พร้อมชื่อ token ถ้ามี ไม่ใช้คำที่ไม่ระบุค่า เช่น “น่าจะปรับ”' },
-    { k: 'img', src: 'IMG_SKIP_SRC', narrow: true, alt: 'การ์ด issue เลข 9 ตามด้วยเลข 35 และ 36 แสดงว่าเลขข้ามได้',
+    { k: 'p', t: '<b>3 · เขียน card ให้ Dev แก้ได้ทันที</b> ระบุ <b>ตำแหน่ง ค่าที่พบ และค่าที่ควรเป็น</b> พร้อมชื่อ token ถ้ามี ไม่ใช้คำที่ไม่ระบุค่า เช่น “น่าจะปรับ”' },
+    { k: 'img', src: 'IMG_SKIP_SRC', narrow: true, alt: 'Card issue เลข 9 ตามด้วยเลข 35 และ 36 แสดงว่าเลขข้ามได้',
       cap: '<b>เลข 9 → 35 → 36</b> ข้ามได้จากการลบหรือเพิ่ม issue <b>ห้ามเรียงใหม่</b> เพราะต้องตรงกับ Sheet' },
 
-    { k: 'p', t: '<b>4 · ผลลัพธ์</b> บอร์ดแสดง design ภาพจริง จุดที่ผิด และรายการ issue ในภาพเดียว และ Sheet มีเลขตรงกันทุกแถว' },
-    { k: 'img', src: 'IMG_DONE_SRC', alt: 'บอร์ด QA ที่เสร็จแล้วของ B2C App หน้า Home เทียบ Design Spec กับภาพจริง',
-      cap: 'B2C App หน้า Home (iOS) <b>คอลัมน์ขวายังชื่อ <code>Preprod</code></b> เพราะเป็นไฟล์เก่า ไฟล์ใหม่ใช้ <code>Production</code>' },
+    { k: 'p', t: '<b>4 · ผลลัพธ์</b> board แสดง design ภาพจริง จุดที่ผิด และรายการ issue ในภาพเดียว และ Sheet มีเลขตรงกันทุกแถว' },
+    { k: 'img', src: 'IMG_DONE_SRC', alt: 'Board QA ที่เสร็จแล้วของ B2C App หน้า Home เทียบ Design Spec กับภาพจริง',
+      cap: 'B2C App หน้า Home (iOS) <b>Column ขวายังชื่อ <code>Preprod</code></b> เพราะเป็นไฟล์เก่า ไฟล์ใหม่ใช้ <code>Production</code>' },
 
-    { k: 'h', t: '3 กติกาสำหรับให้ AI อ่านบอร์ดได้', d: 'ใช้กับแบบ 2 หากผิดกติกา issue นั้นจะตกหล่นโดยไม่มีการแจ้งเตือน' },
+    { k: 'h', t: '3 กติกาสำหรับให้ AI อ่าน board ได้', d: 'ใช้กับแบบ 2 หากผิดกติกา issue นั้นจะตกหล่นโดยไม่มีการแจ้งเตือน' },
     { k: 'table', head: ['กติกา', 'เหตุผล'], rows: [
       ['ใช้ component จาก master', 'ใช้ <code>zone</code> และ <code>Comment</code> เพื่อให้ AI อ่านได้ทันที <b>หาก detach</b> ระบบจะอ่านเท่าที่ทำได้และสอบถามกลับ'],
       ['เลือก severity จาก variant', 'เลือก Critical / Major / Minor <b>ระบบอ่านจาก variant ไม่ใช่สีที่ทาเอง</b>'],
-      ['เลขต้องตรงกัน 3 ที่', 'กรอบ การ์ด และช่อง Issue No. ใช้เลขเดียวกัน <b>เลขข้ามได้</b>']
+      ['เลขต้องตรงกัน 3 ที่', 'กรอบ card และช่อง Issue No. ใช้เลขเดียวกัน <b>เลขข้ามได้</b>']
     ]},
-    { k: 'warn', t: '<b>บอร์ด Figma เป็นต้นฉบับ ไม่ใช่ Sheet</b> รอบ B2C เคยแก้ Sheet ด้วยมือจน Sheet มี 41 ข้อแต่บอร์ดมี 36 <b>ให้แก้ที่บอร์ดแล้วสั่งบันทึกใหม่</b>' },
+    { k: 'warn', t: '<b>Board Figma เป็นต้นฉบับ ไม่ใช่ Sheet</b> รอบ B2C เคยแก้ Sheet ด้วยมือจน Sheet มี 41 ข้อแต่ board มี 36 <b>ให้แก้ที่ board แล้วสั่งบันทึกใหม่</b>' },
 
     { k: 'h', t: 'คำถามที่พบบ่อย' },
     { k: 'faq', items: [
-      { q: 'ต้องระบุโหมดหรือไม่', a: 'ไม่ต้อง พิมพ์ <code>/qa-check</code> ระบบจะเลือกแบบและ<b>ขอยืนยันก่อน</b>บันทึกลงบอร์ดหรือ Sheet' },
-      { q: 'วางหมุดแล้วแต่สั่งแบบ 1 จะถูกเขียนทับหรือไม่', a: 'ไม่ บอร์ดที่มีหมุดแล้วจะถือเป็นแบบ 2 เสมอ แม้ส่ง URL มาด้วย' },
-      { q: 'การแนบรูปหรือวิดีโอในการ์ดต้อง detach หรือไม่', a: 'ไม่ต้อง เปิด toggle <b>“แนบหลักฐาน”</b> ใน panel ขวา แล้ววางไฟล์ในช่องเส้นประ ระบบยังอ่านการ์ดได้ตามปกติ <b>หลายรูปให้แยกการ์ด</b> เพราะ 1 การ์ด = 1 issue = 1 แถวใน Sheet' },
-      { q: 'AI บันทึกลง Sheet ทันทีหรือไม่', a: 'ไม่ ระบบแสดงตารางในแชทและรอยืนยันทุกครั้ง และไม่แก้คอลัมน์ Dev. Note หรือแถวที่ Dev รับไปแล้ว' },
+      { q: 'ต้องระบุ mode หรือไม่', a: 'ไม่ต้อง พิมพ์ <code>/qa-check</code> ระบบจะเลือกแบบและ<b>ขอยืนยันก่อน</b>บันทึกลง board หรือ Sheet' },
+      { q: 'วางหมุดแล้วแต่สั่งแบบ 1 จะถูกเขียนทับหรือไม่', a: 'ไม่ board ที่มีหมุดแล้วจะถือเป็นแบบ 2 เสมอ แม้ส่ง URL มาด้วย' },
+      { q: 'การแนบรูปหรือวิดีโอใน card ต้อง detach หรือไม่', a: 'ไม่ต้อง เปิด toggle <b>“แนบหลักฐาน”</b> ใน panel ขวา แล้ววางไฟล์ในช่องเส้นประ ระบบยังอ่าน card ได้ตามปกติ <b>หลายรูปให้แยก card</b> เพราะ 1 card = 1 issue = 1 แถวใน Sheet' },
+      { q: 'AI บันทึกลง Sheet ทันทีหรือไม่', a: 'ไม่ ระบบแสดงตารางใน chat และรอยืนยันทุกครั้ง และไม่แก้ column Dev. Note หรือแถวที่ Dev รับไปแล้ว' },
       { q: 'issue ด้าน content หรือตัวเลขผิด บันทึกได้หรือไม่', a: 'ได้ หาก Designer เป็นผู้พบ AI ไม่ตัดสินเรื่องนี้เพราะ mockup ใช้ข้อมูลสมมติ' },
       { q: 'หากพบว่าเป็น bug ของ Design System', a: 'บันทึกใน Sheet และแจ้ง DesignOps <b>การแก้ที่ DS ได้ผลกว่าแก้รายหน้า</b> เพราะ Critical เกือบครึ่งของ B2C มาจาก component ต้นทาง' }
     ]}
@@ -133,9 +133,9 @@ DATA.topic.b2c = {
 
     { k: 'h', t: 'ปัญหาที่พบระหว่างดำเนินการ', d: 'เพื่อป้องกันการเกิดซ้ำในรอบถัดไป' },
     { k: 'table', head: ['อาการ', 'ทางแก้'], rows: [
-      ['Sheet มี 41 ข้อ แต่บอร์ดมี 36 เพราะแก้ Sheet ด้วยมือ', '<b>บอร์ดเป็นต้นฉบับ</b> เขียนใหม่ทั้งแท็บจากบอร์ด'],
+      ['Sheet มี 41 ข้อ แต่ board มี 36 เพราะแก้ Sheet ด้วยมือ', '<b>Board เป็นต้นฉบับ</b> เขียนใหม่ทั้ง tab จาก board'],
       ['เลขหมุดข้าม เช่น 9 → 35 → 36', '<b>ปกติ</b> เกิดจากการลบหรือเพิ่ม issue ห้ามเรียงใหม่'],
-      ['มีกรอบแต่ไม่มีการ์ด', 'Dev ไม่ทราบว่าต้องแก้อะไร ทุกกรอบต้องมีการ์ด'],
+      ['มีกรอบแต่ไม่มี card', 'Dev ไม่ทราบว่าต้องแก้อะไร ทุกกรอบต้องมี card'],
       ['ตัวนับ severity ในแถบซ้ายเป็น 00 ทุกหน้า', 'กรอกให้ครบเมื่อปิดรอบ'],
       ['ทุก frame ชื่อ <code>QA - Template</code>', 'อ่านชื่อหน้าจากแถบซ้ายแทนชื่อ frame']
     ]},
@@ -147,32 +147,32 @@ DATA.topic.b2c = {
 
 DATA.topic.tpl = {
   parent: 'qa', color: 'blue', icon: 'frame',
-  title: 'Template', tag: 'บอร์ด Figma + Sheet รายงาน',
+  title: 'Template', tag: 'Board Figma + Sheet รายงาน',
   lede: 'ใช้ 2 แม่แบบนี้ทุกครั้ง เพราะโครงและชื่อ layer ต้องตรงกัน AI จึงอ่านและบันทึกกลับได้',
   blocks: [
     { k: 'link', items: [
-      { icon: 'frame', color: 'blue', t: 'Master · บอร์ด Figma', d: 'duplicate frame Master - QA Template ไปใช้ มี component ครบ 4 ตัว', to: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma' },
-      { icon: 'table', color: 'amber', t: 'Master · Sheet รายงาน', d: '<b>Make a copy</b> แล้วแชร์ Editor ให้บัญชีที่ระบบแจ้ง มีแท็บ Onboarding สำหรับ Dev แล้ว', to: 'https://docs.google.com/spreadsheets/d/1Mj9MWa0rAjgmgeUjfh7E78C5T_h8MYWNzWVFw-H7zsk/edit', up: 'Google Sheet' }
+      { icon: 'frame', color: 'blue', t: 'Master · board Figma', d: 'duplicate frame Master - QA Template ไปใช้ มี component ครบ 4 ตัว', to: 'https://www.figma.com/design/JB7nZD4KBOXX8q5QW3mucJ/-Master--Design-QA-Template?node-id=2-40', up: 'Figma' },
+      { icon: 'table', color: 'amber', t: 'Master · Sheet รายงาน', d: '<b>Make a copy</b> แล้วแชร์ Editor ให้บัญชีที่ระบบแจ้ง มี tab Onboarding สำหรับ Dev แล้ว', to: 'https://docs.google.com/spreadsheets/d/1Mj9MWa0rAjgmgeUjfh7E78C5T_h8MYWNzWVFw-H7zsk/edit', up: 'Google Sheet' }
     ]},
 
-    { k: 'h', t: 'บอร์ด Figma: โครง 4 ส่วน', d: '1 frame = 1 หน้า = 1 platform ความสูงตามความยาวหน้าจริง' },
-    { k: 'img', src: 'IMG_BOARD_SRC', alt: 'บอร์ด Design QA เปล่าจาก master ประกอบด้วยแถบซ้าย, Design Spec, Production และรายการ issue',
-      cap: 'บอร์ดที่ duplicate มาใหม่' },
+    { k: 'h', t: 'Board Figma: โครง 4 ส่วน', d: '1 frame = 1 หน้า = 1 platform ความสูงตามความยาวหน้าจริง' },
+    { k: 'img', src: 'IMG_BOARD_SRC', alt: 'Board Design QA เปล่าจาก master ประกอบด้วยแถบซ้าย, Design Spec, Production และรายการ issue',
+      cap: 'Board ที่ duplicate มาใหม่' },
     { k: 'table', head: ['ส่วน', 'เนื้อหา'], rows: [
       ['แถบซ้าย', 'product · ชื่อหน้า · environment · platform · ขนาดจอ · ตัวนับ severity'],
-      ['<code>Design Spec</code>', 'frame งานออกแบบจาก Figma'],
-      ['<code>Production</code>', 'ภาพจริงที่แคปมา + กรอบ <code>zone</code> ในจุดที่ผิด'],
-      ['<code>Issue List</code>', 'การ์ด <code>Comment</code> เรียงต่อกัน 1 ใบ = 1 issue']
+      ['<code>Design Spec</code>', 'Frame งานออกแบบจาก Figma'],
+      ['<code>Production</code>', 'ภาพจริงที่ capture มา + กรอบ <code>zone</code> ในจุดที่ผิด'],
+      ['<code>Issue List</code>', 'Card <code>Comment</code> เรียงต่อกัน 1 ใบ = 1 issue']
     ]},
     { k: 'table', head: ['Component', 'variant', 'การใช้งาน'], rows: [
       ['<code>zone</code>', 'Critical / Major / Minor', 'กรอบครอบพื้นที่ที่มีปัญหา <b>สีเปลี่ยนตาม variant</b>'],
-      ['<code>Comment</code>', 'Critical / Major / Minor', 'การ์ดอธิบาย issue'],
+      ['<code>Comment</code>', 'Critical / Major / Minor', 'Card อธิบาย issue'],
       ['<code>indicator</code>', 'Critical / Major / Minor', 'หมุดเลข'],
       ['<code>titleNotes</code>', '—', 'แถบซ้าย + ตัวนับ severity']
     ]},
-    { k: 'warn', t: '<b>คอลัมน์ขวาใช้ชื่อ <code>Production</code> เสมอ</b> และระบุ environment ที่แถบซ้าย หากเปลี่ยนชื่อ AI จะหาคอลัมน์ไม่พบ' },
+    { k: 'warn', t: '<b>Column ขวาใช้ชื่อ <code>Production</code> เสมอ</b> และระบุ environment ที่แถบซ้าย หากเปลี่ยนชื่อ AI จะหา column ไม่พบ' },
 
-    { k: 'h', t: 'Sheet รายงาน: ตัวอย่างจริง', d: 'จากแม่แบบจริง 1 แท็บ = 1 platform' },
+    { k: 'h', t: 'Sheet รายงาน: ตัวอย่างจริง', d: 'จากแม่แบบจริง 1 tab = 1 platform' },
     { k: 'sheet',
       cols: [{ c: 'A', f: 1.1 }, { c: 'B', f: .9 }, { c: 'C', f: .9 }, { c: 'D', f: 2.4 }, { c: 'E', f: 1.1 }, { c: 'F', f: 1 }, { c: 'G', f: .9 }, { c: 'H', f: .8 }, { c: 'I', f: .9 }],
       rows: [
@@ -190,12 +190,12 @@ DATA.topic.tpl = {
         { n: 13, z: 'sev',   cells: [{ t: '🟡 Minor' }, { t: 'cosmetic' }, {}, {}, {}, {}, {}, {}, {}] },
         { n: 16, z: 'hdr',   cells: [{ t: 'Issue No.' }, { t: 'Severity' }, { t: 'Page' }, { t: 'Description' }, { t: 'Issue Types' }, { t: 'Figma Link' }, { t: 'Status' }, { t: 'Note' }, { t: 'Dev. Note' }] },
         { n: 17, cells: [{ t: '1' }, { t: 'Critical' }, { t: 'Home' }, { t: 'Thumbnail radius ไม่ตรง spec…' }, { t: 'Sizing' }, { t: 'figma.com/…' }, { t: 'Open' }, {}, { t: '← dev' }] },
-        { n: 18, cells: [{ t: '2' }, { t: 'Major' }, { t: 'Home' }, { t: 'ระยะห่างระหว่างการ์ดมากเกินไป…' }, { t: 'Spacing & Layout' }, { t: 'figma.com/…' }, { t: 'Open' }, {}, {}] }
+        { n: 18, cells: [{ t: '2' }, { t: 'Major' }, { t: 'Home' }, { t: 'ระยะห่างระหว่าง card มากเกินไป…' }, { t: 'Spacing & Layout' }, { t: 'figma.com/…' }, { t: 'Open' }, {}, {}] }
       ],
       cap: '<b>แถว 2–8 คือหัวรายงาน</b> ต้องกรอกครบ <b>หัวตารางอยู่แถว 16 เสมอ</b> เว้นแถว 9 และ 14–15' },
-    { k: 'h', t: '9 คอลัมน์และข้อมูลที่ต้องกรอก' },
-    { k: 'table', head: ['คอลัมน์', 'ข้อมูล', 'AI กรอกได้หรือไม่'], rows: [
-      ['A · Issue No.', 'เลขลำดับ <b>ต้องตรงกับหมุดในบอร์ด</b>', '✅'],
+    { k: 'h', t: '9 column และข้อมูลที่ต้องกรอก' },
+    { k: 'table', head: ['Column', 'ข้อมูล', 'AI กรอกได้หรือไม่'], rows: [
+      ['A · Issue No.', 'เลขลำดับ <b>ต้องตรงกับหมุดใน board</b>', '✅'],
       ['B · Severity', 'Critical / Major / Minor', '✅'],
       ['C · Page', 'ชื่อหน้า', '✅'],
       ['D · Description', 'สรุป 1 บรรทัด ตามด้วย bullet <b>ตำแหน่ง · ค่าที่พบ · ค่าที่ควรเป็น</b>', '✅'],
@@ -206,14 +206,14 @@ DATA.topic.tpl = {
       ['I · Dev. Note', 'คำตอบจาก Dev', '❌ <b>AI ห้ามแก้ไข</b>']
     ]},
     { k: 'p', t: '<b>หัวรายงานต้องกรอกครบ</b> โดยเฉพาะ<b>เลข build</b> หากไม่ระบุจะ re-test เทียบไม่ได้ว่าแก้แล้วจริง' },
-    { k: 'note', t: '<b>ไม่มี gcloud ก็ใช้ได้</b> โดย copy ตารางจากแชทไปวางเอง หากให้ AI บันทึกเองต้องแชร์ Editor ให้บัญชีที่ระบบแจ้ง' }
+    { k: 'note', t: '<b>ไม่มี gcloud ก็ใช้ได้</b> โดย copy ตารางจาก chat ไปวางเอง หากให้ AI บันทึกเองต้องแชร์ Editor ให้บัญชีที่ระบบแจ้ง' }
   ]
 };
 
 DATA.topic.iss = {
   parent: 'qa', color: 'purple', icon: 'tag',
   title: 'ประเภท issue', tag: 'enum มาตรฐาน · ต้องสะกดตรงกัน',
-  lede: 'ใช้ค่าชุดนี้ใน Sheet บอร์ด และรายงาน หากสะกดต่างกันจะนับ pattern ข้ามรายงานไม่ได้ เช่น สถิติ “Sizing 27%”',
+  lede: 'ใช้ค่าชุดนี้ใน Sheet board และรายงาน หากสะกดต่างกันจะนับ pattern ข้ามรายงานไม่ได้ เช่น สถิติ “Sizing 27%”',
   blocks: [
     { k: 'h', t: 'Severity: 3 ค่า ห้ามเพิ่ม', d: 'ผูกกับสี variant ใน Figma และ workflow ของ Dev' },
     { k: 'table', head: ['ค่า', 'นิยาม', 'ตัวอย่าง'], rows: [
