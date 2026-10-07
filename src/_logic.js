@@ -87,6 +87,8 @@ function viewHome() {
   return '<div class="inner">' +
     head({ icon: 'home', title: 'DesignOps', tag: 'playbook · เอกสารอ้างอิง · ลิงก์ต้นฉบับ', color: '',
            lede: 'ศูนย์รวมแนวทางและเอกสารของ DesignOps สำหรับทีม' }) +
+    '<div class="block"><h2 class="sec">ทำไมต้องมี</h2>' +
+      blocks([{ k: 'why', p: 'เอกสารอยู่หลายที่ (Confluence · design-brain · Figma) แต่ละคนทำงานคนละวิธี และปัญหาด้าน design มักไปพบในขั้น QA', g: 'ทุกคนทำงานตาม<b>process เดียวกัน</b> และหาเอกสารได้จากจุดเดียว เพื่อพบปัญหาด้าน design ให้เร็วที่สุด', r: 'Process ใน Hub ทดสอบกับงานจริงของ <b>B2C App</b> แล้วทั้งหมด' }]) + '</div>' +
     '<div class="block"><h2 class="sec">ขั้นตอนของงาน</h2>' +
       '<p class="sec-lede">เส้นประม่วง = ทำเมื่อจำเป็น · เส้นประฟ้า = ย้อนกลับไปแก้ต้นทาง</p>' +
       '<div class="flowbox">' + FLOW_HOME + '</div></div>' +

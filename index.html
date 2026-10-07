@@ -437,6 +437,12 @@ figure.sside{width:fit-content;max-width:100%;justify-self:start}
 figure.sside img{display:block;width:100%;height:auto}
 @media(min-width:901px){.srow{padding:28px;gap:36px;margin:20px 0}}
 @media(max-width:900px){.srow{padding:22px}}
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:8px 0 8px}
+.why .wc{background:var(--card);border:1px solid var(--card-line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);border-top:4px solid var(--line)}
+.why .wc.p{border-top-color:var(--c-orange)}.why .wc.g{border-top-color:var(--cta-ink)}.why .wc.r{border-top-color:var(--c-green)}
+.why .wl{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px}
+.why .wv{font-size:.95rem;line-height:1.7;color:var(--ink-soft)}.why .wv b{color:var(--ink)}
+@media(max-width:820px){.why{grid-template-columns:minmax(0,1fr)}}
 </style>
 
 <script>
@@ -749,6 +755,8 @@ DATA.topic.how = {
       { l: 'ใช้เมื่อใด', v: 'หลังขึ้น staging หรือ preprod <b>ก่อนขึ้น production</b>' },
       { l: 'วัตถุประสงค์', v: 'ให้ Dev แก้ได้ตรงจุด และพบ<b>ปัญหาซ้ำที่ต้องแก้ที่ Design System</b>' }
     ]},
+    { k: 'h', t: 'ทำไมต้องมี' },
+    { k: 'why', p: 'ตรวจด้วยตาทั้งหมด ใช้เวลานาน รูปแบบรายงานไม่เหมือนกัน และ issue ที่มาจาก component ถูกแก้ทีละหน้า', g: 'ตรวจ build เทียบ design ด้วย<b>มาตรฐานเดียว</b> ใช้ AI ช่วยตรวจ และส่ง issue ให้ dev แก้ได้ทันที', r: 'B2C App ปิด cycle <b>95.7%</b> · issue ระดับ Critical ส่วนใหญ่ย้อนกลับไปแก้ที่ Design System ได้ในครั้งเดียว' },
 
     { k: 'h', t: 'การเลือกแบบ', d: 'พิมพ์ <code>/qa-check</code> ระบบจะเลือกแบบจากข้อมูลที่ส่งมาและขอยืนยันก่อนเสมอ' },
     { k: 'flow', svg: FLOW_QA, cap: 'เส้นฟ้า = แบบ 1 · เส้นส้ม = แบบ 2 (Designer ตรวจทานก่อนบันทึกทั้งสองแบบ)' },
@@ -1036,7 +1044,8 @@ DATA.topic.dvhow = {
       { l: 'ผลลัพธ์', v: 'หน้า <b>📄 Deliver</b> ที่แสดง<b>ความพร้อมและรายการค้าง</b>' }
     ]},
 
-    { k: 'h', t: 'เหตุผลที่ต้องใช้', d: 'ปัญหาส่วนใหญ่มาจาก<b>กรณีที่ไม่ได้ออกแบบ</b> เช่น หน้า error หรือข้อความยาวเกิน ซึ่ง dev ต้องตีความเอง' },
+    { k: 'h', t: 'ทำไมต้องมี' },
+    { k: 'why', p: 'ส่งเพียงลิงก์ Figma ไม่มีการตรวจความครบถ้วน dev ต้องตีความ<b>กรณีที่ไม่ได้ออกแบบ</b>เอง เช่น หน้า error หรือข้อความยาวเกิน', g: 'ตรวจความครบ<b>ก่อนส่ง</b> และให้ dev เห็นในไฟล์ว่างานพร้อมแค่ไหน อะไรยังค้าง', r: 'Checklist 7 ข้อพัฒนาจาก <b>10 ปัญหา</b>ที่หลุดถึงขั้น QA ของ B2C App' },
     { k: 'ba',
       no:  { t: 'แบบเดิม', items: ['ส่งลิงก์ Figma ให้ dev', 'ไม่มีการตรวจความครบถ้วน', '<b>dev ตีความเอง</b>ในกรณีที่ไม่ได้ออกแบบ', 'พบเป็น bug ในขั้น QA'] },
       yes: { t: 'ใช้ Deliver Kit', items: ['ระบบตรวจไฟล์ก่อนส่ง', 'ตรวจตาม <b>Checklist 7 ข้อ</b>', 'พบสิ่งที่ขาด<b>ก่อน dev เริ่มงาน</b>', 'dev เห็นสถานะงานในไฟล์'] } },
@@ -1199,6 +1208,8 @@ DATA.topic.dvrat = {
       { l: 'คำสั่ง', v: '<code>/rationale &lt;ลิงก์ Figma ของหน้าจอ&gt;</code> ใน Claude Code (design-brain) · ปรึกษาก่อนออกแบบได้โดยไม่ต้องแนบลิงก์' },
       { l: 'ผลลัพธ์', v: 'Board ประกอบด้วยหน้าจอ <b>หมุดเลข</b> และ<b>Card เหตุผล</b> พร้อมหลักฐานและ Trade-offs' }
     ]},
+    { k: 'h', t: 'ทำไมต้องมี' },
+    { k: 'why', p: 'เหตุผลของ design decision อยู่ในความจำของผู้ออกแบบ เมื่อถูกถามใน review หรือจาก dev ต้องอธิบายใหม่ทุกครั้ง', g: 'บันทึกเหตุผล<b>พร้อมหลักฐาน</b>ไว้ข้างหน้าจอ ใช้ได้ทั้งตอน review และตอนส่ง dev', r: 'ใช้กับ B2C App แล้ว <b>3 board</b>: Homepage · Curriculum · My Course' },
 
     { k: 'h', t: 'ใช้เมื่อ', d: 'เฉพาะหน้าที่มี decision ที่อาจถูกถามว่า "ทำไม" (ปกติ 1-3 หน้าต่อ feature · หน้าละ 3-6 ข้อ)' },
     { k: 'table', head: ['ใช้เมื่อ', 'Mode', 'ผลลัพธ์'], rows: [
@@ -1349,6 +1360,10 @@ function blocks(list) {
         return '<div class="stats" style="margin-top:8px">' + b.items.map(function (x, i) {
           return '<div class="stat' + (i === 0 ? ' hero' : '') + '"><div class="lbl">' + x.l + '</div>' +
             '<div class="big">' + x.b + '</div><div class="sub">' + x.s + '</div></div>';
+        }).join('') + '</div>';
+      case 'why':
+        return '<div class="why">' + [['p', 'ปัญหาเดิม', b.p], ['g', 'เป้าหมาย', b.g], ['r', 'ผลที่ได้', b.r]].map(function (x) {
+          return '<div class="wc ' + x[0] + '"><div class="wl">' + x[1] + '</div><div class="wv">' + x[2] + '</div></div>';
         }).join('') + '</div>';
       case 'video':
         return '<figure class="fig vid"><video controls preload="metadata" playsinline poster="' + b.poster + '" src="' + b.src + '"></video>' +
@@ -1508,6 +1523,8 @@ function viewHome() {
   return '<div class="inner">' +
     head({ icon: 'home', title: 'DesignOps', tag: 'playbook · เอกสารอ้างอิง · ลิงก์ต้นฉบับ', color: '',
            lede: 'ศูนย์รวมแนวทางและเอกสารของ DesignOps สำหรับทีม' }) +
+    '<div class="block"><h2 class="sec">ทำไมต้องมี</h2>' +
+      blocks([{ k: 'why', p: 'เอกสารอยู่หลายที่ (Confluence · design-brain · Figma) แต่ละคนทำงานคนละวิธี และปัญหาด้าน design มักไปพบในขั้น QA', g: 'ทุกคนทำงานตาม<b>process เดียวกัน</b> และหาเอกสารได้จากจุดเดียว เพื่อพบปัญหาด้าน design ให้เร็วที่สุด', r: 'Process ใน Hub ทดสอบกับงานจริงของ <b>B2C App</b> แล้วทั้งหมด' }]) + '</div>' +
     '<div class="block"><h2 class="sec">ขั้นตอนของงาน</h2>' +
       '<p class="sec-lede">เส้นประม่วง = ทำเมื่อจำเป็น · เส้นประฟ้า = ย้อนกลับไปแก้ต้นทาง</p>' +
       '<div class="flowbox">' + FLOW_HOME + '</div></div>' +

@@ -40,6 +40,10 @@ function blocks(list) {
           return '<div class="stat' + (i === 0 ? ' hero' : '') + '"><div class="lbl">' + x.l + '</div>' +
             '<div class="big">' + x.b + '</div><div class="sub">' + x.s + '</div></div>';
         }).join('') + '</div>';
+      case 'why':
+        return '<div class="why">' + [['p', 'ปัญหาเดิม', b.p], ['g', 'เป้าหมาย', b.g], ['r', 'ผลที่ได้', b.r]].map(function (x) {
+          return '<div class="wc ' + x[0] + '"><div class="wl">' + x[1] + '</div><div class="wv">' + x[2] + '</div></div>';
+        }).join('') + '</div>';
       case 'video':
         return '<figure class="fig vid"><video controls preload="metadata" playsinline poster="' + b.poster + '" src="' + b.src + '"></video>' +
           (b.cap ? '<figcaption>' + b.cap + '</figcaption>' : '') + '</figure>';
